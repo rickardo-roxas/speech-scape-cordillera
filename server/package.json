@@ -2,15 +2,16 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "test": "jest",
+    "build": "echo \"No build step required\"",
+    "migrate": "sequelize db:migrate",
+    "start:test": "NODE_ENV=test node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2"
-  }
+  "license": "ISC"
 }
