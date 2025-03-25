@@ -1,0 +1,57 @@
+name: Backend CI/CD
+
+on:
+  push:
+    branches: [develop, main]
+    paths:
+      - "server/**"
+      - ".github/workflows/backend.yml"
+  pull_request:
+    branches: [develop, main]
+    paths:
+      - "server/**"
+
+jobs:
+  test:
+    name: Run Backend Tests
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: speechscape_test
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: test_password
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: server/package-lock.json
+
+      - name: Install Dependencies
+        working-directory: ./server
+        run: npm ci
+
+      - name: Run Linting
+        working-directory: ./server
+        run: npm run lint
+
+      - name: Run Tests
+        working-directory: ./server
+        run: npm test
+        env:
+          DB_HOST: localhost
+          DB_PORT: 3306
+          DB_USER: test_user
+          DB_PASSWORD: test_password
+          DB_NAME: speechscape_test
