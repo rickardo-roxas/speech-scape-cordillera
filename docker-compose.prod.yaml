@@ -1,16 +1,15 @@
-# For local development
+# For production
 services:
   mysql:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: speechscape
-      MYSQL_USER: dev_user
-      MYSQL_PASSWORD: dev_password
-    ports:
-      - "3306:3306"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
+    restart: always
     networks:
       - app-network
 
@@ -18,15 +17,12 @@ services:
     build: 
       context: ./server
       dockerfile: Dockerfile
-    env_file: ./server/.env
-    volumes:
-      - ./server:/app
-      - /app/node_modules
+    env_file: ./server/.env.production
     ports:
       - "8080:8080"
     depends_on:
       - mysql
-    command: npm run dev
+    restart: always
     networks:
       - app-network
 
@@ -34,15 +30,11 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile.client
-    env_file: ./client/.env.development
-    volumes:
-      - ./client:/app
-      - /app/node_modules
     ports:
       - "3000:3000"
     depends_on:
       - server
-    command: npm run dev
+    restart: always
     networks:
       - app-network
 
