@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "../services/api"; // Uses Axios service
+import axios from "../services/apiService"; // Uses Axios service
 
 export default function useFetch(url) {
     const [data, setData] = useState(null);
