@@ -16,6 +16,7 @@ export default [
     },
     rules: {
       ...js.configs.recommended.rules,
+      'semi': ['error', 'always'], 
       'node/no-unsupported-features/es-syntax': 'off', 
       'node/no-unpublished-require': 'off', 
       'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }], 
