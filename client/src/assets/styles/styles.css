@@ -1,34 +1,4 @@
-@font-face {
-    /* Placeholder code. Replace with actual fonts */
-    font-family: "Open Sans";
-    src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-}
+@import url("./Variables.css");
+@import url("./Reset.css");
 
-@font-face {
-    /* Placeholder code. Replace with actual fonts */
-    font-family: "Open Sans";
-    src: url("../fonts/OpenSans-Bold.ttf") format("truetype");
-    font-weight: bold;
-    font-style: normal;
-}
-
-/* Global Styles */
-/* To define */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Open Sans", sans-serif;
-}
-
-body {
-    background-color: #f8f9fa;
-    color: #333;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
+/* TODO: Add your global styles here */
