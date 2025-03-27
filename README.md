@@ -16,7 +16,6 @@ SpeechScape Cordillera is an innovative language mapping application focused on 
 - [Technology Stack](#technology-stack)
 - [API Documentation](#api-documentation)
 - [Roadmap](#roadmap)
-- [License](#license)
 - [Contact](#contact)
 
 ## Features
@@ -131,16 +130,14 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Contact
 **Developers**
-DE TORRES, John Rey
-JASMIN, Ramon Emmiel
-LACANILAO, Marvin Patrick
-RILLERA, Hans
-ROXAS, Johan Rickardo
-SICCUAN, Sebastian
-TANK, Rithik
+- DE TORRES, John Rey
+- JASMIN, Ramon Emmiel
+- LACANILAO, Marvin Patrick
+- RILLERA, Hans
+- ROXAS, Johan Rickardo
+- SICCUAN, Sebastian
+- TANK, Rithik
 
 ## Acknowledgments
 - Cordillera Indigenous Language Communities
 - Local Academic Institutions
-- Open-Source Contributors
-```
