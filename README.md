@@ -1,11 +1,160 @@
 # SpeechScape Cordillera
 
 ## Description
-SpeechScape Cordillera is a language mapping application for the Cordillera Administrative Region (CAR), Philippines.
+SpeechScape Cordillera is an innovative language mapping application focused on documenting and preserving the rich linguistic diversity of the Cordillera Administrative Region (CAR) in the Philippines. The project aims to create a comprehensive digital repository of languages, dialects, and linguistic variations unique to this mountainous region.
+
+## Table of Contents
+- [Description](#description)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+- [Data Collection Methodology](#data-collection-methodology)
+- [Contributing](#contributing)
+- [Technology Stack](#technology-stack)
+- [API Documentation](#api-documentation)
+- [Roadmap](#roadmap)
+- [License](#license)
+- [Contact](#contact)
+
+## Features
+- Interactive linguistic mapping of the Cordillera region
+- Comprehensive language and dialect documentation
+- Search and filtering capabilities
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js (v18+)
-- Docker
-- MySQL Database
+Before you begin, ensure you have the following installed:
+
+- **Programming Languages and Frameworks**
+  - Node.js (v18+)
+  - npm or Yarn
+  - Docker
+  - Git
+
+- **Database**
+  - MySQL (8.0+)
+  - MySQL Workbench (optional)
+
+- **Development Tools**
+  - Code Editor (VSCode recommended)
+  - Docker
+    
+### Installation
+
+#### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/speechscape-cordillera.git
+cd speechscape-cordillera
+```
+
+#### 2. Install Dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+#### 3. Database Setup
+```bash
+# Start MySQL Docker container
+docker-compose up -d database
+
+# Run database migrations
+npm run migrate
+# or
+yarn migrate
+```
+
+### Configuration
+Create a `.env` file in the project root with the following configurations:
+
+```env
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=speechscape_user
+DB_PASSWORD=your_secure_password
+DB_NAME=speechscape_cordillera
+
+# Application Settings
+PORT=3000
+NODE_ENV=development
+
+## Usage
+
+### Running the Application
+```bash
+# Development mode
+npm run dev
+# or
+yarn dev
+
+# Production build
+npm run build
+npm start
+# or
+yarn build
+yarn start
+```
+
+### API Endpoints
+- To be defined
+
+## Data Collection Methodology
+SpeechScape Cordillera employs a multi-faceted approach to linguistic data collection:
+- To be defined.
+
+## Contributing
+We welcome contributions from linguists, developers, and community members!
+
+### How to Contribute
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+## Technology Stack
+- **Backend**: Node.js, Express.js
+- **Database**: MySQL
+- **ORM**: Sequelize
+- **Frontend**: React.js
+- **Mapping**: Leaflet.js
+- **Containerization**: Docker
+
+## API Documentation
+Comprehensive API documentation is available in `docs/api-specs.yaml`. 
+[View Swagger Documentation](https://your-swagger-url.com) (TODO)
+
+## Roadmap
+- [ ] Expand language coverage
+- [ ] Implement machine learning for dialect classification
+- [ ] Add audio recording features
+- [ ] Develop mobile application
+- [ ] Create educational resources
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Contact
+**Developers**
+DE TORRES, John Rey
+JASMIN, Ramon Emmiel
+LACANILAO, Marvin Patrick
+RILLERA, Hans
+ROXAS, Johan Rickardo
+SICCUAN, Sebastian
+TANK, Rithik
+
+## Acknowledgments
+- Cordillera Indigenous Language Communities
+- Local Academic Institutions
+- Open-Source Contributors
+```
