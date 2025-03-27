@@ -13,7 +13,6 @@ SpeechScape Cordillera is an innovative language mapping application focused on 
 - [Project Structure](#project-structure)
 - [Usage](#usage)
 - [Data Collection Methodology](#data-collection-methodology)
-- [Contributing](#contributing)
 - [Technology Stack](#technology-stack)
 - [API Documentation](#api-documentation)
 - [Roadmap](#roadmap)
@@ -109,18 +108,6 @@ yarn start
 SpeechScape Cordillera employs a multi-faceted approach to linguistic data collection:
 - To be defined.
 
-## Contributing
-We welcome contributions from linguists, developers, and community members!
-
-### How to Contribute
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
-
 ## Technology Stack
 - **Backend**: Node.js, Express.js
 - **Database**: MySQL
@@ -135,10 +122,9 @@ Comprehensive API documentation is available in `docs/api-specs.yaml`.
 
 ## Roadmap
 - [ ] Expand language coverage
-- [ ] Implement machine learning for dialect classification
+- [ ] Add community contribution
 - [ ] Add audio recording features
 - [ ] Develop mobile application
-- [ ] Create educational resources
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
