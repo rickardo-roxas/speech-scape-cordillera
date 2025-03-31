@@ -11,7 +11,7 @@ services:
       - ./client:/app
       - /app/node_modules
     env_file:
-      - .env.dev
+      - client/.env.dev
   
   backend:
     build:
@@ -25,7 +25,7 @@ services:
     depends_on:
       - database
     env_file:
-      - .env.dev
+      - server/.env.dev
 
   database:
     image: mysql:latest
