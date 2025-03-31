@@ -10,8 +10,8 @@ services:
     volumes:
       -./client:/app
       - /app/node_modules
-    environment:
-      - VITE_API_URL=http://backend:8080
+    env_file:
+      - fileName: .env.dev
   
   backend:
     build:
@@ -24,20 +24,14 @@ services:
       - /app/node_modules
     depends_on:
       - database
-    environment:
-      - DB_HOST=db
-      - DB_USER=root
-      - DB_PASSWORD=root
-      - DB_NAME=speech_scape
-      - DB_PORT=3306
-      - CORS_ORIGIN=http://localhost:3000
+    env_file:
+      - fileName: .env.dev
 
   database:
     image: mysql:latest
     restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=speech_scape
+    env_file:
+      - fileName: .env.dev
     ports:
       - "3306:3306"
     volumes:
