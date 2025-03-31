@@ -1,5 +1,6 @@
 import js from '@eslint/js';
 import node from 'eslint-plugin-node';
+import jest from 'eslint-plugin-jest';  
 
 export default [
   {
@@ -13,21 +14,19 @@ export default [
     },
     plugins: {
       node,
+      jest, 
     },
-    "env": {
-      "jest": true
+    env: {
+      jest: true, 
     },
     rules: {
       ...js.configs.recommended.rules,
+      ...jest.configs.recommended.rules, 
       'semi': ['error', 'always'], 
       'node/no-unsupported-features/es-syntax': 'off', 
       'node/no-unpublished-require': 'off', 
       'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }], 
       'no-console': 'off', 
     },
-  },
-  {
-    "plugins": ["jest"],
-    "extends": ["plugin:jest/recommended"]
   }
 ];
