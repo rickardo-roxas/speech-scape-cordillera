@@ -7,8 +7,8 @@ services:
       dockerfile: Dockerfile.prod
     ports:
       - "3000:3000"
-    environment:
-      - VITE_API_URL=http://backend:8080
+    env_file:
+      - .env.prod
     depends_on:
       - backend
 
@@ -20,21 +20,14 @@ services:
       - "8080:8080"
     depends_on:
       - database
-    environment:
-      - DB_HOST=db
-      - DB_USER=root
-      - DB_PASSWORD=yourpassword
-      - DB_NAME=speech_scape
-      - DB_PORT=3306
-      #- CORS_ORIGIN=https://localhost:3000
-      - NODE_ENV=production
+    env_file:
+      - .env.prod
 
   database:
     image: mysql:latest
     restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=yourpassword
-      - MYSQL_DATABASE=speech_scape
+    env_file:
+      - .env.prod
     ports:
       - "3306:3306"
     volumes:
