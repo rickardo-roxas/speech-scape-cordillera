@@ -14,6 +14,9 @@ export default [
     plugins: {
       node,
     },
+    "env": {
+      "jest": true
+    },
     rules: {
       ...js.configs.recommended.rules,
       'semi': ['error', 'always'], 
@@ -23,4 +26,8 @@ export default [
       'no-console': 'off', 
     },
   },
+  {
+    "plugins": ["jest"],
+    "extends": ["plugin:jest/recommended"]
+  }
 ];
