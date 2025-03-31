@@ -35,6 +35,9 @@ jobs:
                     echo "CORS_ORIGIN=${{ secrets.CORS_ORIGIN }}" >> server/.env.dev
                     echo "NODE_ENV=${{ secrets.NODE_ENV }}" >> server/.env.dev
 
+            - name: Reset services
+              run: docker-compose down --volumes --remove-orphans
+
             - name: Build & start services
               run: docker compose -f docker-compose.dev.yml up -d --build
             
