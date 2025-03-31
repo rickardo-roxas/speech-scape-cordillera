@@ -26,14 +26,14 @@ jobs:
 
             - name: Create server .env file
               run: |
-                    echo "PORT=${{ secrets.PORT }}" >> server.env.dev
-                    echo "DB_HOST=${{ secrets.DB_HOST }}" >> server.env.dev
-                    echo "DB_USER=${{ secrets.DB_USER }}" >> server.env.dev
-                    echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> server.env.dev
-                    echo "DB_NAME=${{ secrets.DB_NAME }}" >> server.env.dev
-                    echo "DB_PORT=${{ secrets.DB_PORT }}" >> server.env.dev
-                    echo "CORS_ORIGIN=${{ secrets.CORS_ORIGIN }}" >> server.env.dev
-                    echo "NODE_ENV=${{ secrets.NODE_ENV }}" >> server.env.dev
+                    echo "PORT=${{ secrets.PORT }}" >> server/.env.dev
+                    echo "DB_HOST=${{ secrets.DB_HOST }}" >> server/.env.dev
+                    echo "DB_USER=${{ secrets.DB_USER }}" >> server/.env.dev
+                    echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> server/.env.dev
+                    echo "DB_NAME=${{ secrets.DB_NAME }}" >> server/.env.dev
+                    echo "DB_PORT=${{ secrets.DB_PORT }}" >> server/.env.dev
+                    echo "CORS_ORIGIN=${{ secrets.CORS_ORIGIN }}" >> server/.env.dev
+                    echo "NODE_ENV=${{ secrets.NODE_ENV }}" >> server/.env.dev
 
             - name: Build & start services
               run: docker compose -f docker-compose.dev.yml up -d --build
