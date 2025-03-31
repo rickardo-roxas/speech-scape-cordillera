@@ -35,8 +35,11 @@ jobs:
               with:
                 node-version: '22'
                 cache: 'npm'
-                cache-dependency-path: package-lock.json
-            
+                cache-dependency-path: server/package-lock.json
+
+            - name: Clear npm cache
+              run: npm cache clean --force
+    
             - name: Install Dependencies
               run: npm ci
             
