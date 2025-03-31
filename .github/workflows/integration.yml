@@ -43,7 +43,7 @@ jobs:
             
             - name: Run API tests
               run: |
-                curl -s http://localhost:8080/api/health || exit 1
+                curl -s http://localhost:8080/api/ || exit 1
             
             - name: Stop Services
               run: docker compose -f docker-compose.dev.yml down
