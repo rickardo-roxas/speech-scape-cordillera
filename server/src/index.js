@@ -13,3 +13,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../public")));
+
+app.get("/", (req, res) => {
+    res.send("Connected to Server.");
+});
+
+// define routes here
+
+export default app;
