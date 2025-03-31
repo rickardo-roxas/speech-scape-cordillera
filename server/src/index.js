@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { dirname } from "path";
+import path from "path";
 import { fileURLToPath } from "url";
 
 const app = express();
