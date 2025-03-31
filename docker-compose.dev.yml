@@ -31,7 +31,7 @@ services:
     image: mysql:latest
     restart: always
     env_file:
-      - fileName: .env.dev
+      - fileName: server/.env.dev
     ports:
       - "3306:3306"
     volumes:
