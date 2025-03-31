@@ -27,7 +27,7 @@ services:
     image: mysql:latest
     restart: always
     env_file:
-      - fileName: .env.prod
+      - fileName: server/.env.prod
     ports:
       - "3306:3306"
     volumes:
