@@ -7,4 +7,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
   </StrictMode>,
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> eb1c825 (Fixed semicolon issues)
