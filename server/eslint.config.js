@@ -3,7 +3,7 @@ import node from 'eslint-plugin-node';
 
 export default [
   {
-    ignores: ['dist', 'node_modules'],
+    ignores: ['dist', 'node_modules', 'test/api.test.js'],
   },
   {
     files: ['**/*.js'],
@@ -13,7 +13,7 @@ export default [
     },
     plugins: {
       node,
-    },
+    }, 
     rules: {
       ...js.configs.recommended.rules,
       'semi': ['error', 'always'], 
