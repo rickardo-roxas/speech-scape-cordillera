@@ -25,9 +25,9 @@ app.get("/api/", (req, res) => {
     res.send("Connected to Server.");
 });
 
-// app.use('/api/map', require('./routes/Map.routes'));
-// app.use('/api/province', require('./routes/Province.routes'));
-// app.use('/api/search', require('./routes/Search.routes'));
+app.use('/api/map', require('./routes/Map.routes'));
+app.use('/api/province', require('./routes/Province.routes'));
+app.use('/api/search', require('./routes/Search.routes'));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

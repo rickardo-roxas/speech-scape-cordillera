@@ -10,4 +10,6 @@ router.get('/', (req,res) => {
 // Search specific province
 router.post('/:id', (req, res) => {
 
-}); 
+});
+
+module.exports = router;
