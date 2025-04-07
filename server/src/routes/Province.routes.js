@@ -1,15 +1,16 @@
-const express = require('express');
+import express from 'express';
+import controller from '../controllers/Province.controller';
+
 const router = express.Router();
-const controller = require('../controllers/Province.controller');
 
 // Specific province
-router.get('/:id', (req,res) => {
-
+router.get('/:name', (req,res) => {
+    // controller.method
 });
 
-// Province page; obtain all
+// Retrieves all provinces
 router.get('/', (req,res) => {
-
+    // controller.method
 });
 
 module.exports = router;

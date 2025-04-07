@@ -1,15 +1,16 @@
-const express = require('express');
-const router = express.Router();
-const controller = require('../controllers/Search.controller');
+import express from 'express';
+import controller from '../controllers/Search.controller';
 
-// Default
+const router = express.Router();
+
+// Default route
 router.get('/', (req,res) => {
     
 })
 
-// Search specific province
-router.post('/:id', (req, res) => {
-
+// Search specific province by name
+router.post('/:name', (req, res) => {
+    
 });
 
 module.exports = router;
