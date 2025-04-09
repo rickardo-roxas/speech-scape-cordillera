@@ -110,19 +110,14 @@ SpeechScape Cordillera employs a multi-faceted approach to linguistic data colle
 ## Technology Stack
 - **Backend**: Node.js, Express.js
 - **Database**: MySQL
-- **ORM**: Sequelize
 - **Frontend**: React.js
 - **Mapping**: Leaflet.js
 - **Containerization**: Docker
 
-## API Documentation
-Comprehensive API documentation is available in `docs/api-specs.yaml`. 
-[View Swagger Documentation](https://your-swagger-url.com) (TODO)
-
 ## Roadmap
 - [ ] Expand language coverage
 - [ ] Add community contribution
-- [ ] Add audio recording features
+- [ ] Add translation features
 - [ ] Develop mobile application
 
 ## License
