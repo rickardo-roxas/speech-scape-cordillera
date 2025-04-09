@@ -1,5 +1,5 @@
 import express from 'express';
-import controller from '../controllers/Map.controller.js';
+// import controller from '../controllers/Map.controller.js';
 
 const router = express.Router();
 
@@ -21,4 +21,4 @@ router.get('/:id/:province', (req,res) => {
     // controller method
 });
 
-module.exports = router;
+export default router;

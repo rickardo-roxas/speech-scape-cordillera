@@ -1,5 +1,5 @@
 import express from 'express';
-import controller from '../controllers/Province.controller.js';
+// import controller from '../controllers/Province.controller.js';
 
 const router = express.Router();
 
@@ -13,4 +13,4 @@ router.get('/', (req,res) => {
     // controller.method
 });
 
-module.exports = router;
+export default router;

@@ -1,5 +1,5 @@
-import Province from '../models/Province.model.js';
-import Region from '../models/Region.model.js';
+// import Province from '../models/Province.model.js';
+//  import Region from '../models/Region.model.js';
 
 /**
  * Retrieves all provinces from the database.

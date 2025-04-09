@@ -1,5 +1,3 @@
-import { query as _query } from '../configs/Database.config.js';
-
 /**
  * Perform a database query.
  * @param {string} query - SQL query string with placeholders.
@@ -8,7 +6,7 @@ import { query as _query } from '../configs/Database.config.js';
  */
 function performQuery(query, params) {
     return new Promise((resolve, reject) => {
-        _query(query, params, (err, results) => {
+        query(query, params, (err, results) => {
         if (err) {
             return reject(err);
         }
@@ -25,7 +23,7 @@ function performQuery(query, params) {
  */
 function performUpdate(query, params) {
     return new Promise((resolve, reject) => {
-        _query(query, params, (err, results) => {
+        query(query, params, (err, results) => {
             if (err) {
                 return reject(err);
             }
