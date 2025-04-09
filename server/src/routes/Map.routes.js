@@ -1,18 +1,19 @@
 import express from 'express';
-import controller from '../controllers/Map.controller';
+import controller from '../controllers/Map.controller.js';
 
 const router = express.Router();
 
 // Default map of the Philippines
 router.get('/' , (req,res) => {
-
+    
 });
 
 /**
  * Display a specific region based on ID
  */
 router.get('/:id', (req,res) => {
-    // controller.method
+    controller.getRegionById(req,res);
+    
 });
 
 // Display a specific province based on name
