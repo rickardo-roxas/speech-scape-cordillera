@@ -2,6 +2,19 @@
  * Formats the JSON response for the API to be used in controllers.
  */
 
+import { format } from "path";
+
+/**
+ * Formats the ethnic group data.
+ * @param {object} ethnic_group - The ethnic group object.
+ * @returns a JSON object containing the formatted ethnic group data.
+ */
+function formatEthnicGroup(ethnic_group) {
+    return {
+        name: ethnic_group.eg_name,
+    };
+}
+
 /**
  * Returns language data.
  * @param {object} language  - The language object.
@@ -21,7 +34,7 @@ function formatLanguage(language) {
 function formatMunicipality(municipality) {
     return {
         name: municipality.m_name,
-        info: municipality.m_info,
+        info: municipality.m_information,
     };
 }
 
@@ -32,7 +45,6 @@ function formatMunicipality(municipality) {
  */
 function formatProvince(province) {
     return {
-        id: province.id,
         name: province.p_name,
         info1: province.info_1,
         info2: province.info_2,
@@ -41,14 +53,14 @@ function formatProvince(province) {
 }
 
 /**
- * Formats province ethnicities data.
- * @param {object} ethnicity - The ethnicity object.
- * @returns a JSON object containing the formatted province ethnicities data.
+ * Formats province ethnic groups data.
+ * @param {object} ethnic_group - The ethnic group object.
+ * @returns a JSON object containing the formatted province ethnic group data.
  */
-function formatProvinceEthnicities(ethnicity) {
+function formatProvinceEthnicGroup(ethnic_group) {
     return {
-        ethnic_group: ethnicity.ethnic_group,
-        percentage: percentage,
+        name: formatEthnicGroup(ethnic_group),
+        percentage: ethnic_group.percentage,
     };
 }
 
@@ -59,7 +71,7 @@ function formatProvinceEthnicities(ethnicity) {
  */
 function formatProvinceLanguage(language) {
     return {
-        ...formatLanguage(language),
+        name: formatLanguage(language),
         percentage: language.percentage,
     };
 }
@@ -82,11 +94,21 @@ function formatProvinceImage(image) {
  */
 function formatRegion(region) {
     return {
-        id: region.id,
         name: region.r_name,
         info1: region.info_1,
         info2: region.info_2,
         info3: region.info_3,
-        provinces: region.provinces.map((province) => province.province),
+        provinces: region.provinces.map((province) => formatProvince(province)),
     };
 }
+
+export default {
+    formatEthnicGroup,
+    formatLanguage,
+    formatMunicipality,
+    formatProvince,
+    formatProvinceEthnicGroup,
+    formatProvinceLanguage,
+    formatProvinceImage,
+    formatRegion,
+};
