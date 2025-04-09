@@ -1,4 +1,5 @@
 import databaseUtils from '../utils/Database.utils.js';
+// import Province from './Province.model.js';
 
 /**
  * Class representing a region.
@@ -10,7 +11,6 @@ class Region {
         this.info_1 = info_1;
         this.info_2 = info_2;
         this.info_3 = info_3;
-        this.provinces = provinces;
     }
 }
 
@@ -42,7 +42,7 @@ async function getAllRegions() {
 async function getRegionByID(id) {
     try {
         const region = await databaseUtils.performQuery(
-            'SELECT * FROM region WHERE id = ? JOIN province ON region.region_id = province.region_id',
+            'SELECT * FROM region JOIN province ON region.region_id = province.region_id WHERE region.id = ?',
             [id]
         );
         
@@ -50,20 +50,32 @@ async function getRegionByID(id) {
             throw new Error('Region not found');
         }
 
-        return region.map((region) => new Region(
-            region.region_id,
-            region.region_name,
-            region.info_1,
-            region.info_2,
-            region.info_3,
-            provinces.map((province) => new Province(
-                province.province_id,
-                province.province_name,
-                province.info_1,
-                province.info_2,
-                province.info_3
-            ))
-        ));
+        const regionData = {
+            region_id: results[0].region_id,
+            region_name: results[0].region_name,
+            info_1: results[0].info_1,
+            info_2: results[0].info_2,
+            info_3: results[0].info_3,
+        };
+
+        // const provinces = results.map((province) => ({new Province(
+        //     province_id: province.province_id,
+        //     province_name: province.province_name,
+        //     info_1: province.info_1,
+        //     info_2: province.info_2,
+        //     info_3: province.info_3,
+        //     )
+        // })
+        // );
+
+        return new Region(
+            regionData.region_id,
+            regionData.region_name,
+            regionData.info_1,
+            regionData.info_2,
+            regionData.info_3,
+            // provinces
+        );
     } catch (err) {
         console.error(`Error fetching region with ID ${id}:`, err);
         next(err);
