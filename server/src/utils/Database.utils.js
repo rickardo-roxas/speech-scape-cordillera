@@ -1,4 +1,4 @@
-const connection = require('../configs/Database.config.js');
+import { query as _query } from '../configs/Database.config.js';
 
 /**
  * Perform a database query.
@@ -8,7 +8,7 @@ const connection = require('../configs/Database.config.js');
  */
 function performQuery(query, params) {
     return new Promise((resolve, reject) => {
-        connection.query(query, params, (err, results) => {
+        _query(query, params, (err, results) => {
         if (err) {
             return reject(err);
         }
@@ -25,7 +25,7 @@ function performQuery(query, params) {
  */
 function performUpdate(query, params) {
     return new Promise((resolve, reject) => {
-        connection.query(query, params, (err, results) => {
+        _query(query, params, (err, results) => {
             if (err) {
                 return reject(err);
             }
@@ -34,7 +34,24 @@ function performUpdate(query, params) {
     });
 }
 
-module.exports = {
+/**
+ * Retrieves all records from a specified table.
+ * @param {string} tableName  - Name of the table to query.
+ * @returns  {Promise} - Resolves with the results of the query or rejects with error.
+ */
+function getAll(tableName) {
+    return new Promise((resolve, reject) => {
+        _query(`SELECT * FROM ${tableName}`, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}
+
+export default {
     performQuery,
     performUpdate,
+    getAll,
 };
