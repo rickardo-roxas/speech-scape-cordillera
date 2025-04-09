@@ -6,14 +6,14 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
 // Middlewares
-import corsOptions from "./configs/Cors.config";
-import errorHandler from "./middlewares/ErrorHandler.middleware";
-import logger from "./middlewares/Logger.middleware";
+import corsOptions from "./configs/Cors.config.js";
+import errorHandler from "./middlewares/ErrorHandler.middleware.js";
+import logger from "./middlewares/Logger.middleware.js";
 
 // Routes
-import searchRoutes from "./routes/Search.routes";
-import mapRoutes from "./routes/Map.routes";
-import provinceRoutes from "./routes/Province.routes";
+import searchRoutes from "./routes/Search.routes.js";
+import mapRoutes from "./routes/Map.routes.js";
+import provinceRoutes from "./routes/Province.routes.js";
 
 dotenv.config();
 
@@ -27,7 +27,7 @@ const __dirname = path.dirname(__filename);
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../public",)));
 app.use(logger);
 
 // Routes
