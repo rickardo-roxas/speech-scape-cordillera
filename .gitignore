@@ -26,6 +26,7 @@ dist-ssr/
 *.local
 
 # OS specific files
+mysql-data/
 .DS_Store
 Thumbs.db
 
