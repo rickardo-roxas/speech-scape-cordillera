@@ -1,39 +1,59 @@
 // import Province from '../models/Province.model.js';
-//  import Region from '../models/Region.model.js';
+import Region from '../models/Region.model.js';
 
 /**
- * Retrieves all provinces from the database.
- * @param { request } req - The request object.
- * @param { response } res  - The response object.
+ * Retrieves all regions
+ * @param {import('express').Request} req - The request object.
+ * @param {import('express').Response} res - The response object.
+ * @param {import('express').NextFunction} next - The next middleware function.
+ * @returns {Promise<void>} Sends a JSON response with the status and data of all regions.
  */
-const getAllProvinces = async (req,res) => {
-    const provinces = {}
-
+const getAllRegions = async (req, res, next) => {
     try {
-        // Implementation
+        const regions = await Region.getAllRegions();
+        res.status(200).json({
+            status: 200,
+            message: "Successfully retrieved all regions.",
+            data: regions,
+        });
     } catch (err) {
         err.statusCode = 500;
         next(err);
     }
-};
+}
 
 /**
  * Retrieves a region through its ID.
- * @param { request } req - The request object.
- * @param { response } res - The response object.
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
  */
-const getRegionById = async (req, res) => {
-    const { id } = req.params;
-
-    const region = Region.getById(id);
+const getRegionByID = async (req, res, next) => {
+    const { region_id } = req.params;
 
     try {
-        // Implementation
+        const region = await Region.getRegionByID(region_id);
+
+        if (!region) {
+            return res.status(404).json({
+                status: 404,
+                message: "Region not found.",
+            });
+        }
+
+        res.status(200).json({
+            status: 200,
+            message: "Successfully retrieved region.",
+            data: region,
+        });
+
+
     } catch (err) {
         err.statusCode = 500;
         next(err);
     }
-};
+}
 
 /**
  * Retrieves a province through its name.
@@ -51,8 +71,8 @@ const getProvinceByName = async (req, res) => {
     }
 };
 
-module.exports = {
-    getAllProvinces,
-    getRegionById,
+export default {
+    getAllRegions,
+    getRegionByID,
     getProvinceByName,
-};
+}
