@@ -1,1 +1,1 @@
-import databaseUtils from '../utils/Database.utils';
+import databaseUtils from '../utils/Database.utils.js';
