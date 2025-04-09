@@ -31,6 +31,13 @@ app.use(express.static(path.join(__dirname, "../public",)));
 app.use(logger);
 
 // Routes
+
+// For testing purposes
+app.get("/", (req, res, next) => {
+    res.send("Connected to Server.");
+    next();
+});
+
 app.get("/api/", (req, res, next) => { 
     res.send("Connected to Server.");
     next();
