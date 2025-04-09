@@ -1,4 +1,4 @@
-import connection from '../config/Database.config.js';
+import connection from '../configs/Database.config.js';
 
 /**
  * Perform a database query.
