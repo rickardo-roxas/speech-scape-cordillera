@@ -1,19 +1,20 @@
 import databaseUtils from '../utils/Database.utils.js';
 
-class Language{
-    constructor(name){
+class Language {
+    constructor(name) {
         this.name = name;
     }
 }
 
 /**
- * Returns all available languages
+ * Returns all available languages as Language objects
  */
 async function getAllLanguages() {
     try {
         const languages = await databaseUtils.getAll('languages');
 
-        return languages; 
+        
+        return languages.map(language => new Language(language.l_name));
 
     } catch (err) {
         console.error("Failed to fetch all languages", err);
@@ -22,7 +23,7 @@ async function getAllLanguages() {
 }
 
 /**
- * Returns a language based by language_id
+ * Returns a language by language_id as a Language object
  */
 async function getLanguageByID(id) {
     try {
@@ -33,14 +34,16 @@ async function getLanguageByID(id) {
             throw new Error("Language not found");
         }
 
-        return language[0]; 
+        // Return a Language object
+        return new Language(language[0].l_name);
+
     } catch (err) {
         console.error("Failed to fetch language with id " + id, err);
         throw err; 
     }
 }
 
-export default{
+export default {
     getAllLanguages,
     getLanguageByID
 };
