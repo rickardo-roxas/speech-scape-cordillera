@@ -1,16 +1,16 @@
 import databaseUtils from '../utils/Database.utils.js';
-// import Province from './Province.model.js';
+import Province from './Province.model.js';
 
 /**
  * Class representing a region.
  */
 class Region {
-    constructor(region_id, region_name, info_1, info_2, info_3, provinces) {
-        this.region_id = region_id;
+    constructor(region_name, info_1, info_2, info_3, provinces) {
         this.region_name = region_name;
         this.info_1 = info_1;
         this.info_2 = info_2;
         this.info_3 = info_3;
+        this.provinces = provinces;
     }
 }
 
@@ -58,15 +58,10 @@ async function getRegionByID(id) {
             info_3: results[0].info_3,
         };
 
-        // const provinces = results.map((province) => ({new Province(
-        //     province_id: province.province_id,
-        //     province_name: province.province_name,
-        //     info_1: province.info_1,
-        //     info_2: province.info_2,
-        //     info_3: province.info_3,
-        //     )
-        // })
-        // );
+        const provinces = await Province.getProvincesOfRegion(regionData.region_id);
+        if (provinces.length === 0) {
+            throw new Error('No provinces found for this region');
+        }
 
         return new Region(
             regionData.region_id,
@@ -74,7 +69,7 @@ async function getRegionByID(id) {
             regionData.info_1,
             regionData.info_2,
             regionData.info_3,
-            // provinces
+            provinces
         );
     } catch (err) {
         console.error(`Error fetching region with ID ${id}:`, err);

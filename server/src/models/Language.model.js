@@ -1,19 +1,23 @@
 import databaseUtils from '../utils/Database.utils.js';
 
+/**
+ * Class representing a language.
+ */
 class Language {
-    constructor(name) {
+    constructor(name, percentage) {
         this.name = name;
+        this.percentage = percentage;
     }
 }
 
 /**
  * Returns all available languages as Language objects
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getAllLanguages() {
     try {
         const languages = await databaseUtils.getAll('languages');
 
-        
         return languages.map(language => new Language(language.l_name));
 
     } catch (err) {
@@ -24,6 +28,8 @@ async function getAllLanguages() {
 
 /**
  * Returns a language by language_id as a Language object
+ * @param {number} id - The ID of the language to retrieve.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getLanguageByID(id) {
     try {
