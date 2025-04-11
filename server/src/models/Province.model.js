@@ -1,4 +1,7 @@
 import databaseUtils from '../utils/Database.utils.js';
+import MunicipalitiesModel from "./Municipalities.model.js";
+import LanguageModel from "./Language.model.js";
+
 
 class Province{
         constructor(name, info_1, info_2, info_3, municipalities, ethnicities, languages, images){
@@ -39,7 +42,17 @@ async function getProvinceImagesByID(id){
  */
 async function getProvinceLanguagesByID(id){
     try{
-        const query = "SELECT "
+        const query = "SELECT l.l_name, pl.percentage FROM province_languages pl JOIN languages l ON pl.language_id = l.language_id WHERE pl.province_id = ?";
+
+        const languages = await databaseUtils.performQuery(query, [id]);
+
+        if(languages.length === 0){
+            console.log("No languages found for province ID " + id);
+            return [];
+        }
+
+        return languages.map(language => new LanguageModel.Language(language.l_name, language.percentage));
+
     }catch(err){
         console.error("Cannot fetch languages of province ID " + id);
         throw err;
@@ -51,16 +64,17 @@ async function getProvinceLanguagesByID(id){
  */
 async function getProvinceEthnicitiesByID(id){
     try{
-        const query = "SELECT ethnic_group, percentage FROM province_ethnicities WHERE province_id = ?";
+        const query = "SELECT eg_name, percentage FROM province_ethnic_group JOIN ethnic_groups ON province_ethnic_group.eg_id = ethnic_groups.eg_id WHERE province_ethnic_group.province_id = ?";
+
         const ethnicities = await databaseUtils.performQuery(query, [id]);
 
-        if(ethnicities === 0){
+        if(ethnicities.length === 0){
             console.log("No ethnicities found");
             return [];
         }
 
         return ethnicities.map(ethnicity => ({
-            ethnic_group: ethnicity.ethnic_group,
+            ethnic_group: ethnicity.eg_name,
             percentage: ethnicity.percentage
         }));
 
@@ -75,9 +89,15 @@ async function getProvinceEthnicitiesByID(id){
  */
 async function getProvinceMunicipalitiesByID(id){
     try{
-    /**
-     * Will use Municipality model function
-     */
+        const municipalities = await MunicipalitiesModel.getMunicipalitiesByProvinceID(id);
+
+        if (municipalities.length === 0) {
+            console.log('No municipalities found for province ID ' + id);
+            return [];
+        }
+
+        return municipalities;
+        
     }catch(err){
         console.error("Failed to fetch municipalities of province id " + id);
         throw err;
