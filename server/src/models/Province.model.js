@@ -54,9 +54,35 @@ async function getProvinceByID(id){
     }
 }
 
-await function getAllProvinces(){
-    
+/**
+ * Retrieves all provinces in the database
+ * @returns 
+ */
+async function getAllProvinces() {
+    try {
+        const query = "SELECT province_id FROM provinces";
+        const provinceRows = await databaseUtils.performQuery(query);
+
+        if (provinceRows.length === 0) {
+            console.log("No provinces found.");
+            return [];
+        }
+
+        const provinces = [];
+
+        for (const row of provinceRows) {
+            const province = await getProvinceByID(row.province_id);
+            provinces.push(province);
+        }
+
+        return provinces;
+
+    } catch (err) {
+        console.error("Failed to fetch all provinces");
+        throw err;
+    }
 }
+
 
 /**
  * Returns all images of a province
