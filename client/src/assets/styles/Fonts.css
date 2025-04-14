@@ -1,15 +1,128 @@
+/* Kaisei Opti */
 @font-face {
-    /* Placeholder code. Replace with actual fonts */
-    font-family: "Open Sans";
-    src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
-    font-weight: normal;
+    font-family: "Kaisei Opti";
+    src: url("../fonts/kaisei-opti/KaiseiOpti-Regular.ttf") format("truetype");
+    font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
-    /* Placeholder code. Replace with actual fonts */
-    font-family: "Open Sans";
-    src: url("../fonts/OpenSans-Bold.ttf") format("truetype");
-    font-weight: bold;
+    font-family: "Kaisei Opti";
+    src: url("../fonts/kaisei-opti/KaiseiOpti-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Kaisei Opti";
+    src: url("../fonts/kaisei-opti/KaiseiOpti-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Manrope */
+@font-face {
+    font-family: "Manrope";
+    src: url("../fonts/Manrope/static/Manrope-ExtraLight.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Manrope";
+    src: url("../fonts/Manrope/static/Manrope-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Manrope";
+    src: url("../fonts/Manrope/static/Manrope-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Manrope";
+    src: url("../fonts/Manrope/static/Manrope-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Manrope";
+    src: url("../fonts/Manrope/static/Manrope-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Manrope";
+    src: url("../fonts/Manrope/static/Manrope-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Manrope";
+    src: url("../fonts/Manrope/static/Manrope-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+/* Noto Sans Thai Looped */
+@font-face {
+    font-family: "Noto Sans Thai Looped";
+    src: url("../fonts/noto-sans-thai-looped/NotoSansThaiLooped-ExtraLight.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans Thai Looped";
+    src: url("../fonts/noto-sans-thai-looped/NotoSansThaiLooped-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans Thai Looped";
+    src: url("../fonts/noto-sans-thai-looped/NotoSansThaiLooped-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans Thai Looped";
+    src: url("../fonts/noto-sans-thai-looped/NotoSansThaiLooped-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans Thai Looped";
+    src: url("../fonts/noto-sans-thai-looped/NotoSansThaiLooped-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans Thai Looped";
+    src: url("../fonts/noto-sans-thai-looped/NotoSansThaiLooped-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans Thai Looped";
+    src: url("../fonts/noto-sans-thai-looped/NotoSansThaiLooped-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans Thai Looped";
+    src: url("../fonts/noto-sans-thai-looped/NotoSansThaiLooped-Black.ttf") format("truetype");
+    font-weight: 900;
     font-style: normal;
 }
