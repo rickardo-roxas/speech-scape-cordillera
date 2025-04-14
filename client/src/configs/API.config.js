@@ -11,4 +11,16 @@ const api = axios.create({
     },
 });
 
+/**
+ * Handles toast notifications when making a request to the API.
+ */
+api.interceptors.response.use(
+    res => res,
+    err => {
+        const message = err?.response?.data?.message || "Something went wrong";
+        toast.error(message);
+        return Promise.reject(err);
+    }
+);  
+
 export default api;
