@@ -2,7 +2,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "react-hot-toast";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Pages and components
 import Wrapper from './components/layout/Wrapper';
