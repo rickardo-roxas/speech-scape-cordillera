@@ -6,13 +6,13 @@ import useFetch from '../hooks/UseFetch.hook';
 // import other components here.
 
 /**
- * Displays the landing page of SpeechScape.
+ * Displays the map and province profile.
  * @returns {JSX.Element} 
  */
-function LandingPage() {
+function Map() {
     return (
-        <div>LandingPage</div>
+        <div>Map</div>
     );
 }
 
-export default LandingPage;
+export default Map;
