@@ -1,15 +1,22 @@
 :root {
     /* Colors */
+
+    /* Palette 1 */
     --moss-jade: #59885A;
     --golden-sand: #D9A96C;
     --earthy-olive: #716237;
     --forest-fern: #2E6D40;
     --pine-grove: #2F5B3C;
     --deep-woodland: #1F3F29;
-    --olive-green: #597242;
-    --dark-forest: #1F3F25;
-    --pale-cream: #F1F1DB;
+
+    /* Palette 2 */
     --soft-gray-mist: #EEEEEE;
+    --pale-cream: #F1F1DB;
+    --warm-sand: #D9A86C;
+    --olive-green: #587242;
+    --dark-forest: #1E4625;
+    
+    /* Palette 3 */
     --misty-gray: #C4C4C4;
     --soft-gray: #B0B0B0;
     --white: #FFFFFF;
@@ -25,9 +32,10 @@
     --spacing-xxl: 3rem;
 
     /* Typography */
-    --font-family-heading: 'Manrope', serif;
+    --font-family-heading: 'Manrope', sans-serif;
     --font-family-body: 'Kaisei Opti', sans-serif;
     --font-family-ui: 'Noto Sans Thai Looped', serif;
+    --font-family-card: 'Arial', sans-serif;
 
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
