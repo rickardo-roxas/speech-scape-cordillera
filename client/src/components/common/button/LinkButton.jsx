@@ -5,9 +5,9 @@ import styles from './LinkButton.module.css';
 
 /**
  * Reusable LinkButton component that renders a button with a link.
+ * Used for navigation purposes.
  * @param {Object}} param0 - Component props
  * @param {string} param0.label - Button label
- * @param {string} param0.color - Button color
  * @param {string} param0.to - URL to link to
  * @param {string} param0.className - Additional CSS classes
  * @returns {JSX.Element} - Rendered LinkButton component
