@@ -1,5 +1,6 @@
 :root {
     /* Colors */
+    --moss-jade: #59885A;
     --golden-sand: #D9A96C;
     --earthy-olive: #716237;
     --forest-fern: #2E6D40;
@@ -12,6 +13,7 @@
     --misty-gray: #C4C4C4;
     --soft-gray: #B0B0B0;
     --white: #FFFFFF;
+    --black: #000000;
 
     /* Spacing Scale */
     --spacing-xxs: 0.25rem;
