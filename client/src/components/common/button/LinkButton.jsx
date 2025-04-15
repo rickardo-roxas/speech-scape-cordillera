@@ -16,7 +16,7 @@ function LinkButton({ label = "LinkButton", to = "/", className = "" }) {
     return (
         <Link to={to} className={className}>
             <Button
-                variant="primary"
+                variant="success"
                 className={`${styles['link-button']} ${className}`}
             >
                 {label}

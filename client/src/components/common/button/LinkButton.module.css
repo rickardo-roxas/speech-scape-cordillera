@@ -11,3 +11,21 @@
 .link-button:hover {
     background-color: var(--forest-fern);
 }
+
+.link-button:active {
+    background-color: var(--pine-grove);
+}
+
+.link-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--soft-gray-mist);
+}
+
+.link-button:disabled {
+    background-color: var(--soft-gray);
+    cursor: not-allowed;
+}
+
+.link-button:disabled:hover {
+    background-color: var(--soft-gray);
+}
