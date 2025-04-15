@@ -22,4 +22,5 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: var(--spacing-lg);
 }
