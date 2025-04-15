@@ -31,8 +31,3 @@ img, video, iframe {
     height: auto;
     display: block;
 }
-
-:focus {
-    outline: 2px dashed var(--dark-forest);
-    outline-offset: 2px;
-}
