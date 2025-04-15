@@ -2,7 +2,6 @@ import databaseUtils from '../utils/Database.utils.js';
 import MunicipalitiesModel from "./Municipalities.model.js";
 import LanguageModel from "./Language.model.js";
 
-
 class Province{
         constructor(name, info_1, info_2, info_3, municipalities, ethnicities, languages, images){
         this.name = name;
@@ -164,3 +163,37 @@ async function getProvinceMunicipalitiesByID(id){
     }
     
 }
+/**
+ * Searches for provinces by name
+ * @param {string} searchTerm - The term to search for
+ * @returns {Array<Province>} - List of matching provinces
+ */
+export async function searchProvincesByName(keyword) {
+    try {
+        const query = `
+            SELECT province_id, p_name, info_1, info_2, info_3
+            FROM provinces
+            WHERE LOWER(p_name) LIKE ?
+        `;
+        const searchTerm = `%${keyword.toLowerCase()}%`;
+
+        const results = await databaseUtils.performQuery(query, [searchTerm]);
+        return results;
+    } catch (err) {
+        console.error("Search query failed:", err);
+        throw err;
+    }
+}
+
+
+export default {
+    Province,
+    getProvinceByID,
+    getAllProvinces,
+    searchProvincesByName,
+    getProvinceImagesByID,
+    getProvinceLanguagesByID,
+    getProvinceEthnicitiesByID,
+    getProvinceMunicipalitiesByID
+
+};

@@ -1,5 +1,5 @@
 import databaseUtils from '../utils/Database.utils.js';
-import Province from './Province.model.js';
+import Province from '../models/Province.model.js';
 
 /**
  * Class representing a region.
