@@ -60,6 +60,7 @@ nav {
     transition: transform 0.3s ease-in-out; 
 }
 
+/* Doesn't work */
 .activeLink::before {
     transform: scaleX(1);  /* Expand to full width */
 }
