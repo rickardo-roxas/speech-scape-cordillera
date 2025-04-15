@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 /**
  * Establishes a connection to the API using Axios.
