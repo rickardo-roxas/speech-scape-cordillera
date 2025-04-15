@@ -60,28 +60,7 @@ yarn install
 #### 3. Database Setup
 ```bash
 # Start MySQL Docker container
-docker-compose up -d database
-
-# Run database migrations
-npm run migrate
-# or
-yarn migrate
-```
-
-### Configuration
-Create a `.env` file in the project root with the following configurations:
-
-```env
-# Database Configuration
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=speechscape_user
-DB_PASSWORD=your_secure_password
-DB_NAME=speechscape_cordillera
-
-# Application Settings
-PORT=3000
-NODE_ENV=development
+docker compose -f docker-compose.dev.yml
 
 ## Usage
 
