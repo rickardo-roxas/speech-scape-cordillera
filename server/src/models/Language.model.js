@@ -50,6 +50,7 @@ async function getLanguageByID(id) {
 }
 
 export default {
+    Language,
     getAllLanguages,
     getLanguageByID
 };
