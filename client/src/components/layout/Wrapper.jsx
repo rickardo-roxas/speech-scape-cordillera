@@ -1,4 +1,5 @@
-import Navbar from "./Navbar";
+import Navbar from "./Header/Navbar";
+import Footer from "./Footer/Footer";
 
 /**
  * Wrapper component that serves as a layout for the application.
@@ -10,6 +11,7 @@ function Wrapper({ children }) {
     <>
       <Navbar />
       <main>{children}</main>
+      <Footer />
     </>
   );
 }
