@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "react-hot-toast";
+import 'leaflet/dist/leaflet.css';
 
 // Pages and components
 import Wrapper from './components/layout/Wrapper';
