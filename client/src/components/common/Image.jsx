@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Image component
+ * Reusable Image component that renders an image with lazy loading.
  * @param {Object} props - The component props
  * @returns {JSX.Element} - Rendered image component
  */
