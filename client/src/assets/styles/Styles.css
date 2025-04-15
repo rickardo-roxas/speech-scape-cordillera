@@ -31,3 +31,7 @@ img, video, iframe {
     height: auto;
     display: block;
 }
+
+html, main, footer {
+    background-color: var(--soft-gray-mist);
+}
