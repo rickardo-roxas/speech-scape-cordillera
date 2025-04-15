@@ -6,6 +6,7 @@ import React from 'react';
 import Card from '../components/layout/Cards/Card';
 import TextContainer from '../components/layout/TextContainer/TextContainer';
 import Badge from '../components/ui/Badge/Badge';
+import PhilippineMap from '../components/features/map/PhilippineMap';
 
 import styles from './Map.module.css';
 
@@ -44,6 +45,7 @@ function Map() {
                 header="Cordillera Administrative Region"
                 className={styles.map}
             >
+                <PhilippineMap />
             </Card> 
         </div>
     );
