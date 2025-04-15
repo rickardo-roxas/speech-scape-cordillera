@@ -4,7 +4,8 @@ import Container from 'react-bootstrap/Container';
 import styles from './TextContainer.module.css';
 
 /**
- * Reusable TextContainer component that renders a container with a title and content.
+ * Reusable TextContainer component that renders a container.
+ * This component can be used to hold other components and/or text.
  * @param {object} param0 - Component props
  * @param {string} param0.title - Optional container header
  * @param {React.ReactNode} param0.children - Container body content. Can contain multiple elements.
