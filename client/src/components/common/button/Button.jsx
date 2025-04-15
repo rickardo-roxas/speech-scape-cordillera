@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button as BootstrapButton } from 'react-bootstrap';
-import './Button.module.css';
+import styles from './Button.module.css';
 
 /**
  * Reusable Button component that renders a button.
@@ -10,13 +10,12 @@ import './Button.module.css';
  * @param {string} param0.className - Additional CSS classes
  * @returns {JSX.Element} - Rendered button component
  */
-function Button({ label = "Button", background = "transparent", foreground = "Transparent", onClick, className = "" }) {
+function Button({ label = "Button", onClick, className = "" }) {
   return (
     <BootstrapButton
-      variant="primary"
-      className={className}
+      variant="success"
+      className={`${styles['button']} ${className}`}
       onClick={onClick}
-      style={{ backgroundColor: background, foregroundColor: foreground }}
     >
         {label}
     </BootstrapButton>
