@@ -20,10 +20,10 @@ function App() {
       <Toaster position='top-center' reverseOrder={false} />
       <Wrapper>
         <Routes>
-          <Route path="/" element={ LandingPage } />
-          <Route path="/map" element={ Map } />
-          <Route path="/provinces" element={ ProvinceAndCities } />
-          <Route path="/provinces/:name" element={ ProvinceCity } />
+          <Route path="/" element={ <LandingPage /> } />
+          <Route path="/map" element={ <Map /> } />
+          <Route path="/provinces" element={ <ProvinceAndCities /> } />
+          <Route path="/provinces/:name" element={ <ProvinceCity /> } />
         </Routes>
       </Wrapper>
     </Router>
