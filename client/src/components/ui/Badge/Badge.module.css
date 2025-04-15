@@ -1,0 +1,8 @@
+.badge {
+    background: #98B598 !important; 
+    color: var(--white);
+    font-family: var(--font-family-heading);
+    font-weight: 400;
+    line-height: normal;
+    font-size: var(--font-size-sm);
+}

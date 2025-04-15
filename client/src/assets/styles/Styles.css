@@ -32,7 +32,6 @@ img, video, iframe {
     display: block;
 }
 
-:focus {
-    outline: 2px dashed var(--dark-forest);
-    outline-offset: 2px;
+html, main, footer {
+    background-color: var(--soft-gray-mist);
 }

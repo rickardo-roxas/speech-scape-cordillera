@@ -1,0 +1,12 @@
+.div {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile {
+    width: 35%;
+}
+
+.map {
+    width: 60%;
+}

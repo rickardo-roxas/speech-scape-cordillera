@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import api from "../configs/API.config";
 
 /**
- * Fetch data from an API endpoint using Axios.
- * @param {url} url - The API endpoint to fetch data from.
- * @param {method,data,config} param1 - An object containing the method, data, and config for the request.
- * @returns {Object} - An object containing the response data, loading state, error state, and a refetch function.
+ * 
+ * @param {string} url - API endpoint to fetch data from
+ * @param {object} param1 - Options for the fetch request
+ * @param {string} param1.method - HTTP method (default: "get")
+ * @param {object} param1.data - Data to be sent with the request (default: null)
+ * @param {object} param1.config - Additional configuration options (default: {})
+ * @returns { data, loading, error, refetch } - Object containing the response data, loading state, error state, and a refetch function
  */
 export default function useFetch(url, { method = "get", data = null, config = {} } = {}) {
     const [responseData, setResponseData] = useState(null);
@@ -13,32 +16,30 @@ export default function useFetch(url, { method = "get", data = null, config = {}
     const [error, setError] = useState(null);
 
     /**
-     * Fetch data from the API.
+     * Fetches data from the API using the provided URL and options.
+     * Memoize fetchData to prevent unnecessary recreation on each render
      */
-    const fetchData = async () => {
-        setLoading(true); 
+    const fetchData = useCallback(async () => {
+        setLoading(true);
         try {
             const response = await api.request({
                 url,
-                method, // GET and POST
-                data, // for POST
-                ...config, // headers, params, etc.
+                method,
+                data,
+                ...config,
             });
-            setResponseData(response.data); // response.data is the data returned from the API
-            setError(null); // clear any previous errors
+            setResponseData(response.data);
+            setError(null);
         } catch (err) {
             setError(err);
         } finally {
             setLoading(false);
         }
-    };
+    }, [url, method, data, config]);
 
-    /**
-     * Fetch data when the component mounts or when dependencies change.
-     */
     useEffect(() => {
         fetchData();
-    }, [url, method, JSON.stringify(data), JSON.stringify(config)]);
+    }, [fetchData]); 
 
     return { data: responseData, loading, error, refetch: fetchData };
 }
