@@ -1,0 +1,151 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Abra",
+                "type": "Province",
+                "color": "#e57373"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [120.75, 17.65], 
+                        [120.85, 17.75], 
+                        [121.00, 17.70], 
+                        [121.05, 17.60], 
+                        [120.90, 17.55], 
+                        [120.75, 17.65]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Apayao",
+                "type": "Province",
+                "color": "#ffb74d"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [121.10, 18.00], 
+                        [121.20, 18.10], 
+                        [121.30, 18.05], 
+                        [121.35, 17.95], 
+                        [121.15, 17.90], 
+                        [121.10, 18.00]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Benguet",
+                "type": "Province",
+                "color": "81c784"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [120.45, 16.55], 
+                        [120.55, 16.65], 
+                        [120.65, 16.60], 
+                        [120.60, 16.50],
+                        [120.50, 16.45], 
+                        [120.45, 16.55]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Ifugao",
+                "type": "Province",
+                "color": "64b5f6"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [121.00, 16.90], 
+                        [121.10, 17.00], 
+                        [121.20, 16.95], 
+                        [121.15, 16.85], 
+                        [121.05, 16.80], 
+                        [121.00, 16.90]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Kalinga",
+                "type": "Province",
+                "color": "ba68c8"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [121.20, 17.60], 
+                        [121.30, 17.70], 
+                        [121.40, 17.65], 
+                        [121.35, 17.55], 
+                        [121.25, 17.50], 
+                        [121.20, 17.60]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mountain Province",
+                "type": "Province",
+                "color": "fff176"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [120.90, 17.10], 
+                        [121.00, 17.20], 
+                        [121.10, 17.15], 
+                        [121.05, 17.05], 
+                        [120.95, 17.00], 
+                        [120.90, 17.10]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Baguio City",
+                "type": "Province",
+                "color": "4db6ac"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [120.58, 16.39], 
+                        [120.59, 16.41], 
+                        [120.61, 16.41], 
+                        [120.61, 16.39], 
+                        [120.58, 16.39]
+                    ]
+                ]
+            }
+        }
+    ]
+}
