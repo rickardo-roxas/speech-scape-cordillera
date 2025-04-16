@@ -5,6 +5,8 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 // Components and styles
+import cordilleraGeoJSON from '../../../assets/json/cordillera.json';
+import AutoFitMap from '../Map/AutoFitMap';
 import styles from './PhilippineMap.module.css';
 
 // Fix for default icon not displaying
@@ -15,20 +17,48 @@ L.Icon.Default.mergeOptions({
     shadowUrl: new URL('leaflet/dist/images/marker-shadow.png', import.meta.url).href,
 });
 
-const position = [13.41, 122.56]; // Philippine coordinates
+/**
+ * Function to style GeoJSON features.
+ * @param {object} feature - GeoJSON feature
+ * @returns {object} - Style object for the feature
+ */
+const geoStyle = (feature) => ({
+    fillColor: feature.properties.color,
+    weight: 2,
+    opacity: 1,
+    color: '#2f2f2f',
+    fillOpacity: 0.2,
+});
 
-function PhilippineMap({ center=position, zoom=6, className="" }) {
+/**
+ * Reusable PhilippineMap component that renders a map of the Philippines.
+ * @param {object} param0 - Component props
+ * @param {boolean} param0.scrollWheelZoom - Enable scroll wheel zoom
+ * @param {boolean} param0.dragging - Enable dragging
+ * @param {boolean} param0.zoomControl - Enable zoom control
+ * @param {string} param0.className - Additional CSS classes
+ * @param {function} param0.onEachFeature - Function to handle each feature
+ * @returns {JSX.Element} - Rendered PhilippineMap component
+ */
+function PhilippineMap({ scrollWheelZoom=false, dragging=true, zoomControl=true, className="", onEachFeature }) {
     return (
         <MapContainer
-            center={center} 
-            zoom={zoom}
-            scrollWheelZoom={true}
-            className={styles.mapContainer}
+            scrollWheelZoom={scrollWheelZoom}
+            dragging={dragging}
+            zoomControl={zoomControl}
+            className={`${styles.mapContainer} ${className}`}
         >
-        <TileLayer
-            attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+            {cordilleraGeoJSON && (
+                <AutoFitMap 
+                    geojson={cordilleraGeoJSON}
+                    style={geoStyle}
+                    onEachFeature={onEachFeature}
+                />
+            )}
+            <TileLayer
+                attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
         </MapContainer>
     );
 }
