@@ -15,6 +15,33 @@ class Province{
         this.images = images;
     }
 }
+/**
+ * Retrieves the province by name
+ * @param {*} name 
+ * @returns 
+ */
+async function getProvinceByName(name){
+    try{
+
+        const query = 'SELECT province_id FROM provinces WHERE p_name = ?';
+
+        const result = await databaseUtils.performQuery(query, [name]);
+
+        if(result.length === 0){
+            console.log('No province found for province ' + name);
+            return [];
+        }
+
+        const provinceID = result[0].province_id;
+
+        const province = await getProvinceByID(provinceID);
+        return province;
+
+    }catch(err){
+        console.error('Failed to fetch province ' + name);
+        throw err;
+    }
+}
 
 /**
  * Retrieves all information of a specific province
@@ -163,4 +190,11 @@ async function getProvinceMunicipalitiesByID(id){
         throw err;
     }
     
+}
+
+export default {
+    Province,
+    getAllProvinces,
+    getProvinceByID,
+    getProvinceByName
 }
