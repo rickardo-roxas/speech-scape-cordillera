@@ -177,7 +177,8 @@ async function getProvinceLanguagesByID(id){
 
         return languages.map(language => 
             new LanguageModel.Language(
-                language.l_name, language.percentage
+                language.l_name, 
+                language.percentage
             )
         );
     }catch(err){
