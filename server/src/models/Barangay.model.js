@@ -20,7 +20,6 @@ async function getAllBarangays() {
             barangay.barangay_name
         ));
     } catch(err) {
-        console.error("Failed to fetch all cities");
         throw err;
     }
 }

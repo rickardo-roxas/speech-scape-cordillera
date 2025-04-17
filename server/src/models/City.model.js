@@ -63,7 +63,6 @@ async function getAllCities() {
 
         return citiesData;
     } catch(err) {
-        console.error("Failed to fetch all cities");
         throw err;
     }
 }
@@ -102,7 +101,7 @@ async function getCityByID(id) {
         );
     } catch(err) {
         console.error("Failed to fetch city with id " + id);
-        next(err);
+        throw err;
     }
 }
 
@@ -214,7 +213,7 @@ async function getCityEthnicGroupsByID(id) {
         );
     } catch(err) {
         console.error("Failed to fetch ethnic groups of city ", id);
-        next(err);
+        throw err;    
     }
 }
 
@@ -242,7 +241,7 @@ async function getCityBarangaysByID(id) {
         ));
     } catch(err) {
         console.error("Failed to fetch barangays of city ", id);
-        next(err);
+        throw err;
     }
 }
 
@@ -251,4 +250,4 @@ export default {
     getAllCities,
     getCityByID,
     getCityByName,
-}
+};

@@ -29,7 +29,7 @@ class Region {
  * Returns all regions from the database.
  * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
-async function getAllRegions() {
+async function getAllRegions(next) {
     try {
         const regions = await databaseUtils.getAll('region');
 
@@ -55,7 +55,7 @@ async function getAllRegions() {
         return regionData; 
     } catch (err) {
         console.error('Error fetching all regions:', err);
-        next(err);
+        throw err;
     }
 }
 
@@ -89,7 +89,7 @@ async function getRegionByID(id) {
         );
     } catch(err) {
         console.log("Failed to fetch region with ID" + id);
-        next(err);
+        throw err;
     }
 }
 
@@ -146,6 +146,7 @@ async function getRegionProvincesByID(id) {
         return provinceData;
     } catch(err) {
         console.log("Failed to fetch provinces of region " + id);
+        throw err;
     } 
 }
 
