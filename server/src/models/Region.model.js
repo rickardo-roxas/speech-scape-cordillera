@@ -59,6 +59,11 @@ async function getAllRegions() {
     }
 }
 
+/**
+ * Retrieves a region based on its name.
+ * @param {string} name - Name of the region.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
+ */
 async function getRegionByName(name) {
     try {
         const query = `
@@ -173,4 +178,5 @@ async function getRegionProvincesByID(id) {
 export default {
     getAllRegions,
     getRegionByID,
+    getRegionByName
 };
