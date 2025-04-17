@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, "../public",)));
 app.use(logger);
 
 // Routes
-app.get("/api/", (req, res) => { 
+app.get("/api/", (_req, res) => { 
     res.send("Connected to Server.");
 });
 app.use('/api/map', mapRoutes);
@@ -38,7 +38,7 @@ app.use('/api/province', provinceRoutes);
 app.use('/api/search', searchRoutes);
 
 // Error Handling
-app.use((req, res, next) => {
+app.use((_req, res, _next) => {
     res.status(404).json({ error: "Not Found" });
 });
 app.use(errorHandler);
