@@ -13,7 +13,7 @@ const getAllProvinces = async (req, res, next) => {
         if(!provinces || provinces.length === 0){
             return res.status(404).json({
                 message: 'Provinces not found'
-            })
+            });
         }
 
         res.status(200).json(provinces);
@@ -21,7 +21,7 @@ const getAllProvinces = async (req, res, next) => {
         err.statusCode = 500;
         next(err);
     }
-} 
+}; 
 
 /**
  * Passes a specific province by id as a json
@@ -46,7 +46,7 @@ const getProvinceByID = async (req, res, next) => {
         err.statusCode = 500;
         next(err);
     }
-}
+};
 
 /**
  * Passes a specific province by name as a json
@@ -63,7 +63,7 @@ const getProvinceByName = async (req, res, next) => {
         if(!province){
             return res.status(404).json({
                 message: 'Province not found'
-            })
+            });
         }
 
         res.status(200).json(province);
@@ -71,10 +71,10 @@ const getProvinceByName = async (req, res, next) => {
         err.statusCode  = 500;
         next(err);
     }
-}
+};
 
 export default {
     getAllProvinces,
     getProvinceByID,
     getProvinceByName
-}
+};

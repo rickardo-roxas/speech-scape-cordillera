@@ -6,7 +6,7 @@ const router = express.Router();
 // Default route
 router.get('/', (req,res) => {
     
-})
+});
 
 // Search specific province by name
 router.post('/:name', (req, res) => {

@@ -145,11 +145,11 @@ async function getRegionProvincesByID(id) {
 
         return provinceData;
     } catch(err) {
-        console.log("Failed to fetch provinces of region " + id)
+        console.log("Failed to fetch provinces of region " + id);
     } 
 }
 
 export default {
     getAllRegions,
     getRegionByID,
-}
+};

@@ -18,7 +18,7 @@ async function getAllBarangays() {
         const barangays = await DatabaseUtils.getAll('city_barangays');
         return barangays.map((barangay) => new Barangay(
             barangay.barangay_name
-        ))
+        ));
     } catch(err) {
         console.error("Failed to fetch all cities");
         throw err;
@@ -28,4 +28,4 @@ async function getAllBarangays() {
 export default {
     Barangay,
     getAllBarangays
-}
+};

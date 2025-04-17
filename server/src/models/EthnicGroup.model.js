@@ -15,4 +15,4 @@ class EthnicGroup {
 
 export default {
     EthnicGroup
-}
+};

@@ -22,7 +22,7 @@ class Province {
         this.province_name = province_name;
         this.info_1 = info_1;
         this.info_2 = info_2;
-        this.info_3 = info_3
+        this.info_3 = info_3;
         this.municipalities = municipalities;
         this.ethnic_groups = ethnic_groups;
         this.languages = languages;
@@ -252,4 +252,4 @@ export default {
     getAllProvinces,
     getProvinceByID,
     getProvinceByName,
-}
+};

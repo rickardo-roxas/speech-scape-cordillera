@@ -11,6 +11,6 @@ const connection = mysql.createPool({
     "database": process.env.DB_NAME,
     connectionLimit: 15,
     waitForConnections: true,
-})
+});
 
 export default connection;
