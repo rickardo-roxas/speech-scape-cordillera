@@ -1,0 +1,29 @@
+.header {
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-forest);
+    height: 4rem;
+}
+
+.header h2 {
+    text-align: center;
+    color: var(--white);
+    font-family: var(--font-family-card);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+
+.card {
+    border-radius: var(--border-radius-lg);
+    height: 50rem;
+    max-height: 50rem;
+    margin: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.body {
+    margin: var(--spacing-xl);
+}
