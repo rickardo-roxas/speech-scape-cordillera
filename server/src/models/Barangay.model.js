@@ -1,4 +1,4 @@
-import DatabaseUtils from "../utils/Database.utils";
+import DatabaseUtils from "../utils/Database.utils.js";
 
 /**
  * Class representing a barangay.

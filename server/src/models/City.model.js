@@ -2,7 +2,6 @@ import databaseUtils from "../utils/Database.utils.js";
 import Language from "./Language.model.js";
 import EthnicGroupModel from "./EthnicGroup.model.js";
 import BarangayModel from './Barangay.model.js';
-import EthnicGroupModel from "./EthnicGroup.model.js";
 
 /**
  * Class representing a city.
