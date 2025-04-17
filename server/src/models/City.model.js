@@ -252,5 +252,4 @@ export default {
     getAllCities,
     getCityByID,
     getCityByName,
-    getCityImagesByID
 }
