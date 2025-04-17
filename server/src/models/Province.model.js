@@ -101,24 +101,32 @@ async function getProvinceByID(id){
  */
 async function getAllProvinces() {
     try {
-        const query = `
-            SELECT province_id 
-            FROM provinces`;
-        const provinceRows = await databaseUtils.performQuery(query);
-
-        if (provinceRows.length === 0) {
-            console.log("No provinces found.");
+        const provinces = await databaseUtils.getAll('provinces');
+        
+        if (provinces.length === 0) {
+            console.log("No provinces found");
             return [];
         }
 
-        const provinces = [];
+        const provinceData = await Promise.all(provinces.map(async (province) => {
+            const municipalities = await getProvinceMunicipalitiesByID(id);
+            const ethnic_groups = await getProvinceEthnicGroupsByID(id);
+            const languages = await getProvinceLanguagesByID(id);
+            const images = await getProvinceImagesByID(id);
 
-        for (const row of provinceRows) {
-            const province = await getProvinceByID(row.province_id);
-            provinces.push(province);
-        }
+            return new Province(
+                province.p_name,
+                province.info_1,
+                province.info_2,
+                province.info_3,
+                municipalities,
+                ethnic_groups,
+                languages,
+                images
+            );
+        }));
 
-        return provinces;
+        return provinceData;
     } catch (err) {
         console.error("Failed to fetch all provinces");
         throw err;
