@@ -5,7 +5,6 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 // Components and styles
-import cordilleraGeoJSON from '../../../assets/json/cordillera.json';
 import AutoFitMap from '../Map/AutoFitMap';
 import styles from './PhilippineMap.module.css';
 
@@ -40,7 +39,7 @@ const geoStyle = (feature) => ({
  * @param {function} param0.onEachFeature - Function to handle each feature
  * @returns {JSX.Element} - Rendered PhilippineMap component
  */
-function PhilippineMap({ scrollWheelZoom=false, dragging=true, zoomControl=true, className="", onEachFeature }) {
+function PhilippineMap({ scrollWheelZoom=false, dragging=true, zoomControl=true, className="", onEachFeature, geojson="" }) {
     return (
         <MapContainer
             scrollWheelZoom={scrollWheelZoom}
@@ -48,9 +47,9 @@ function PhilippineMap({ scrollWheelZoom=false, dragging=true, zoomControl=true,
             zoomControl={zoomControl}
             className={`${styles.mapContainer} ${className}`}
         >
-            {cordilleraGeoJSON && (
+            {geojson && (
                 <AutoFitMap 
-                    geojson={cordilleraGeoJSON}
+                    geojson={geojson}
                     style={geoStyle}
                     onEachFeature={onEachFeature}
                 />
