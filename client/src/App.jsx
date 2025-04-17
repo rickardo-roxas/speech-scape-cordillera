@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Pages and components
+import ErrorBoundary from './components/ui/ErrorBoundary/ErrorBoundary';
 import Wrapper from './components/layout/Wrapper';
 import LandingPage from './pages/LandingPage';
 import ProvinceAndCitiesPage from './pages/ProvincesAndCitiesPage';
@@ -40,6 +41,7 @@ function App() {
           <Route path="/province-city/province/:name" element={ <ProvincePage /> } />
         </Routes>
       </Wrapper>
+      </ErrorBoundary>
     </Router>
   );
 }
