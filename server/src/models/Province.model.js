@@ -152,8 +152,10 @@ async function getProvinceImagesByID(id){
  */
 async function getProvinceLanguagesByID(id){
     try{
-        const query = "SELECT l.l_name, pl.percentage FROM province_languages pl JOIN languages l ON pl.language_id = l.language_id WHERE pl.province_id = ?";
-
+        const query = `
+            SELECT l.l_name, pl.percentage FROM province_languages 
+            pl JOIN languages l ON pl.language_id = l.language_id 
+            WHERE pl.province_id = ?`;
         const languages = await databaseUtils.performQuery(query, [id]);
 
         if(languages.length === 0){
@@ -161,7 +163,11 @@ async function getProvinceLanguagesByID(id){
             return [];
         }
 
-        return languages.map(language => new LanguageModel.Language(language.l_name, language.percentage));
+        return languages.map(language => 
+            new LanguageModel.Language(
+                language.l_name, language.percentage
+            )
+        );
     }catch(err){
         console.error("Cannot fetch languages of province ID " + id);
         throw err;
@@ -185,10 +191,12 @@ async function getProvinceEthnicGroupsByID(id){
             return [];
         }
 
-        return ethnic_groups.map((ethnicity) => new EthnicGroupModel(
-            ethnicity.eg_name,
-            ethnicity.percentage
-        ));
+        return ethnic_groups.map((ethnicity) => 
+            new EthnicGroupModel.EthnicGroup(
+                ethnicity.eg_name,
+                ethnicity.percentage
+            )
+        );
     }catch(err){
         console.error("Failed to fetch ethnicities of province id " + id);
         throw err;
@@ -202,17 +210,19 @@ async function getProvinceMunicipalitiesByID(id){
     try{
         const query = `
             SELECT m_name, m_information FROM municipalities
-            WHERE region_id = ?`;
-        const municipalities = databaseUtils.performQuery(query, [id]);
+            WHERE province_id = ?`;
+        const municipalities = await databaseUtils.performQuery(query, [id]);
 
         if (municipalities.length === 0) {
             console.log("No municipalities found for province ID " + id);
             return [];
         }
 
-        return new MunicipalityModel(
-            municipalities.m_name,
-            municipalities.m_information
+        return municipalities.map((municipality) => 
+            new MunicipalityModel.Municipality(
+                municipality.m_name,
+                municipality.m_information
+            )
         );
     }catch(err){
         console.error("Failed to fetch municipalities of province id " + id);
