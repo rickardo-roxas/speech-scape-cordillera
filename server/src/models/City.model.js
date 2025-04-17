@@ -1,16 +1,30 @@
 import databaseUtils from "../utils/Database.utils.js";
 import Language from "./Language.model.js";
-import EthnicGroup from "./EthnicGroup.model.js";
+import EthnicGroupModel from "./EthnicGroup.model.js";
+import BarangayModel from './Barangay.model.js';
+import EthnicGroupModel from "./EthnicGroup.model.js";
 
 /**
  * Class representing a city.
  */
 class City {
-    constructor(city_name, info_1, info_2, info_3, ethnic_groups, languages, images) {
+    /**
+     * Creates a new City object. 
+     * @param {string} city_name - The name of the city.
+     * @param {string} info_1 - First informational bullet
+     * @param {string} info_2 - Second informational bullet
+     * @param {string} info_3 - Third informational bullet
+     * @param {array} barangays - Array of barangays
+     * @param {array} ethnic_groups - Array of ethnic groups
+     * @param {array} languages - Array of languages
+     * @param {array} images - Array of image URLs
+     */
+    constructor(city_name, info_1, info_2, info_3, barangays, ethnic_groups, languages, images) {
         this.city_name = city_name;
         this.info_1 = info_1;
         this.info_2 = info_2;
         this.info_3 = info_3;
+        this.barangays = barangays;
         this.ethnic_groups = ethnic_groups;
         this.languages = languages;
         this.images = images;
@@ -19,48 +33,106 @@ class City {
 
 /**
  * Returns all cities from the database.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getAllCities() {
     try {
-        const cities = await databaseUtils.getAll('city');
-        return cities.map((city) => new City(
-            city.city_name,
-            city.info_1,
-            city.info_2,
-            city.info_3,
-        ));
+        const cities = await databaseUtils.getAll('cities');
+
+        if (cities.length === 0) {
+            console.log("No cities found");
+            return [];
+        }
+
+        const citiesData = await Promise.all(cities.map(async (city) => {
+            const barangays = await getCityBarangaysByID(id);
+            const ethnic_groups = await getCityEthnicGroupsByID(id);
+            const languages = await getCityLanguagesByID(id);
+            const images = await getCityImagesByID(id);
+
+            return new City(
+                city.city_name,
+                city.info_1,
+                city.info_2,
+                city.info_3,
+                barangays,
+                ethnic_groups,
+                languages,
+                images
+            );
+        }));
+
+        return citiesData;
     } catch(err) {
         console.error("Failed to fetch all cities");
         throw err;
     }
 }
 
+/**
+ * Retrieves a city by its ID.
+ * @param {int} id - The ID of a city.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error. 
+ */
 async function getCityByID(id) {
     try {
         const query = `
-            SELECT * FROM city 
-            WHERE city.city_id = ?`;    
-        
-        const city = await databaseUtils.performQuery(query, [id]);
+            SELECT city_name, info_1, info_2, info_3 FROM cities
+            WHERE city_id_ = ?`;
+        const city = await databaseUtils.performQuery(query, id);
 
         if (city.length === 0) {
+            console.log("No city found for city ID " + id);
+            return [];
+        }
+
+        const barangays = await getCityBarangaysByID(id);
+        const ethnic_groups = await getCityEthnicGroupsByID(id);
+        const languages = await getCityLanguagesByID(id);
+        const images = await getCityImagesByID(id);
+
+        return new City(
+            city[0].city_name,
+            city[0].info_1,
+            city[0].info_2,
+            city[0].info_3,
+            barangays,
+            ethnic_groups,
+            languages,
+            images
+        );
+    } catch(err) {
+        console.error("Failed to fetch city with id " + id);
+        next(err);
+    }
+}
+
+/**
+ * Retrieves a city by its name
+ * @param {string} name - The name of the city to retrieve.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
+ */
+async function getCityByName(name) {
+    try {
+        const query = `
+            SELECT city_id FROM city 
+            WHERE city_name = ?`;    
+        const result = await databaseUtils.performQuery(query, [name]);
+
+        if (result.length === 0) {
             console.log("City not found");
             return null;
         }
 
-        const images = await getCityImagesByID(city[0].city_id);
-        const languages = await getCityLanguagesByID(city[0].city_id);
-        const ethnic_groups = await getCityEthnicGroupsByID(city[0].city_id);
+        const cityID = result[0].city_id;
+        const city = await getCityByID(cityID);
 
-        return new City(
-            city_name = city[0].city_name,
-            info_1 = city[0].info_1,
-            info_2 = city[0].info_2,
-            info_3 = city[0].info_3,
-            images = city.map(img => img.img_url),
-            languages = city.map(languages => languages.language),
-            ethnic_groups = city.map(ethnic_groups => ethnic_groups.ethnic_group)
-            )
+        if (city.length === 0) {
+            console.log("City not found");
+            return [];
+        }
+
+        return city;
     } catch(err) {
         console.log("Failed to fetch city.");
         throw err;
@@ -68,30 +140,10 @@ async function getCityByID(id) {
 }
 
 /**
- * Retrieves all cities from a specific region.
- * @param {integer} id - The ID of the region to retrieve cities from. 
- * @returns {Promise} - Resolves with the results of the query or rejects with error.
+ * Retrieves the images of a city.
+ * @param {integer} id - The ID of the city.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error. 
  */
-async function getCitiesOfRegion(id) {
-    try {
-        const query = "SELECT * FROM city WHERE region_id = ?";
-        const cities = await databaseUtils.performQuery(query, [id]);
-
-        if (cities.length === 0) {
-            console.log("No cities found for region ID " + id);
-            return [];
-        }
-
-        // Fetch city details for each city in the region
-        const cityDetails = await Promise.all(cities.map(city => getCityByID(city.city_id)));
-        return cityDetails;
-
-    } catch(err) {
-        console.log("Failed to fetch city of region." );
-        throw err;
-    }
-}
-
 async function getCityImagesByID(id) {
     try {
         const query = "SELECT img_url FROM city_images WHERE city_id = ?";
@@ -108,13 +160,17 @@ async function getCityImagesByID(id) {
         throw err;
     }
 }
-
+/**
+ * Retrieves 
+ * @param {*} id 
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
+ */
 async function getCityLanguagesByID(id) {
     try {
         const query = `
-        SELECT l_name, percentage FROM city_languages 
-        JOIN languages ON city_languages.language_id = languages.language_id 
-        WHERE city_id = ?`;
+            SELECT l_name, percentage FROM city_languages 
+            JOIN languages ON city_languages.language_id = languages.language_id 
+            WHERE city_id = ?`;
 
         const languages = await databaseUtils.performQuery(query, [id]);
 
@@ -123,18 +179,73 @@ async function getCityLanguagesByID(id) {
             return [];
         }
 
-        return languages.map(language => ({
-            name: language.l_name,
-            percentage: language.percentage
-        }));
-        
+        return new Language(
+            languages[0].l_name,
+            languages[0].percentage
+        );
     } catch(err) {
         console.log("Failed to fetch city languages");
         throw err;
     }
 }
 
-// To do
+/**
+ * Retrieves the ethnic groups of a city.
+ * @param {integer} id - The ID of the city.
+ * @returns 
+ */
 async function getCityEthnicGroupsByID(id) {
+    try {
+        const query = `
+            SELECT eg_name percentage from FROM city_ethnic_group
+            JOIN ethnic_groups ON city_ethnic_group.eg_id = ethnic_groups.eg_id
+            WHERE city_ethnic_groups.city_id = ?`;
+        const ethnic_groups = await databaseUtils.performQuery(query, [id]);
 
+        if (ethnic_groups.length === 0) {
+            console.log("No ethnic groups found for city ", id);
+            return [];
+        }
+
+        return ethnic_groups.map((ethnic_group) => 
+            new EthnicGroupModel.EthnicGroup(
+                ethnic_group.eg_name,
+                ethnic_group.percentage
+            )
+        );
+    } catch(err) {
+        console.error("Failed to fetch ethnic groups of city ", id);
+        next(err);
+    }
+}
+
+async function getCityBarangaysByID(id) {
+    try {
+        const query = `
+            SELECT barangay_name FROM city_barangays
+            WHERE city_id = ?`;
+        const barangays = await databaseUtils.performQuery(query, [id]);
+
+        if (barangays.length === 0) {
+            console.log("No barangays found for city ", id);
+            return [];
+        }
+
+        return barangays.map((barangay => 
+            new BarangayModel.Barangay(
+                barangay.barangay_name
+            )
+        ));
+    } catch(err) {
+        console.error("Failed to fetch barangays of city ", id);
+        next(err);
+    }
+}
+
+export default {
+    City,
+    getAllCities,
+    getCityByID,
+    getCityByName,
+    getCityImagesByID
 }
