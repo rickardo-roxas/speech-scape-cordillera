@@ -278,7 +278,7 @@ export default{
     searchProvinceByName,
     getProvinceImagesByID,
     getProvinceLanguagesByID,
-    getProvinceEthnicitiesByID,
+    //getProvinceEthnicitiesByID,
     getProvinceMunicipalitiesByID
 
 };
