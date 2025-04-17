@@ -97,7 +97,7 @@ async function getProvinceByID(id){
 
 /**
  * Retrieves all provinces in the database
- * @returns 
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getAllProvinces() {
     try {
@@ -135,6 +135,8 @@ async function getAllProvinces() {
 
 /**
  * Returns all images of a province
+ * @param {integer} id - The id of the province.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getProvinceImagesByID(id){
     try{
@@ -157,6 +159,8 @@ async function getProvinceImagesByID(id){
 
 /**
  * Returns all languages of a province
+ * @param {integer} id - The id of the province.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getProvinceLanguagesByID(id){
     try{
@@ -183,7 +187,9 @@ async function getProvinceLanguagesByID(id){
 }
 
 /**
- * Returns all ethnic groups of a province as a dictionary
+ * Returns all ethnic groups of a province.
+ * @param {integer} id - The id of the province.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getProvinceEthnicGroupsByID(id){
     try{
@@ -213,6 +219,8 @@ async function getProvinceEthnicGroupsByID(id){
 
 /**
  * Returns all municipalities of a province
+ * @param {integer} id - The id of the province.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getProvinceMunicipalitiesByID(id){
     try{
