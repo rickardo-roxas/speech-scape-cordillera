@@ -59,6 +59,26 @@ async function getAllRegions() {
     }
 }
 
+async function getRegionByName(name) {
+    try {
+        const query = `
+            SELECT region_id FROM regions
+            WHERE region_name = ?`;
+        const regionID = databaseUtils.performQuery(query, [name]);
+
+        if (regionID.length === 0) {
+            console.log("No region found");
+            return [];
+        }
+
+        const region = await getRegionByID(regionID);
+        return region;
+    } catch(err) {
+        console.error("Failed to fetch region  ", name);
+        throw err;
+    }
+}
+
 /**
  * Retrieves a region.
  * @param {integer} id - The ID of the region.
