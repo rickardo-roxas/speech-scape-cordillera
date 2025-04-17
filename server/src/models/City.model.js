@@ -63,7 +63,7 @@ async function getAllCities() {
 
         return citiesData;
     } catch(err) {
-        console.error("Failed to fetch all cities.")
+        console.error("Failed to fetch all cities.");
         throw err;
     }
 }

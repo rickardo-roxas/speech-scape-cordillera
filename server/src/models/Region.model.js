@@ -29,7 +29,7 @@ class Region {
  * Returns all regions from the database.
  * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
-async function getAllRegions(next) {
+async function getAllRegions() {
     try {
         const regions = await databaseUtils.getAll('region');
 
