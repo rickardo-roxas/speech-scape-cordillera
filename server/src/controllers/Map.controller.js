@@ -20,7 +20,7 @@ const getAllRegions = async (req, res, next) => {
         err.statusCode = 500;
         next(err);
     }
-}
+};
 
 /**
  * Retrieves a region through its ID.
@@ -53,7 +53,7 @@ const getRegionByID = async (req, res, next) => {
         err.statusCode = 500;
         next(err);
     }
-}
+};
 
 /**
  * Retrieves a province through its name.
@@ -75,4 +75,4 @@ export default {
     getAllRegions,
     getRegionByID,
     getProvinceByName,
-}
+};

@@ -1,0 +1,12 @@
+.search {
+    display: flex;
+    flex-direction: column;
+    max-width: 20rem;
+    box-shadow: var(--shadow-md);
+    border-radius: 0.5rem ;
+    box-shadow: var(--shadow-sm);
+}
+
+.icon {
+    background-color: var(--white);
+}

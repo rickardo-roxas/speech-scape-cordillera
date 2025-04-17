@@ -1,0 +1,13 @@
+.h1 {
+    color: var(--moss-jade);
+    margin-top: 8px;
+    color: #59885A;
+    font-weight: 700;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xxs);
+    margin-left: -1rem;
+}

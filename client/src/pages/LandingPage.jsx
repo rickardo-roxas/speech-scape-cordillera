@@ -1,6 +1,6 @@
 // Libraries and dependencies
 import React from 'react';
-import useFetch from '../hooks/UseFetch.hook';
+// import useFetch from '../hooks/UseFetch.hook';
 
 // Components
 // import other components here.
@@ -11,7 +11,9 @@ import useFetch from '../hooks/UseFetch.hook';
  */
 function LandingPage() {
     return (
-        <div>LandingPage</div>
+        <div>
+            LandingPage
+        </div>
     );
 }
 
