@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import 'leaflet/dist/leaflet.css';
 
 // Pages and components
+import ErrorBoundary from './components/ui/ErrorBoundary/ErrorBoundary';
 import Wrapper from './components/layout/Wrapper';
 import LandingPage from './pages/LandingPage';
 import ProvinceAndCities from './pages/ProvinceAndCities';
@@ -19,6 +20,7 @@ function App() {
   return (
     <Router>
       <Toaster position='top-center' reverseOrder={false} />
+      <ErrorBoundary fallback={<div>Critical error. Please refresh.</div>}>
       <Wrapper>
         <Routes>
           <Route path="/" element={ <LandingPage /> } />
@@ -27,6 +29,7 @@ function App() {
           <Route path="/provinces/:name" element={ <ProvinceCity /> } />
         </Routes>
       </Wrapper>
+      </ErrorBoundary>
     </Router>
   );
 }
