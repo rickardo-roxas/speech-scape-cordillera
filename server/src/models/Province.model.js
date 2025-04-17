@@ -163,19 +163,20 @@ async function getProvinceMunicipalitiesByID(id){
     }
     
 }
+
 /**
- * Searches for provinces by name
- * @param {string} searchTerm - The term to search for
- * @returns {Array<Province>} - List of matching provinces
+ * 
+ * @param {*} name 
+ * @returns 
  */
-export async function searchProvincesByName(keyword) {
+async function searchProvinceByName(name) {
     try {
         const query = `
             SELECT province_id, p_name, info_1, info_2, info_3
             FROM provinces
             WHERE LOWER(p_name) LIKE ?
         `;
-        const searchTerm = `%${keyword.toLowerCase()}%`;
+        const searchTerm = `%${name.toLowerCase()}%`;
 
         const results = await databaseUtils.performQuery(query, [searchTerm]);
         return results;
@@ -186,11 +187,11 @@ export async function searchProvincesByName(keyword) {
 }
 
 
-export default {
+export default{
     Province,
-    getProvinceByID,
+    getProvinceByID,    
     getAllProvinces,
-    searchProvincesByName,
+    searchProvinceByName,
     getProvinceImagesByID,
     getProvinceLanguagesByID,
     getProvinceEthnicitiesByID,
