@@ -108,7 +108,7 @@ async function getCityByID(id) {
 }
 
 /**
- * Retrieves a city by its name
+ * Retrieves a city by its name.
  * @param {string} name - The name of the city to retrieve.
  * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
@@ -161,8 +161,8 @@ async function getCityImagesByID(id) {
     }
 }
 /**
- * Retrieves 
- * @param {*} id 
+ * Retrieves the languages of a city. 
+ * @param {*} id - The id of the city.
  * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getCityLanguagesByID(id) {
@@ -192,7 +192,7 @@ async function getCityLanguagesByID(id) {
 /**
  * Retrieves the ethnic groups of a city.
  * @param {integer} id - The ID of the city.
- * @returns 
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getCityEthnicGroupsByID(id) {
     try {
@@ -219,6 +219,11 @@ async function getCityEthnicGroupsByID(id) {
     }
 }
 
+/**
+ * Retrieves all barangays of a city.
+ * @param {integer} id - The id of the city.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
+ */
 async function getCityBarangaysByID(id) {
     try {
         const query = `
