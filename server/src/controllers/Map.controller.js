@@ -1,78 +1,68 @@
-// import Province from '../models/Province.model.js';
-import Region from '../models/Region.model.js';
+import ProvinceModel from '../models/Province.model.js';
+import CityModel from '../models/City.model.js';
+import { successResponse, errorResponse } from '../utils/ResponseHandler.util.js';
 
 /**
- * Retrieves all regions
- * @param {import('express').Request} req - The request object.
- * @param {import('express').Response} res - The response object.
- * @param {import('express').NextFunction} next - The next middleware function.
- * @returns {Promise<void>} Sends a JSON response with the status and data of all regions.
+ * Retrieves a city and sends it to the client.
+ * @param {import('express').Request} req - The request object
+ * @param {import('express').Response} res - The response object
+ * @param {import('express').NextFunction} next - The next middleware function
+ * @returns {Promise<void>} - Sends a JSON response with the status and data of city.
  */
-const getAllRegions = async (req, res, next) => {
-    try {
-        const regions = await Region.getAllRegions();
-        res.status(200).json({
-            status: 200,
-            message: "Successfully retrieved all regions.",
-            data: regions,
-        });
-    } catch (err) {
-        err.statusCode = 500;
-        next(err);
-    }
-};
-
-/**
- * Retrieves a region through its ID.
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- * @returns 
- */
-const getRegionByID = async (req, res, next) => {
-    const { region_id } = req.params;
-
-    try {
-        const region = await Region.getRegionByID(region_id);
-
-        if (!region) {
-            return res.status(404).json({
-                status: 404,
-                message: "Region not found.",
-            });
-        }
-
-        res.status(200).json({
-            status: 200,
-            message: "Successfully retrieved region.",
-            data: region,
-        });
-
-
-    } catch (err) {
-        err.statusCode = 500;
-        next(err);
-    }
-};
-
-/**
- * Retrieves a province through its name.
- * @param { request } req - The request object.
- * @param { response } res - The response object.
- */
-const getProvinceByName = async (req, res) => {
+const getCityByName = async (req, res, next) => {
     const { name } = req.params;
 
     try {
-        // Implementation
+        const city = await CityModel.getCityByName(name);
+
+        if (!city) {
+            return errorResponse(res, {
+                message: "City not found.",
+                status: 404,
+            });
+        }
+
+        return successResponse(res, {
+            message: "Successfully retrieved city.",
+            data: city,
+        });
     } catch(err) {
         err.statusCode = 500;
         next(err);
     }
-};
+}
+
+/**
+ * Retrieves a province and sends it to the client.
+ * @param {import('express').Request} req - The request object
+ * @param {import('express').Response} res - The response object
+ * @param {import('express').NextFunction} next - The next middleware function
+ * @returns {Promise<void>} - Sends a JSON response with the status and data of province
+ */
+const getProvinceByName = async (req, res, next) => {
+    const { name } = req.params;
+
+    try {
+        const province = await ProvinceModel.getProvinceByName(name);
+
+        if (!province) {
+            return errorResponse(err, {
+                message: "Province not found.",
+                status: 404,
+            });
+        }
+
+        return successResponse(res, {
+            message: "Successfully retrieved province",
+            data: province,
+        })
+    } catch(err) {
+        err.statusCode = 500;
+        next(err);
+    }
+}
 
 export default {
-    getAllRegions,
-    getRegionByID,
+    getCityByName, 
     getProvinceByName,
-};
+}
