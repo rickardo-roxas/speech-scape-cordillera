@@ -1,15 +1,25 @@
 import express from 'express';
-import controller from '../controllers/Map.controller.js';
+import MapController from '../controllers/Map.controller.js';
+import { successResponse, errorResponse } from '../utils/ResponseHandler.util.js';
 
 const router = express.Router();
 
 // Default map of the Philippines
-router.get('/' , controller.getAllRegions);
-
-// Display a certain region
-router.get('/:id', controller.getRegionByID);
+router.get('/' , (_req,res) => {
+    return successResponse(res, {
+        message: "Map ready. Select a province or city to get started.",
+    });
+});
 
 // Display a specific province based on name
-router.get('/:id/:province', controller.getProvinceByName);
+router.get('/:name', (req, res) => {
+    const { type } = req.query;
+
+    if (type === 'Province') {
+        MapController.getProvinceByName;
+    } else if (type === 'City') {
+        MapController.getCityByName;
+    }
+});
 
 export default router;
