@@ -45,10 +45,10 @@ async function getAllCities() {
         }
 
         const citiesData = await Promise.all(cities.map(async (city) => {
-            const barangays = await getCityBarangaysByID(id);
-            const ethnic_groups = await getCityEthnicGroupsByID(id);
-            const languages = await getCityLanguagesByID(id);
-            const images = await getCityImagesByID(id);
+            const barangays = await getCityBarangaysByID(city.city_id);
+            const ethnic_groups = await getCityEthnicGroupsByID(city.city_id);
+            const languages = await getCityLanguagesByID(city.city_id);
+            const images = await getCityImagesByID(city.city_id);
 
             return new City(
                 city.city_name,

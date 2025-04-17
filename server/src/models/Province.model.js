@@ -109,10 +109,10 @@ async function getAllProvinces() {
         }
 
         const provinceData = await Promise.all(provinces.map(async (province) => {
-            const municipalities = await getProvinceMunicipalitiesByID(id);
-            const ethnic_groups = await getProvinceEthnicGroupsByID(id);
-            const languages = await getProvinceLanguagesByID(id);
-            const images = await getProvinceImagesByID(id);
+            const municipalities = await getProvinceMunicipalitiesByID(province.province_id);
+            const ethnic_groups = await getProvinceEthnicGroupsByID(province.province_id);
+            const languages = await getProvinceLanguagesByID(province.province_id);
+            const images = await getProvinceImagesByID(province.province_id);
 
             return new Province(
                 province.p_name,
