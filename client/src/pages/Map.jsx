@@ -25,7 +25,7 @@ function Map() {
     const onEachFeature = (feature, layer) => {
         layer.bindPopup(feature.properties.name);
         layer.on('click', () => {
-            setSelectedProvince(feature.properties.name);
+            // setSelectedProvince(feature.properties.name);
         });
     }
 
