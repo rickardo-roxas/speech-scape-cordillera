@@ -17,7 +17,7 @@ async function getAllBarangays() {
     try {
         const barangays = await DatabaseUtils.getAll('city_barangays');
         return barangays.map((barangay) => new Barangay(
-            barangays.barangay_name
+            barangay.barangay_name
         ))
     } catch(err) {
         console.error("Failed to fetch all cities");
