@@ -1,42 +1,56 @@
 import databaseUtils from '../utils/Database.utils.js';
-import MunicipalitiesModel from "./Municipalities.model.js";
+import MunicipalityModel from "./Municipality.model.js";
 import LanguageModel from "./Language.model.js";
+import EthnicGroupModel from './EthnicGroup.model.js';
 
-
-class Province{
-        constructor(name, info_1, info_2, info_3, municipalities, ethnicities, languages, images){
-        this.name = name;
+/**
+ * Class representing a province.
+ */
+class Province {
+    /**
+     * Creates a new Province object.
+     * @param {String} province_name - The name of the province.
+     * @param {String} info_1 - First informational bullet
+     * @param {String} info_2 - Second informational bullet
+     * @param {String} info_3 - Third informational bullet
+     * @param {array} municipalities - Array of municipalities
+     * @param {array} ethnic_groups - Array of ethnic groups
+     * @param {array} languages - Array of languages
+     * @param {array} images - Array of image URLs
+     */
+    constructor(province_name, info_1, info_2, info_3, municipalities, ethnic_groups, languages, images){
+        this.province_name = province_name;
         this.info_1 = info_1;
         this.info_2 = info_2;
-        this.info_3 = info_3
+        this.info_3 = info_3;
         this.municipalities = municipalities;
-        this.ethnicities = ethnicities;
+        this.ethnic_groups = ethnic_groups;
         this.languages = languages;
         this.images = images;
     }
 }
+
 /**
- * Retrieves the province by name
- * @param {*} name 
- * @returns 
+ * Retrieves the province by its name.
+ * @param {String} name - The name of the province to retrieve.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getProvinceByName(name){
     try{
-
-        const query = 'SELECT province_id FROM provinces WHERE p_name = ?';
-
+        const query = `
+            SELECT province_id FROM provinces
+            WHERE p_name = ?`;
         const result = await databaseUtils.performQuery(query, [name]);
 
         if(result.length === 0){
             console.log('No province found for province ' + name);
-            return [];
+            return null;
         }
 
         const provinceID = result[0].province_id;
-
         const province = await getProvinceByID(provinceID);
-        return province;
 
+        return province;
     }catch(err){
         console.error('Failed to fetch province ' + name);
         throw err;
@@ -45,13 +59,14 @@ async function getProvinceByName(name){
 
 /**
  * Retrieves all information of a specific province
- * @param {*} id 
- * @returns 
+ * @param {integer} id - The ID of the province.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error. 
  */
 async function getProvinceByID(id){
     try{
-        const query = "SELECT p_name, info_1, info_2, info_3 FROM provinces WHERE province_id = ?";
-        
+        const query = `
+            SELECT p_name, info_1, info_2, info_3 FROM provinces 
+            WHERE province_id = ?`;
         const province = await databaseUtils.performQuery(query, [id]);
 
         if(province.length === 0){
@@ -60,7 +75,7 @@ async function getProvinceByID(id){
         }
 
         const municipalities = await getProvinceMunicipalitiesByID(id);
-        const ethnicities = await getProvinceEthnicitiesByID(id);
+        const ethnic_groups = await getProvinceEthnicGroupsByID(id);
         const languages = await getProvinceLanguagesByID(id);
         const images = await getProvinceImagesByID(id);
 
@@ -70,11 +85,10 @@ async function getProvinceByID(id){
             province[0].info_2,
             province[0].info_3,
             municipalities,
-            ethnicities,
+            ethnic_groups,
             languages,
             images
         );
-
     }catch(err){
         console.error("Failed to fetch province ID " + id);
         throw err;
@@ -83,40 +97,52 @@ async function getProvinceByID(id){
 
 /**
  * Retrieves all provinces in the database
- * @returns 
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getAllProvinces() {
     try {
-        const query = "SELECT province_id FROM provinces";
-        const provinceRows = await databaseUtils.performQuery(query);
-
-        if (provinceRows.length === 0) {
-            console.log("No provinces found.");
+        const provinces = await databaseUtils.getAll('provinces');
+        
+        if (provinces.length === 0) {
+            console.log("No provinces found");
             return [];
         }
 
-        const provinces = [];
+        const provinceData = await Promise.all(provinces.map(async (province) => {
+            const municipalities = await getProvinceMunicipalitiesByID(province.province_id);
+            const ethnic_groups = await getProvinceEthnicGroupsByID(province.province_id);
+            const languages = await getProvinceLanguagesByID(province.province_id);
+            const images = await getProvinceImagesByID(province.province_id);
 
-        for (const row of provinceRows) {
-            const province = await getProvinceByID(row.province_id);
-            provinces.push(province);
-        }
+            return new Province(
+                province.p_name,
+                province.info_1,
+                province.info_2,
+                province.info_3,
+                municipalities,
+                ethnic_groups,
+                languages,
+                images
+            );
+        }));
 
-        return provinces;
-
+        return provinceData;
     } catch (err) {
         console.error("Failed to fetch all provinces");
         throw err;
     }
 }
 
-
 /**
  * Returns all images of a province
+ * @param {integer} id - The id of the province.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getProvinceImagesByID(id){
     try{
-        const query = "SELECT img_url FROM province_images WHERE province_id = ?";
+        const query = `
+            SELECT img_url FROM province_images
+            WHERE province_id = ?`;
         const images = await databaseUtils.performQuery(query, [id]);
         
         if(images.length === 0){
@@ -125,7 +151,6 @@ async function getProvinceImagesByID(id){
         }
 
         return images.map(image => image.img_url);
-        
     }catch(err){
         console.error("Failed to fetch province images");
         throw err;
@@ -134,11 +159,15 @@ async function getProvinceImagesByID(id){
 
 /**
  * Returns all languages of a province
+ * @param {integer} id - The id of the province.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getProvinceLanguagesByID(id){
     try{
-        const query = "SELECT l.l_name, pl.percentage FROM province_languages pl JOIN languages l ON pl.language_id = l.language_id WHERE pl.province_id = ?";
-
+        const query = `
+            SELECT l.l_name, pl.percentage FROM province_languages 
+            pl JOIN languages l ON pl.language_id = l.language_id 
+            WHERE pl.province_id = ?`;
         const languages = await databaseUtils.performQuery(query, [id]);
 
         if(languages.length === 0){
@@ -146,8 +175,12 @@ async function getProvinceLanguagesByID(id){
             return [];
         }
 
-        return languages.map(language => new LanguageModel.Language(language.l_name, language.percentage));
-
+        return languages.map(language => 
+            new LanguageModel.Language(
+                language.l_name, 
+                language.percentage
+            )
+        );
     }catch(err){
         console.error("Cannot fetch languages of province ID " + id);
         throw err;
@@ -155,24 +188,30 @@ async function getProvinceLanguagesByID(id){
 }
 
 /**
- * Returns all ethnicities of a province as a dictionary
+ * Returns all ethnic groups of a province.
+ * @param {integer} id - The id of the province.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
-async function getProvinceEthnicitiesByID(id){
+async function getProvinceEthnicGroupsByID(id){
     try{
-        const query = "SELECT eg_name, percentage FROM province_ethnic_group JOIN ethnic_groups ON province_ethnic_group.eg_id = ethnic_groups.eg_id WHERE province_ethnic_group.province_id = ?";
+        const query = `
+            SELECT eg_name, percentage FROM province_ethnic_group 
+            JOIN ethnic_groups ON province_ethnic_group.eg_id = ethnic_groups.eg_id 
+            WHERE province_ethnic_group.province_id = ?`;
 
-        const ethnicities = await databaseUtils.performQuery(query, [id]);
+        const ethnic_groups = await databaseUtils.performQuery(query, [id]);
 
-        if(ethnicities.length === 0){
-            console.log("No ethnicities found");
+        if(ethnic_groups.length === 0){
+            console.log("No ethnic groups found for province " + id);
             return [];
         }
 
-        return ethnicities.map(ethnicity => ({
-            ethnic_group: ethnicity.eg_name,
-            percentage: ethnicity.percentage
-        }));
-
+        return ethnic_groups.map((ethnicity) => 
+            new EthnicGroupModel.EthnicGroup(
+                ethnicity.eg_name,
+                ethnicity.percentage
+            )
+        );
     }catch(err){
         console.error("Failed to fetch ethnicities of province id " + id);
         throw err;
@@ -181,20 +220,36 @@ async function getProvinceEthnicitiesByID(id){
 
 /**
  * Returns all municipalities of a province
+ * @param {integer} id - The id of the province.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getProvinceMunicipalitiesByID(id){
     try{
-        return await MunicipalitiesModel.getMunicipalitiesByProvinceID(id);
+        const query = `
+            SELECT m_name, m_information FROM municipalities
+            WHERE province_id = ?`;
+        const municipalities = await databaseUtils.performQuery(query, [id]);
+
+        if (municipalities.length === 0) {
+            console.log("No municipalities found for province ID " + id);
+            return [];
+        }
+
+        return municipalities.map((municipality) => 
+            new MunicipalityModel.Municipality(
+                municipality.m_name,
+                municipality.m_information
+            )
+        );
     }catch(err){
         console.error("Failed to fetch municipalities of province id " + id);
         throw err;
     }
-    
 }
 
 export default {
     Province,
     getAllProvinces,
     getProvinceByID,
-    getProvinceByName
-}
+    getProvinceByName,
+};
