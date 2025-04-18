@@ -1,5 +1,5 @@
 import databaseUtils from "../utils/Database.utils.js";
-import Language from "./Language.model.js";
+import LanguageModel from "./Language.model.js";
 import EthnicGroupModel from "./EthnicGroup.model.js";
 import BarangayModel from './Barangay.model.js';
 
@@ -77,11 +77,11 @@ async function getCityByID(id) {
     try {
         const query = `
             SELECT city_name, info_1, info_2, info_3 FROM cities
-            WHERE city_id_ = ?`;
-        const city = await databaseUtils.performQuery(query, id);
+            WHERE city_id = ?`;
+        const city = await databaseUtils.performQuery(query, [id]);
 
         if (city.length === 0) {
-            console.log("No city found for city ID " + id);
+            console.log("No city found for city ID ", id);
             return [];
         }
 
@@ -101,7 +101,7 @@ async function getCityByID(id) {
             images
         );
     } catch(err) {
-        console.error("Failed to fetch city with id " + id);
+        console.error("Failed to fetch city with id ", id);
         throw err;
     }
 }
@@ -145,11 +145,11 @@ async function getCityByName(name) {
  */
 async function getCityImagesByID(id) {
     try {
-        const query = "SELECT img_url FROM city_images WHERE city_id = ?";
+        const query = "SELECT city_img FROM city_images WHERE city_id = ?";
         const images = await databaseUtils.performQuery(query, [id]);
 
         if (images.length === 0) {
-            console.log("No images found for city ID " + id);
+            console.log("No images found for city ID ", id);
             return [];
         }
 
@@ -171,14 +171,14 @@ async function getCityLanguagesByID(id) {
             JOIN languages ON city_languages.language_id = languages.language_id 
             WHERE city_id = ?`;
 
-        const languages = await databaseUtils.performQuery(query, [id]);
+        const languages = await databaseUtils.performQuery(query, id);
 
         if (languages.length === 0) {
-            console.log("No languages found for city ID " + id);
+            console.log("No languages found for city ID ", id);
             return [];
         }
 
-        return new Language(
+        return new LanguageModel.Language(
             languages[0].l_name,
             languages[0].percentage
         );
@@ -196,13 +196,13 @@ async function getCityLanguagesByID(id) {
 async function getCityEthnicGroupsByID(id) {
     try {
         const query = `
-            SELECT eg_name percentage from FROM city_ethnic_group
-            JOIN ethnic_groups ON city_ethnic_group.eg_id = ethnic_groups.eg_id
+            SELECT eg_name percentage FROM city_ethnic_groups
+            JOIN ethnic_groups ON city_ethnic_groups.eg_id = ethnic_groups.eg_id
             WHERE city_ethnic_groups.city_id = ?`;
         const ethnic_groups = await databaseUtils.performQuery(query, [id]);
 
         if (ethnic_groups.length === 0) {
-            console.log("No ethnic groups found for city ", id);
+            console.log("No ethnic groups found for city ", [id]);
             return [];
         }
 
@@ -213,7 +213,7 @@ async function getCityEthnicGroupsByID(id) {
             )
         );
     } catch(err) {
-        console.error("Failed to fetch ethnic groups of city ", id);
+        console.error("Failed to fetch ethnic groups of city ", [id]);
         throw err;    
     }
 }
