@@ -30,6 +30,34 @@ const getAllRegions = async (_req, res, next) => {
 };
 
 /**
+ * Retrieves CAR region and sends it to the client.
+ * @param {import('express').Request} req - The request object.
+ * @param {import('express').Response} res - The response object.
+ * @param {import('express').NextFunction} next - The next middleware function.
+ * @returns {Promise<void>} - Sends a JSON response with the status and data of the CAR region.
+ */
+const getDefaultRegion = async (_req, res, next) => {
+    try {
+        const region = await RegionModel.getRegionByID(8);
+
+        if (!region) {
+            return ResponseHandler.errorResponse(res, {
+                message: "Regions not found.",
+                status: 404,
+            });
+        }
+
+        return ResponseHandler.successResponse(res, {
+            message: "Successfully retrieved region.",
+            data: region,
+        });
+    } catch(err) {
+        err.statusCode = 500;
+        next(err);
+    }
+}
+
+/**
  * Retrieves a region by its name and sends it to the client.
  * @param {import('express').Request} req - The request object.
  * @param {import('express').Response} res - The response object.
@@ -61,5 +89,6 @@ const getRegionByName = async (req, res, next) => {
 
 export default {
     getAllRegions,
-    getRegionByName
+    getRegionByName,
+    getDefaultRegion,
 }
