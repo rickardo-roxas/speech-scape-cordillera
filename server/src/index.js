@@ -13,9 +13,10 @@ import logger from "./middlewares/Logger.middleware.js";
 import config from './configs/Index.config.js';
 
 // Routes
+import landingRoutes from "./routes/Landing.routes.js";
 import searchRoutes from "./routes/Search.routes.js";
 import mapRoutes from "./routes/Map.routes.js";
-import provinceRoutes from "./routes/Province.routes.js";
+import provinceRoutes from "./routes/ProvinceCity.routes.js";
 
 // Environment Variables
 const app = express();
@@ -30,11 +31,9 @@ app.use(express.static(path.join(__dirname, "../public",)));
 app.use(logger);
 
 // Routes
-app.get("/api/", (_req, res) => { 
-    res.send("Connected to Server.");
-});
+app.get("/api", landingRoutes);
 app.use('/api/map', mapRoutes);
-app.use('/api/province', provinceRoutes);
+app.use('/api/province-city', provinceRoutes);
 app.use('/api/search', searchRoutes);
 
 // Error Handling

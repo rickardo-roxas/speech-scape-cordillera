@@ -60,6 +60,31 @@ async function getAllRegions() {
 }
 
 /**
+ * Retrieves a region based on its name.
+ * @param {string} name - Name of the region.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
+ */
+async function getRegionByName(name) {
+    try {
+        const query = `
+            SELECT region_id FROM region
+            WHERE region_name = ?`;
+        const regionID = databaseUtils.performQuery(query, [name]);
+
+        if (regionID.length === 0) {
+            console.log("No region found");
+            return [];
+        }
+
+        const region = await getRegionByID(regionID);
+        return region;
+    } catch(err) {
+        console.error("Failed to fetch region  ", name);
+        throw err;
+    }
+}
+
+/**
  * Retrieves a region.
  * @param {integer} id - The ID of the region.
  * @returns {Promise} - Resolves with the results of the query or rejects with error. 
@@ -153,4 +178,5 @@ async function getRegionProvincesByID(id) {
 export default {
     getAllRegions,
     getRegionByID,
+    getRegionByName
 };

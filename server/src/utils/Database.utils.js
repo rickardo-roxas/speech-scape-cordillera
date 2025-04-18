@@ -25,7 +25,7 @@ function performQuery(query, params) {
  */
 function performUpdate(query, params) {
     return new Promise((resolve, reject) => {
-        connection.query(query, params, (err, results) => {
+        connection.query(query, params, (err, _results) => {
             if (err) {
                 return reject(err);
             }
