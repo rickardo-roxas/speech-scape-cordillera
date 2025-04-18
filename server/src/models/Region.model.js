@@ -67,7 +67,7 @@ async function getAllRegions() {
 async function getRegionByName(name) {
     try {
         const query = `
-            SELECT region_id FROM regions
+            SELECT region_id FROM region
             WHERE region_name = ?`;
         const regionID = databaseUtils.performQuery(query, [name]);
 
