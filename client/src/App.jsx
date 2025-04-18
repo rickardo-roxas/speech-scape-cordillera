@@ -22,8 +22,8 @@ function App() {
         <Routes>
           <Route path="/" element={ <LandingPage /> } />
           <Route path="/map" element={ <Map /> } />
-          <Route path="/provinces" element={ <ProvinceAndCities /> } />
-          <Route path="/provinces/:name" element={ <ProvinceCity /> } />
+          <Route path="/province-city" element={ <ProvinceAndCities /> } />
+          <Route path="/province-city/:name" element={ <ProvinceCity /> } />
         </Routes>
       </Wrapper>
     </Router>
