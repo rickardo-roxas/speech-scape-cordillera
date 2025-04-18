@@ -52,7 +52,7 @@ const searchLocationByQuery = async (req, res, next) => {
         console.error("Search controller error:", err);
         next(err);
     }
-}
+};
 
 /**
  * Retrieves a specific province or city and sends it to the client.
@@ -104,7 +104,7 @@ const getLocationByName = async (req, res, next) => {
         err.statusCode = 500;
         next(err);
     }
-}
+};
 
 export default {
     searchLocationByQuery,
