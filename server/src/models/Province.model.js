@@ -247,23 +247,49 @@ async function getProvinceMunicipalitiesByID(id){
     }
 }
 /**
- * 
- * @param {*} name 
- * @returns 
+ * Retrieves a province's id and name based on user input.
+ * @param {String} name - User input for province name.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function searchProvinceByName(name) {
     try {
         const query = `
-            SELECT province_id, p_name, info_1, info_2, info_3
+            SELECT province_id, p_name
             FROM provinces
-            WHERE LOWER(p_name) LIKE ?
-        `;
-        const searchTerm = `%${name.toLowerCase()}%`;
-
+            WHERE LOWER(p_name) LIKE ?`;
+        const searchTerm = `%${name.toLowerCase().trim()}%`;
         const results = await databaseUtils.performQuery(query, [searchTerm]);
+
+        if (results.length === 0) {
+            console.log("No province found.");
+            return [];
+        }
+
         return results;
     } catch (err) {
-        console.error("Search query failed:", err);
+        console.error("Failed to fetch province with query ", name);
+        throw err;
+    }
+}
+
+/**
+ * Retrieves all province names. 
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
+ */
+async function getAllProvinceNames() {
+    try {
+        const query = `
+            SELECT province_name FROM provinces`;
+        const provinces = await databaseUtils.performQuery(query, []);
+
+        if (provinces.length === 0) {
+            console.log("No provinces found");
+            return [];
+        }
+
+        return provinces.map(row => row.province_name);
+    } catch (err) {
+        console.error("Failed to fetch province names.");
         throw err;
     }
 }
@@ -273,5 +299,6 @@ export default {
     getAllProvinces,
     searchProvinceByName,
     getProvinceByID,
-    getProvinceByName
+    getProvinceByName,
+    getAllProvinceNames,
 };
