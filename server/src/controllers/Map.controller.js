@@ -1,6 +1,6 @@
 import ProvinceModel from '../models/Province.model.js';
 import CityModel from '../models/City.model.js';
-import { successResponse, errorResponse } from '../utils/ResponseHandler.util.js';
+import ResponseHandler from '../utils/ResponseHandler.util.js';
 
 /**
  * Retrieves a city or province and sends it to the client.
@@ -18,13 +18,13 @@ const getLocationByName = async (req, res, next) => {
             const province = await ProvinceModel.getProvinceByName(name);
 
             if (!province || province.length === 0) {
-                return errorResponse(res, {
+                return ResponseHandler.errorResponse(res, {
                     status: 404,
                     message: "Province not found.",
                 });
             }
 
-            return successResponse(res, {
+            return ResponseHandler.successResponse(res, {
                 message: "Successfully retrieved province.",
                 data: province,
             });
@@ -38,12 +38,12 @@ const getLocationByName = async (req, res, next) => {
                 });
             }
     
-            return successResponse(res, {
+            return ResponseHandler.successResponse(res, {
                 message: "Successfully retrieved city.",
                 data: city,
             }); 
         } else {
-            return errorResponse(res, {
+            return ResponseHandler.errorResponse(res, {
                 status: 404,
                 message: "Invalid type. Please try again.",
             });

@@ -1,4 +1,4 @@
-import { errorResponse } from '../utils/ResponseHandler.util.js';
+import ResponseHandler from '../utils/ResponseHandler.util.js';
 
 /**
  * A middleware error handler throughout the server.
@@ -14,7 +14,7 @@ function errorHandler(err, _req, res, _next) {
 
     const status = err.statusCode || 500;
 
-    return errorResponse(res, {
+    return ResponseHandler.errorResponse(res, {
         message: err.message,
         status: status,
     });

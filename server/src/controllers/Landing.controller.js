@@ -1,5 +1,5 @@
 import RegionModel from "../models/Region.model.js";
-import { successResponse, errorResponse } from "../utils/ResponseHandler.util.js";
+import ResponseHandler from "../utils/ResponseHandler.util.js";
 
 /**
  * Retrieves all regions and sends it to the client.
@@ -13,13 +13,13 @@ const getAllRegions = async (_req, res, next) => {
         const regions = await RegionModel.getAllRegions();
 
         if (!regions) {
-            return errorResponse(res, {
+            return ResponseHandler.errorResponse(res, {
                 message: "Regions not found.",
                 status: 404,
             });
         }
 
-        return successResponse(res, {
+        return ResponseHandler.successResponse(res, {
             message: "Successfully retrieved all regions.",
             data: regions,
         });
@@ -43,13 +43,13 @@ const getRegionByName = async (req, res, next) => {
         const region = await RegionModel.getRegionByName(region_name);
 
         if (!region) {
-            return errorResponse(res, {
+            return ResponseHandler.errorResponse(res, {
                 message: "Region not found.",
                 status: 404,
             });
         }
 
-        return successResponse(res, {
+        return ResponseHandler.successResponse(res, {
             message: "Successfully retrieved region.",
             data: region,
         });

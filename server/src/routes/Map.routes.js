@@ -1,12 +1,12 @@
 import express from 'express';
 import MapController from '../controllers/Map.controller.js';
-import { successResponse } from '../utils/ResponseHandler.util.js';
+import ResponseHandler from '../utils/ResponseHandler.util.js';
 
 const router = express.Router();
 
 // Default map of the Philippines
 router.get('/' , (_req,res) => {
-    return successResponse(res, {
+    return ResponseHandler.successResponse(res, {
         message: "Select a province or city to get started.",
     });
 });

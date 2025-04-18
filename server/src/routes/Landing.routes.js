@@ -1,5 +1,5 @@
 import express from 'express';
-import LandingController from '../controllers/Landing.controller';
+import LandingController from '../controllers/Landing.controller.js';
 
 const router = express.Router();
 

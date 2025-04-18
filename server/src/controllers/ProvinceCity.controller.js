@@ -1,6 +1,6 @@
 import ProvinceModel from '../models/Province.model.js';
 import CityModel from '../models/City.model.js';
-import { successResponse, errorResponse } from '../utils/ResponseHandler.util.js';
+import ResponseHandler from '../utils/ResponseHandler.util.js';
 
 /**
  * Retrieves all cities and provinces and sends it to the client.
@@ -15,20 +15,20 @@ const getAllLocations = async (_req, res, next) => {
         const cities = await CityModel.getAllCities();
 
         if(!provinces || provinces.length === 0){
-            return errorResponse(res, {
+            return ResponseHandler.errorResponse(res, {
                 error: 404,
                 message: 'Provinces not found.',
             });
         }
 
         if (!cities || cities.length === 0) {
-            return errorResponse(res, {
+            return ResponseHandler.errorResponse(res, {
                 error: 404,
                 message: "Cities not found.",
             })
         }
 
-        return successResponse(res, {
+        return ResponseHandler.successResponse(res, {
             message: "Successfully retrieved provinces.",
             data:{
                 provinces,
@@ -58,13 +58,13 @@ const getLocationByName = async (req, res, next) => {
             const province = await ProvinceModel.getProvinceByName( name );
 
             if(!province){
-                return errorResponse(res, {
+                return ResponseHandler.errorResponse(res, {
                     error: 404,
                     message: 'Province not found.'
                 });
             }
 
-            return successResponse(res, {
+            return ResponseHandler.successResponse(res, {
                 message: "Successfully retrieved province.",
                 data: province,
             });
@@ -72,18 +72,18 @@ const getLocationByName = async (req, res, next) => {
             const city = await CityModel.getCityByName(name);
 
             if (!city || city.length === 0) {
-                return errorResponse(res, {
+                return ResponseHandler.errorResponse(res, {
                     error: 404,
                     message: "City not found.",
                 });
             }
 
-            return successResponse(res, {
+            return ResponseHandler.successResponse(res, {
                 message: "Successfully retrieved city.",
                 data: city,
             });
         } else {
-            return errorResponse(res, {
+            return ResponseHandler.errorResponse(res, {
                 status: 404,
                 message: "Invalid location type. Please try again."
             });
