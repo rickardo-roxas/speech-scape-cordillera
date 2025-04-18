@@ -12,14 +12,6 @@ router.get('/' , (_req,res) => {
 });
 
 // Display a specific province based on name
-router.get('/:name', (req, _res) => {
-    const { type } = req.query;
-
-    if (type === 'Province') {
-        MapController.getProvinceByName;
-    } else if (type === 'City') {
-        MapController.getCityByName;
-    }
-});
+router.get('/:name', MapController.getLocationByName);
 
 export default router;

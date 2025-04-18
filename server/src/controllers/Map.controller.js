@@ -3,59 +3,51 @@ import CityModel from '../models/City.model.js';
 import { successResponse, errorResponse } from '../utils/ResponseHandler.util.js';
 
 /**
- * Retrieves a city and sends it to the client.
+ * Retrieves a city or province and sends it to the client.
  * @param {import('express').Request} req - The request object
  * @param {import('express').Response} res - The response object
  * @param {import('express').NextFunction} next - The next middleware function
- * @returns {Promise<void>} - Sends a JSON response with the status and data of city.
+ * @returns {Promise<void>} - Sends a JSON response with the status and data of location
  */
-const getCityByName = async (req, res, next) => {
+const getLocationByName = async (req, res, next) => {
     const { name } = req.params;
+    const { type } = req.query;
 
     try {
-        const city = await CityModel.getCityByName(name);
+        if (type === 'Province') {
+            const province = await ProvinceModel.getProvinceByName(name);
 
-        if (!city) {
+            if (!province || province.length === 0) {
+                return errorResponse(res, {
+                    status: 404,
+                    message: "Province not found.",
+                });
+            }
+
+            return successResponse(res, {
+                message: "Successfully retrieved province.",
+                data: province,
+            });
+        } else if (type === 'City') {
+            const city = await CityModel.getCityByName(name);
+
+            if (!city || city.length === 0) {
+                return errorResponse(res, {
+                    message: "City not found.",
+                    status: 404,
+                });
+            }
+    
+            return successResponse(res, {
+                message: "Successfully retrieved city.",
+                data: city,
+            }); 
+        } else {
             return errorResponse(res, {
-                message: "City not found.",
                 status: 404,
+                message: "Invalid type. Please try again.",
             });
         }
-
-        return successResponse(res, {
-            message: "Successfully retrieved city.",
-            data: city,
-        });
-    } catch(err) {
-        err.statusCode = 500;
-        next(err);
-    }
-}
-
-/**
- * Retrieves a province and sends it to the client.
- * @param {import('express').Request} req - The request object
- * @param {import('express').Response} res - The response object
- * @param {import('express').NextFunction} next - The next middleware function
- * @returns {Promise<void>} - Sends a JSON response with the status and data of province
- */
-const getProvinceByName = async (req, res, next) => {
-    const { name } = req.params;
-
-    try {
-        const province = await ProvinceModel.getProvinceByName(name);
-
-        if (!province) {
-            return errorResponse(err, {
-                message: "Province not found.",
-                status: 404,
-            });
-        }
-
-        return successResponse(res, {
-            message: "Successfully retrieved province",
-            data: province,
-        })
     } catch(err) {
         err.statusCode = 500;
         next(err);
@@ -63,6 +55,5 @@ const getProvinceByName = async (req, res, next) => {
 }
 
 export default {
-    getCityByName, 
-    getProvinceByName,
+    getLocationByName,
 }
