@@ -14,7 +14,7 @@ const successResponse = (res, { message = "Success", data = null, status = 200 }
         message,
         data,
     });
-}
+};
 
 /**
  * Sends a failed response in JSON format.
@@ -32,9 +32,9 @@ const errorResponse = (res, { message = "Something went wrong", status = 500, er
         message,
         error,
     });
-}
+};
 
 export default {
     successResponse,
     errorResponse,
-}
+};

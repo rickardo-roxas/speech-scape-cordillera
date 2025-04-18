@@ -32,7 +32,7 @@ const getLocationByName = async (req, res, next) => {
             const city = await CityModel.getCityByName(name);
 
             if (!city || city.length === 0) {
-                return errorResponse(res, {
+                return ResponseHandler.errorResponse(res, {
                     message: "City not found.",
                     status: 404,
                 });
@@ -52,8 +52,8 @@ const getLocationByName = async (req, res, next) => {
         err.statusCode = 500;
         next(err);
     }
-}
+};
 
 export default {
     getLocationByName,
-}
+};

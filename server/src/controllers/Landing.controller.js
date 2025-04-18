@@ -55,7 +55,7 @@ const getDefaultRegion = async (_req, res, next) => {
         err.statusCode = 500;
         next(err);
     }
-}
+};
 
 /**
  * Retrieves a region by its name and sends it to the client.
@@ -85,10 +85,10 @@ const getRegionByName = async (req, res, next) => {
         err.statusCode = 500;
         next(err);
     }
-}
+};
 
 export default {
     getAllRegions,
     getRegionByName,
     getDefaultRegion,
-}
+};

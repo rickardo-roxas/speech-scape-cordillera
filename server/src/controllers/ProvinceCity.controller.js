@@ -25,7 +25,7 @@ const getAllLocations = async (_req, res, next) => {
             return ResponseHandler.errorResponse(res, {
                 error: 404,
                 message: "Cities not found.",
-            })
+            });
         }
 
         return ResponseHandler.successResponse(res, {
@@ -39,7 +39,7 @@ const getAllLocations = async (_req, res, next) => {
         err.statusCode = 500;
         next(err);
     }
-}
+};
 
 /**
  * Passes a specific province by name as a json
@@ -93,7 +93,7 @@ const getLocationByName = async (req, res, next) => {
         err.statusCode  = 500;
         next(err);
     }
-}
+};
 
 export default {
     getAllLocations,
