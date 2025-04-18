@@ -5,7 +5,6 @@
   "description": "Backend API for the Speech Scape Cordillera web app, built with Node.js, Express, and MySQL.",
   "main": "src/index.js",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --ext .js --fix",
     "dev": "nodemon src/index.js"
@@ -28,8 +27,6 @@
     "eslint": "^9.24.0",
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-node": "^11.1.0",
-    "jest": "^29.7.0",
-    "nodemon": "^3.1.9",
-    "supertest": "^7.1.0"
+    "nodemon": "^3.1.9"
   }
 }
