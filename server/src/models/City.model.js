@@ -246,9 +246,37 @@ async function getCityBarangaysByID(id) {
     }
 }
 
+/**
+ * Retrieves a city's id and name based on user input.
+ * @param {String} name - User input for city name.
+ * @returns {Promise} - Resolves with the results of the query or rejects with error.
+ */
+async function searchCityByName(name) {
+    try {
+        const query = `
+            SELECT city_id, city_name
+            FROM cities
+            WHERE LOWER(city_name) LIKE ?`;
+        const searchTerm = `%${name.toLowerCase().trim()}%`;
+        const city = await databaseUtils.performQuery(query, [searchTerm]);
+        
+        if (city.length === 0) {
+            console.log("No city found.");
+            return [];
+        }
+
+        return city;
+    } catch(err) {
+        console.error("Failed to fetch city with input of ", name);
+        throw err;
+    }
+}
+
+
 export default {
     City,
     getAllCities,
     getCityByID,
     getCityByName,
+    searchCityByName,
 };
