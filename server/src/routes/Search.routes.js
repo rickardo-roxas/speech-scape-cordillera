@@ -1,10 +1,12 @@
 import express from 'express';
-import { searchProvinceByName } from '../controllers/Search.controller.js';
+import SearchController from '../controllers/Search.controller.js';
 
 const router = express.Router();
 
-router.get('/', );
+// Displays the search results of cities and provinces based on user input.
+router.get('/', SearchController.searchLocationByQuery);
 
-router.get('/provinces/:name', searchProvinceByName);
+// Display a certain province or city based on name.
+router.get('/:name', SearchController.getLocationByName);
 
 export default router;
