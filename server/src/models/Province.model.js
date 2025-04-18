@@ -246,10 +246,32 @@ async function getProvinceMunicipalitiesByID(id){
         throw err;
     }
 }
+/**
+ * 
+ * @param {*} name 
+ * @returns 
+ */
+async function searchProvinceByName(name) {
+    try {
+        const query = `
+            SELECT province_id, p_name, info_1, info_2, info_3
+            FROM provinces
+            WHERE LOWER(p_name) LIKE ?
+        `;
+        const searchTerm = `%${name.toLowerCase()}%`;
+
+        const results = await databaseUtils.performQuery(query, [searchTerm]);
+        return results;
+    } catch (err) {
+        console.error("Search query failed:", err);
+        throw err;
+    }
+}
 
 export default {
     Province,
     getAllProvinces,
+    searchProvinceByName,
     getProvinceByID,
-    getProvinceByName,
+    getProvinceByName
 };
