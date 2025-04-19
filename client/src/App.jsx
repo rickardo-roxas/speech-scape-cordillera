@@ -32,6 +32,7 @@ function App() {
         pauseOnHover
         theme="colored"
       />
+      <ErrorBoundary>
       <Wrapper>
         <Routes>
           <Route path="/" element={ <LandingPage /> } />
