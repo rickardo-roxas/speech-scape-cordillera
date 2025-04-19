@@ -12,6 +12,9 @@ router.get('/' , (_req,res) => {
 });
 
 // Display a specific province based on name
-router.get('/:name', MapController.getLocationByName);
+router.get('/province/:name', MapController.getProvinceByName);
+
+// Display a specific city based on name
+router.get('/city/:name', MapController.getCityByName);
 
 export default router;
