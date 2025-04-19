@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, "../public",)));
 app.use(logger);
 
 // Routes
-app.get("/api", landingRoutes);
+app.use("/api", landingRoutes);
 app.use('/api/map', mapRoutes);
 app.use('/api/province-city', provinceRoutes);
 app.use('/api/search', searchRoutes);
