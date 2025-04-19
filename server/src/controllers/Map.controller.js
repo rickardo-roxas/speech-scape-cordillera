@@ -37,7 +37,7 @@ const getCityByName = async (req, res, next) => {
         err.statusCode=500;
         next(err);
     } 
-}
+};
 
 /**
  * Retrieves a city and sends it to the client.
@@ -74,7 +74,7 @@ const getProvinceByName = async (req, res, next) => {
         err.statusCode=500;
         next(err);
     } 
-}
+};
 
 
 export default {

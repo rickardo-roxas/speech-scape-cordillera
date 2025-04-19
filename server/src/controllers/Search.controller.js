@@ -49,7 +49,7 @@ const searchLocationByQuery = async (req, res, next) => {
             message: "No matching city or provinces found.",
         });
     } catch (err) {
-        err.statusCode = 500
+        err.statusCode = 500;
         next(err);
     }
 };

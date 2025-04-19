@@ -69,7 +69,7 @@ const getCityByName = async (req, res, next) => {
         err.statusCode = 500;
         next(err);
     }
-}
+};
 
 /**
  * Passes a specific province by name as a json
@@ -99,7 +99,7 @@ const getProvinceByName = async (req, res, next) => {
         err.statusCode = 500;
         next(err);
     }
-}
+};
 
 export default {
     getAllLocations,
