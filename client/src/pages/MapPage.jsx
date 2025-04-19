@@ -60,7 +60,7 @@ function MapPage() {
     };
 
     return (
-        <div className={styles.div}>
+        <div className={styles.container}>
             <Card
                 header={locationDetails && locationDetails.name ? locationDetails.name : 'Information'}
                 className={styles.profile}
