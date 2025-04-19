@@ -101,7 +101,7 @@
             "type": "Feature",
             "properties": {
                 "name": "Baguio City",
-                "type": "Province",
+                "type": "City",
                 "color": "#4db6ac"
             },
             "geometry": {
