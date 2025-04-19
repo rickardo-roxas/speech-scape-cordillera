@@ -23,7 +23,8 @@ services:
       - ./server:/app
       - /app/node_modules
     depends_on:
-      - database
+      database:
+        condition: service_healthy
     env_file:
       - server/.env.dev
     networks:
@@ -41,6 +42,11 @@ services:
       - ./speech_scape.sql:/docker-entrypoint-initdb.d/speech_scape.sql
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 5
+      timeout: 5s
 
 volumes:
   mysql_data:
