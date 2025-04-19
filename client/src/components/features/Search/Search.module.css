@@ -10,3 +10,7 @@
 .icon {
     background-color: var(--white);
 }
+
+.search:focus {
+    outline: var(--moss-jade);
+}
