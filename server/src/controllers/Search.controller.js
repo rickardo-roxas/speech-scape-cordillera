@@ -10,7 +10,7 @@ import ResponseHandler from '../utils/ResponseHandler.util.js';
  * @returns {Promise<void>} - A JSON response containing the status, message, and the data of location 
  */
 const searchLocationByQuery = async (req, res, next) => {
-    const { name } = req.params;
+    const { name } = req.body;
 
     try {
         if (!name) {
@@ -62,10 +62,17 @@ const searchLocationByQuery = async (req, res, next) => {
  * @returns {Promise<void>} - A JSON response containing the status, message, and the data of location. 
  */
 const getLocationByName = async (req, res, next) => {
-    const { name } = req.params;
+    const { name } = req.query;
     const { type } = req.query;
 
     try {
+        if (!name) {
+            return ResponseHandler.errorResponse(res, {
+                status: 404,
+                message: "Input required.",
+            });
+        }
+
         if (type === 'Province') {
             const province = await ProvinceModel.getProvinceByName(name);
 
