@@ -1,8 +1,8 @@
 // Libraries and dependencies
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from "react-hot-toast";
+import 'leaflet/dist/leaflet.css';
 
 // Pages and components
 import ErrorBoundary from './components/ui/ErrorBoundary/ErrorBoundary';
@@ -32,7 +32,7 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-      <ErrorBoundary>
+      <ErrorBoundary fallback={<div>Critical error. Please refresh.</div>}>
       <Wrapper>
         <Routes>
           <Route path="/" element={ <LandingPage /> } />
