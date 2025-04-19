@@ -5,4 +5,15 @@ header {
     margin: 0 var(--spacing-xl);
     background-color: var(--white);
     height: 5rem;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
