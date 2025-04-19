@@ -1,14 +1,16 @@
 // Libraries and dependencies
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Toaster } from "react-hot-toast";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Pages and components
 import Wrapper from './components/layout/Wrapper';
 import LandingPage from './pages/LandingPage';
-import ProvinceAndCities from './pages/ProvinceAndCities';
-import ProvinceCity from './pages/ProvinceCity';
-import Map from './pages/Map';
+import ProvinceAndCitiesPage from './pages/ProvincesAndCitiesPage';
+import ProvincePage from './pages/ProvincePage';
+import CityPage from './pages/CityPage';
+import MapPage from './pages/MapPage';
 
 /**
  * Main application component.
@@ -17,13 +19,25 @@ import Map from './pages/Map';
 function App() {
   return (
     <Router>
-      <Toaster position='top-center' reverseOrder={false} />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <Wrapper>
         <Routes>
           <Route path="/" element={ <LandingPage /> } />
-          <Route path="/map" element={ <Map /> } />
-          <Route path="/province-city" element={ <ProvinceAndCities /> } />
-          <Route path="/province-city/:name" element={ <ProvinceCity /> } />
+          <Route path="/map" element={ <MapPage /> } />
+          <Route path="/province-city" element={ <ProvinceAndCitiesPage /> } />
+          <Route path="/province-city/city/:name" element={ <CityPage /> } />
+          <Route path="/province-city/province/:name" element={ <ProvincePage /> } />
         </Routes>
       </Wrapper>
     </Router>
