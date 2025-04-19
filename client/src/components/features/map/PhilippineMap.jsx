@@ -1,11 +1,11 @@
 // Libraries and dependencies
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 // Components and styles
-import AutoFitMap from '../Map/AutoFitMap';
+import AutoFitMap from '../map/AutoFitMap';
 import styles from './PhilippineMap.module.css';
 
 // Fix for default icon not displaying
