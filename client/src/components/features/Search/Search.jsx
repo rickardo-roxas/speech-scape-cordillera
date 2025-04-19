@@ -39,9 +39,9 @@ function Search() {
     useEffect(() => {
         const trimmed = debouncedSearchInput.trim();
 
-        if (trimmed !== '') {
+        if (trimmed !== '' || trimmed !== searchInput) {
             refetch({
-                data: { name: trimmed}
+                data: { q: trimmed}
             });
         }
     }, [debouncedSearchInput, refetch]);

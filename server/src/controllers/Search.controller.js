@@ -10,17 +10,17 @@ import ResponseHandler from '../utils/ResponseHandler.util.js';
  * @returns {Promise<void>} - A JSON response containing the status, message, and the data of location 
  */
 const searchLocationByQuery = async (req, res, next) => {
-    const { name } = req.body;
+    const { q } = req.query;
 
     try {
-        if (!name) {
+        if (!q || q.trim() === '') {
             return ResponseHandler.errorResponse(res, {
                 status: 404,
                 message: "Input required.",
             });
         }
 
-        const provinceMatches = await ProvinceModel.searchProvinceByName(name); 
+        const provinceMatches = await ProvinceModel.searchProvinceByName(q); 
 
         if (provinceMatches.length > 0) {
             return ResponseHandler.successResponse(res, {
@@ -32,7 +32,7 @@ const searchLocationByQuery = async (req, res, next) => {
             });   
         }
 
-        const cityMatches = await CityModel.searchCityByName(name);
+        const cityMatches = await CityModel.searchCityByName(q);
         
         if (cityMatches.length > 0) {
             return ResponseHandler.successResponse(res, {
@@ -49,71 +49,11 @@ const searchLocationByQuery = async (req, res, next) => {
             message: "No matching city or provinces found.",
         });
     } catch (err) {
-        console.error("Search controller error:", err);
-        next(err);
-    }
-};
-
-/**
- * Retrieves a specific province or city and sends it to the client.
- * @param {import('express').Request} req - The request object.
- * @param {import('express').Response} res - The response object.
- * @param {import('express').NextFunction} next- The next middleware function.
- * @returns {Promise<void>} - A JSON response containing the status, message, and the data of location. 
- */
-const getLocationByName = async (req, res, next) => {
-    const { name } = req.query;
-    const { type } = req.query;
-
-    try {
-        if (!name) {
-            return ResponseHandler.errorResponse(res, {
-                status: 404,
-                message: "Input required.",
-            });
-        }
-
-        if (type === 'Province') {
-            const province = await ProvinceModel.getProvinceByName(name);
-
-            if (!province || province.length === 0) {
-                return ResponseHandler.errorResponse(res, {
-                    status: 404,
-                    message: "No province found.",
-                });
-            }
-
-            return ResponseHandler.successResponse(res, {
-                message: "Successfully retrieved province.",
-                data: province,
-            });
-        } else if (type === 'City') {
-            const city = await CityModel.getCityByName(name);
-
-            if (!city || city.length === 0) {
-                return ResponseHandler.errorResponse(res, {
-                    status: 404,
-                    message: "No province found.",
-                });
-            }
-
-            return ResponseHandler.successResponse(res, {
-                message: "Successfully retrieved city.",
-                data: city,
-            });
-        }
-
-        return ResponseHandler.errorResponse(res, {
-            status: 404,
-            message: "No city or province found.",
-        });
-    } catch(err) {
-        err.statusCode = 500;
+        err.statusCode = 500
         next(err);
     }
 };
 
 export default {
     searchLocationByQuery,
-    getLocationByName,
 };
