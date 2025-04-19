@@ -114,7 +114,7 @@ async function getCityByID(id) {
 async function getCityByName(name) {
     try {
         const query = `
-            SELECT city_id FROM city 
+            SELECT city_id FROM cities 
             WHERE city_name = ?`;    
         const result = await databaseUtils.performQuery(query, [name]);
 
@@ -153,7 +153,7 @@ async function getCityImagesByID(id) {
             return [];
         }
 
-        return images.map(image => image.img_url);
+        return images.map(image => image.city_img);
     } catch(err) {
         console.log("Failed to fetch city images");
         throw err;
