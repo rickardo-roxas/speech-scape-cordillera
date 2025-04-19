@@ -39,7 +39,7 @@ const searchLocationByQuery = async (req, res, next) => {
                 message: "Cities found.",
                 data: {
                     type: 'City',
-                    provinces: cityMatches,
+                    cities: cityMatches,
                 },
             });
         }
