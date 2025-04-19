@@ -66,7 +66,9 @@ function MapPage() {
                 className={styles.profile}
             >
                 
-                <TextContainer title="Overview">
+                <TextContainer 
+                    title={locationDetails ? "Overview" : ""}
+                >
                     {locationDetails ? (
                         <>
                         <p><strong>Name:</strong> {locationDetails.name}</p>
