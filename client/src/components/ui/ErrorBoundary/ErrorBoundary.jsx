@@ -1,7 +1,6 @@
 import React from 'react';
-import { toast } from 'react-hot-toast';
 import styles from './ErrorBoundary.module.css';
-
+import { toast } from "react-toastify";
 /**
  * ErrorBoundary component to catch JavaScript errors in child components.
  */
