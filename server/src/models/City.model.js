@@ -9,7 +9,7 @@ import BarangayModel from './Barangay.model.js';
 class City {
     /**
      * Creates a new City object. 
-     * @param {string} city_name - The name of the city.
+     * @param {string} name - The name of the city.
      * @param {string} info_1 - First informational bullet
      * @param {string} info_2 - Second informational bullet
      * @param {string} info_3 - Third informational bullet
@@ -18,8 +18,8 @@ class City {
      * @param {array} languages - Array of languages
      * @param {array} images - Array of image URLs
      */
-    constructor(city_name, info_1, info_2, info_3, barangays, ethnic_groups, languages, images) {
-        this.city_name = city_name;
+    constructor(name, info_1, info_2, info_3, barangays, ethnic_groups, languages, images) {
+        this.name = name;
         this.info_1 = info_1;
         this.info_2 = info_2;
         this.info_3 = info_3;
@@ -254,7 +254,7 @@ async function getCityBarangaysByID(id) {
 async function searchCityByName(name) {
     try {
         const query = `
-            SELECT city_id, city_name
+            SELECT city_name AS name
             FROM cities
             WHERE LOWER(city_name) LIKE ?`;
         const searchTerm = `%${name.toLowerCase().trim()}%`;

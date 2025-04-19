@@ -9,7 +9,7 @@ import EthnicGroupModel from './EthnicGroup.model.js';
 class Province {
     /**
      * Creates a new Province object.
-     * @param {String} province_name - The name of the province.
+     * @param {String} name - The name of the province.
      * @param {String} info_1 - First informational bullet
      * @param {String} info_2 - Second informational bullet
      * @param {String} info_3 - Third informational bullet
@@ -18,8 +18,8 @@ class Province {
      * @param {array} languages - Array of languages
      * @param {array} images - Array of image URLs
      */
-    constructor(province_name, info_1, info_2, info_3, municipalities, ethnic_groups, languages, images){
-        this.province_name = province_name;
+    constructor(name, info_1, info_2, info_3, municipalities, ethnic_groups, languages, images){
+        this.name = name;
         this.info_1 = info_1;
         this.info_2 = info_2;
         this.info_3 = info_3;
@@ -254,7 +254,7 @@ async function getProvinceMunicipalitiesByID(id){
 async function searchProvinceByName(name) {
     try {
         const query = `
-            SELECT province_id, p_name
+            SELECT p_name AS name
             FROM provinces
             WHERE LOWER(p_name) LIKE ?`;
         const searchTerm = `%${name.toLowerCase().trim()}%`;
