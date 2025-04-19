@@ -1,18 +1,18 @@
 // Libraries and dependencies
 import React from 'react';
-// import useFetch from '../hooks/UseFetch.hook';
 
 // Components
 // import other components here.
+// import styles from './ProvincePage.module.css';
 
 /**
  * Displays the province or city information.
  * @returns {JSX.Element}
  */
-function ProvinceCity() {
+function ProvincePage() {
     return (
-        <div>ProvinceCity</div>
+        <div>Province Page</div>
     );
 }
 
-export default ProvinceCity;
+export default ProvincePage;
