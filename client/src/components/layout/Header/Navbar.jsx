@@ -1,11 +1,8 @@
-// Libraries
 import React from 'react';
 
-// Custom components
 import Logo from './Logo';
-import Search from './Search';
+import Search from '../../features/Search/Search.jsx';
 import Links from './Links';
-
 import styles from './Navbar.module.css';
 
 /**
@@ -13,12 +10,11 @@ import styles from './Navbar.module.css';
  * @returns {JSX.Element} - Rendered Navbar component
  */
 function Navbar() {
-  // add context for search here
   return (
     <header className={styles.header}>
       <Logo />
-      <Links />
-      <Search />
+      <Links className={styles.links}/>
+      <Search className={styles.search}/>
     </header>
   );
 }

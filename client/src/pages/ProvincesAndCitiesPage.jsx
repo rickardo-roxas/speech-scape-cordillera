@@ -4,15 +4,16 @@ import React from 'react';
 
 // Components
 // import other components here.
+// import styles from './ProvincesAndCitiesPage.module.css';
 
 /**
  * Displays a list of provinces and cities.
  * @returns {JSX.Element}
  */
-function ProvinceAndCities() {
+function ProvincesAndCitiesPage() {
     return (
         <div>ProvinceAndCities</div>
     );
 }
 
-export default ProvinceAndCities;
+export default ProvincesAndCitiesPage;

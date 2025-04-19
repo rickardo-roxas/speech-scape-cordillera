@@ -1,45 +1,53 @@
-import { useState, useEffect, useCallback } from "react";
-import api from "../configs/API.config";
+import { useRef, useCallback, useState, useEffect } from "react";
+import api from '../configs/API.config';
 
 /**
- * 
- * @param {string} url - API endpoint to fetch data from
- * @param {object} param1 - Options for the fetch request
- * @param {string} param1.method - HTTP method (default: "get")
- * @param {object} param1.data - Data to be sent with the request (default: null)
- * @param {object} param1.config - Additional configuration options (default: {})
- * @returns { data, loading, error, refetch } - Object containing the response data, loading state, error state, and a refetch function
+ * Custom hook for fetching data using Axios with support for lazy loading and refetching.
+ * Leverages Axios interceptors for toast consistency.
+ *
+ * @param {string} url - The API endpoint.
+ * @param {object} options - Axios config (method, headers, data, etc.).
+ * @param {boolean} lazy - If true, skips auto-fetch on mount.
+ * @returns {object} loading, error, data, refetch
  */
-export default function useFetch(url, { method = "get", data = null, config = {} } = {}) {
-    const [responseData, setResponseData] = useState(null);
-    const [loading, setLoading] = useState(true);
+function useFetch(url, options = {}, lazy = false) {
+    const [loading, setLoading] = useState(!lazy);
     const [error, setError] = useState(null);
+    const [data, setData] = useState(null);
+    const configRef = useRef(options); 
 
-    /**
-     * Fetches data from the API using the provided URL and options.
-     * Memoize fetchData to prevent unnecessary recreation on each render
-     */
-    const fetchData = useCallback(async () => {
+    const fetchData = useCallback(async (overrideConfig = {}) => {
         setLoading(true);
+        setError(null);
+
         try {
-            const response = await api.request({
+            const response = await api({
                 url,
-                method,
-                data,
-                ...config,
+                method: configRef.current.method || "GET",
+                ...configRef.current,
+                ...overrideConfig, // possible new payload
             });
-            setResponseData(response.data);
-            setError(null);
-        } catch (err) {
+
+            setData(response.data);
+            return response.data;
+        } catch(err) {
             setError(err);
+            return null;
         } finally {
             setLoading(false);
         }
-    }, [url, method, data, config]);
+    }, [url]);
 
     useEffect(() => {
-        fetchData();
-    }, [fetchData]); 
+        if (!lazy) fetchData();
+    }, [fetchData, lazy]);
 
-    return { data: responseData, loading, error, refetch: fetchData };
+    const refetch = useCallback(
+        (overrideConfig = {}) => fetchData(overrideConfig),
+        [fetchData]
+    );
+
+    return { loading, error, data, refetch };
 }
+
+export default useFetch;

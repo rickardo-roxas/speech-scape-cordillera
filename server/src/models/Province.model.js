@@ -9,7 +9,7 @@ import EthnicGroupModel from './EthnicGroup.model.js';
 class Province {
     /**
      * Creates a new Province object.
-     * @param {String} province_name - The name of the province.
+     * @param {String} name - The name of the province.
      * @param {String} info_1 - First informational bullet
      * @param {String} info_2 - Second informational bullet
      * @param {String} info_3 - Third informational bullet
@@ -18,8 +18,8 @@ class Province {
      * @param {array} languages - Array of languages
      * @param {array} images - Array of image URLs
      */
-    constructor(province_name, info_1, info_2, info_3, municipalities, ethnic_groups, languages, images){
-        this.province_name = province_name;
+    constructor(name, info_1, info_2, info_3, municipalities, ethnic_groups, languages, images){
+        this.name = name;
         this.info_1 = info_1;
         this.info_2 = info_2;
         this.info_3 = info_3;
@@ -43,7 +43,7 @@ async function getProvinceByName(name){
         const result = await databaseUtils.performQuery(query, [name]);
 
         if(result.length === 0){
-            console.log('No province found for province ' + name);
+            console.log('No province found for province ', name);
             return null;
         }
 
@@ -52,7 +52,7 @@ async function getProvinceByName(name){
 
         return province;
     }catch(err){
-        console.error('Failed to fetch province ' + name);
+        console.error('Failed to fetch province ', name);
         throw err;
     }
 }
@@ -70,7 +70,7 @@ async function getProvinceByID(id){
         const province = await databaseUtils.performQuery(query, [id]);
 
         if(province.length === 0){
-            console.log("No province found for province ID " + id);
+            console.log("No province found for province ID ", id);
             return [];
         }
 
@@ -90,7 +90,7 @@ async function getProvinceByID(id){
             images
         );
     }catch(err){
-        console.error("Failed to fetch province ID " + id);
+        console.error("Failed to fetch province ID ", id);
         throw err;
     }
 }
@@ -146,7 +146,7 @@ async function getProvinceImagesByID(id){
         const images = await databaseUtils.performQuery(query, [id]);
         
         if(images.length === 0){
-            console.log("No images found for province ID " + id);
+            console.log("No images found for province ID ", id);
             return [];
         }
 
@@ -171,7 +171,7 @@ async function getProvinceLanguagesByID(id){
         const languages = await databaseUtils.performQuery(query, [id]);
 
         if(languages.length === 0){
-            console.log("No languages found for province ID " + id);
+            console.log("No languages found for province ID ", id);
             return [];
         }
 
@@ -182,7 +182,7 @@ async function getProvinceLanguagesByID(id){
             )
         );
     }catch(err){
-        console.error("Cannot fetch languages of province ID " + id);
+        console.error("Cannot fetch languages of province ID ", id);
         throw err;
     }
 }
@@ -202,7 +202,7 @@ async function getProvinceEthnicGroupsByID(id){
         const ethnic_groups = await databaseUtils.performQuery(query, [id]);
 
         if(ethnic_groups.length === 0){
-            console.log("No ethnic groups found for province " + id);
+            console.log("No ethnic groups found for province ", id);
             return [];
         }
 
@@ -213,7 +213,7 @@ async function getProvinceEthnicGroupsByID(id){
             )
         );
     }catch(err){
-        console.error("Failed to fetch ethnicities of province id " + id);
+        console.error("Failed to fetch ethnicities of province id ", id);
         throw err;
     }
 }
@@ -231,7 +231,7 @@ async function getProvinceMunicipalitiesByID(id){
         const municipalities = await databaseUtils.performQuery(query, [id]);
 
         if (municipalities.length === 0) {
-            console.log("No municipalities found for province ID " + id);
+            console.log("No municipalities found for province ID ", id);
             return [];
         }
 
@@ -242,7 +242,7 @@ async function getProvinceMunicipalitiesByID(id){
             )
         );
     }catch(err){
-        console.error("Failed to fetch municipalities of province id " + id);
+        console.error("Failed to fetch municipalities of province id ", id);
         throw err;
     }
 }
@@ -254,7 +254,7 @@ async function getProvinceMunicipalitiesByID(id){
 async function searchProvinceByName(name) {
     try {
         const query = `
-            SELECT province_id, p_name
+            SELECT p_name AS name
             FROM provinces
             WHERE LOWER(p_name) LIKE ?`;
         const searchTerm = `%${name.toLowerCase().trim()}%`;
@@ -272,33 +272,10 @@ async function searchProvinceByName(name) {
     }
 }
 
-/**
- * Retrieves all province names. 
- * @returns {Promise} - Resolves with the results of the query or rejects with error.
- */
-async function getAllProvinceNames() {
-    try {
-        const query = `
-            SELECT province_name FROM provinces`;
-        const provinces = await databaseUtils.performQuery(query, []);
-
-        if (provinces.length === 0) {
-            console.log("No provinces found");
-            return [];
-        }
-
-        return provinces.map(row => row.province_name);
-    } catch (err) {
-        console.error("Failed to fetch province names.");
-        throw err;
-    }
-}
-
 export default {
     Province,
     getAllProvinces,
     searchProvinceByName,
     getProvinceByID,
     getProvinceByName,
-    getAllProvinceNames,
 };

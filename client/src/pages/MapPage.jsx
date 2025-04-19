@@ -7,13 +7,13 @@ import Card from '../components/layout/Cards/Card';
 import TextContainer from '../components/layout/TextContainer/TextContainer';
 import Badge from '../components/ui/Badge/Badge';
 
-import styles from './Map.module.css';
+import styles from './MapPage.module.css';
 
 /**
  * Displays the map and province profile.
  * @returns {JSX.Element} 
  */
-function Map() {
+function MapPage() {
     return (
         <div className={styles.div}>
             <Card
@@ -49,4 +49,4 @@ function Map() {
     );
 }
 
-export default Map;
+export default MapPage;

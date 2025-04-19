@@ -6,7 +6,4 @@ const router = express.Router();
 // Displays the search results of cities and provinces based on user input.
 router.get('/', SearchController.searchLocationByQuery);
 
-// Display a certain province or city based on name.
-router.get('/:name', SearchController.getLocationByName);
-
 export default router;

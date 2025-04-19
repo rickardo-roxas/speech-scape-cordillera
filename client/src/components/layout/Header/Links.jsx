@@ -7,9 +7,9 @@ import styles from './Links.module.css';
  * Navbar links component
  * @returns {JSX.Element} - Rendered Links component
  */
-function Links() {
+function Links(className='') {
   return (
-    <nav className={styles.nav}>
+    <nav className={`${styles.nav} ${className}`}>
       <NavLink 
         to='/' 
         className={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
@@ -23,7 +23,7 @@ function Links() {
         Map
       </NavLink>
       <NavLink
-        to='/provinces'
+        to='/province-city'
         className={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
       >  
         Provinces and Cities

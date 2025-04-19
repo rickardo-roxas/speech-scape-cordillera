@@ -94,7 +94,7 @@ async function getRegionByID(id) {
         const query = `
             SELECT region_name, info_1, info_2, info_3 FROM region
             WHERE region_id = ?`;
-        const region = await databaseUtils.performQuery(query, id);
+        const region = await databaseUtils.performQuery(query, [id]);
 
         if (region.length === 0) {
             console.log("No region found");
@@ -113,7 +113,7 @@ async function getRegionByID(id) {
             provinces,
         );
     } catch(err) {
-        console.log("Failed to fetch region with ID" + id);
+        console.log("Failed to fetch region with ID", id);
         throw err;
     }
 }
@@ -131,7 +131,7 @@ async function getRegionCitiesByID(id) {
         const cities = await databaseUtils.performQuery(query, [id]);
 
         if (cities.length === 0) {
-            console.log("No cities found for region " + id);
+            console.log("No cities found for region ", id);
             return [];
         }
 
@@ -141,7 +141,7 @@ async function getRegionCitiesByID(id) {
         );
         return cityDetails;
     } catch(err) {
-        console.log("Failed to fetch cities of region " + id);
+        console.log("Failed to fetch cities of region ", id);
         throw err;
     }
 }
@@ -156,10 +156,10 @@ async function getRegionProvincesByID(id) {
         const query = `
             SELECT * FROM provinces
             WHERE region_id = ?`;
-        const provinces = await databaseUtils.performQuery(query, id);
+        const provinces = await databaseUtils.performQuery(query, [id]);
 
         if (provinces.length === 0) {
-            console.log("No provinces found for region " + id);
+            console.log("No provinces found for region ", id);
         }
 
         const provinceData = await Promise.all(
@@ -170,7 +170,7 @@ async function getRegionProvincesByID(id) {
 
         return provinceData;
     } catch(err) {
-        console.log("Failed to fetch provinces of region " + id);
+        console.log("Failed to fetch provinces of region ", id);
         throw err;
     } 
 }
