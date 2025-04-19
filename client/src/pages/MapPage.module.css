@@ -1,6 +1,8 @@
-.div {
+.container {
     display: flex;
     flex-direction: row;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
 }
 
 .profile {
@@ -8,5 +10,5 @@
 }
 
 .map {
-    width: 60%;
+    width: 65%;
 }
