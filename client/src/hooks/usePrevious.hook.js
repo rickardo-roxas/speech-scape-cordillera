@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 /**
  * Stores the current and previous values and updates them when the value changes.

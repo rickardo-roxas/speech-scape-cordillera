@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from "react";
  * @param {*} dependencies 
  * @returns {object} - Returns loading, error, and value properties. 
  */
-function useAsync(callback, dependencies = []) {
+function useAsync(callback) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [value, setValue] = useState(null);
@@ -20,7 +20,7 @@ function useAsync(callback, dependencies = []) {
             .then(setValue)
             .catch(setError)
             .finally(() => setLoading(false));
-    }, dependencies);
+    }, [callback]);
 
     useEffect(() => {
         callbackMemoized();

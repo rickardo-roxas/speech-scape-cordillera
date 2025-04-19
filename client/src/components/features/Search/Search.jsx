@@ -58,7 +58,7 @@ function Search(className='') {
         setSearchInput('');
         setQuery('');
         setResults([]);
-    }
+    };
 
     useClickOutside(ref, resetSearch);
 

@@ -3,9 +3,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { NavLink } from 'react-router-dom';
 
 import { CiSearch } from "react-icons/ci";
-
-import searchIcon from '../../../assets/icons/search_solid.png';
-import Image from '../../ui/Image';
 import styles from './SearchSuggestions.module.css';
 
 /**
