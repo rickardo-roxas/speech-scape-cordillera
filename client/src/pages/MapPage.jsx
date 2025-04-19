@@ -20,7 +20,7 @@ function MapPage() {
     // Location data
     const [locationDetails, setLocationDetails] = useState(null);
 
-    const { data, loading, error, refetch } = useFetch(`/map/${selectedLocationType.toLowerCase()}/${selectedLocationName}`, {
+    const { data, refetch } = useFetch(`/map/${selectedLocationType.toLowerCase()}/${selectedLocationName}`, {
         method: "GET",
     }, false);
 
@@ -38,13 +38,13 @@ function MapPage() {
                 images: details.images,
             });
         }
-    }, [data]);
+    }, [data, selectedLocationType]);
 
     useEffect(() => {
         if (selectedLocationName && selectedLocationType) {
             refetch();
         }
-    }, [selectedLocationName, selectedLocationType]);    
+    }, [selectedLocationName, selectedLocationType, refetch]);    
 
     /**
      * Function to handle events for each GeoJSON feature upon user click.
