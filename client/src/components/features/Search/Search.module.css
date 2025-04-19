@@ -1,7 +1,11 @@
-.search {
-    display: flex;
-    flex-direction: column;
+.wrapper {
+    position: relative;
+    display: inline-block;
     max-width: 20rem;
+    width: 100%;
+}
+
+.search {
     box-shadow: var(--shadow-md);
     border-radius: 0.5rem ;
     box-shadow: var(--shadow-sm);

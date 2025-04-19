@@ -2,6 +2,10 @@ import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { NavLink } from 'react-router-dom';
 
+import { CiSearch } from "react-icons/ci";
+
+import searchIcon from '../../../assets/icons/search_solid.png';
+import Image from '../../ui/Image';
 import styles from './SearchSuggestions.module.css';
 
 /**
@@ -13,50 +17,49 @@ import styles from './SearchSuggestions.module.css';
  * @param {String} param0.error - Error object.
  * @returns {JSX.Element} - Rendered search suggestion component.
  */
-function SearchSuggestions({ results = [], loading = false, error = null }) {
+function SearchSuggestions({ results = [], type = '', loading = false, error = null }) {
     if (loading) {
         return (
-            <ListGroup>
-                <ListGroup.Item className={styles.item}>
-                    Loading...
-                </ListGroup.Item>
-            </ListGroup>
+            <div className={styles.container}>
+                <ListGroup>
+                    <ListGroup.Item className={styles.item}>
+                        Loading...
+                    </ListGroup.Item>
+                </ListGroup>
+            </div> 
         );
     }
 
     if (error) {
         return (
-            <ListGroup>
-                <ListGroup.Item className={styles.item}>
-                    Error fetching results.
-                </ListGroup.Item>
-            </ListGroup>
-        );
-    }
-
-    if (results.length === 0) {
-        return (
-            <ListGroup>
-                <ListGroup.Item className={styles.item}>
-                    No results found.
-                </ListGroup.Item>
-            </ListGroup>
+            <div className={styles.container}>
+                <ListGroup>
+                    <ListGroup.Item className={styles.item}>
+                        Error fetching results.
+                    </ListGroup.Item>
+                </ListGroup>
+            </div> 
         );
     }
 
     return (
-        <ListGroup>
-            {results.map((item, index) => (
-                <ListGroup.Item 
-                    key={index} 
-                    className={styles.item}
-                    as={NavLink}
-                    to={`/province-city/${item.name}`}
-                >
-                    {item.name}
-                </ListGroup.Item>
-            ))}
-        </ListGroup>
+        <div className={styles.container}>
+            <ListGroup>
+                {results.map((item, index) => (
+                    <ListGroup.Item 
+                        key={index} 
+                        className={styles.item}
+                        as={NavLink}
+                        to={`/province-city/${type.toLowerCase()}/${encodeURIComponent(item.name)}`}
+                    >
+                        <CiSearch
+                            className={styles.icon}
+                        />
+                        <span className={styles.text}>{item.name}</span>
+                    </ListGroup.Item>
+                ))}
+            </ListGroup>
+        </div>
     );
 }
 
