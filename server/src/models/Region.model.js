@@ -119,7 +119,7 @@ async function getRegionByID(id) {
 }
 
 /**
- * Retrieves all cities from a specific region.
+ * Retrieves all cities from a specific region and returns their names and images.
  * @param {integer} id - The ID of the region to retrieve cities from. 
  * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
@@ -136,9 +136,13 @@ async function getRegionCitiesByID(id) {
         }
 
         const cityDetails = await Promise.all(
-            cities.map((city) => 
-                CityModel.getCityImagesByID(city.city_id)
-            )
+            cities.map(async (city) => {
+                const images = CityModel.getCityImagesByID(city.city_id);
+                return {
+                    name: city.city_name,
+                    ...images
+                }
+            })
         );
         return cityDetails;
     } catch(err) {
@@ -148,7 +152,7 @@ async function getRegionCitiesByID(id) {
 }
 
 /**
- * Retrieves all provinces from a specific region.
+ * Retrieves all provinces from a specific region and returns their names and images.
  * @param {integer} id - The ID of the region.
  * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
@@ -164,9 +168,13 @@ async function getRegionProvincesByID(id) {
         }
 
         const provinceDetails = await Promise.all(
-            provinces.map((province) =>
-                ProvinceModel.getProvinceImagesByID(province.province_id)
-            )
+            provinces.map(async (province) => {
+                const images = await ProvinceModel.getProvinceImagesByID(province.province_id);
+                return {
+                    name: province.p_name,
+                    ...images
+                }
+            })
         );
 
         return provinceDetails;
