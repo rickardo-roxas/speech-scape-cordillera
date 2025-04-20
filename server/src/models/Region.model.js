@@ -126,7 +126,7 @@ async function getRegionByID(id) {
 async function getRegionCitiesByID(id) {
     try {
         const query = `
-            SELECT * FROM cities 
+            SELECT city_id, city_name FROM cities 
             WHERE region_id = ?`;
         const cities = await databaseUtils.performQuery(query, [id]);
 
@@ -137,7 +137,8 @@ async function getRegionCitiesByID(id) {
 
         const cityDetails = await Promise.all(
             cities.map((city) => 
-            CityModel.getCityByID(city.city_id))
+                CityModel.getCityImagesByID(city.city_id)
+            )
         );
         return cityDetails;
     } catch(err) {
@@ -154,7 +155,7 @@ async function getRegionCitiesByID(id) {
 async function getRegionProvincesByID(id) {
     try {
         const query = `
-            SELECT * FROM provinces
+            SELECT province_id, p_name FROM provinces
             WHERE region_id = ?`;
         const provinces = await databaseUtils.performQuery(query, [id]);
 
@@ -162,13 +163,13 @@ async function getRegionProvincesByID(id) {
             console.log("No provinces found for region ", id);
         }
 
-        const provinceData = await Promise.all(
+        const provinceDetails = await Promise.all(
             provinces.map((province) =>
-                ProvinceModel.getProvinceByID(province.province_id)
+                ProvinceModel.getProvinceImagesByID(province.province_id)
             )
         );
 
-        return provinceData;
+        return provinceDetails;
     } catch(err) {
         console.log("Failed to fetch provinces of region ", id);
         throw err;
