@@ -1,14 +1,25 @@
 import React from 'react';
-import './Footer.module.css';
+
+import logo from '../../../assets/icons/logo_solid.png';
+import styles from './Footer.module.css';
 
 /**
- * 
- * @returns {JSX.Element} 
+ * Reusable Footer component that renders the footer section of the application.
+ * @returns {JSX.Element} - Rendered footer component
  */
 function Footer() {
     return (
         <footer>
-            &copy; 2025 The Last Se7en. All Rights Reserved.
+            <img 
+                src={logo} 
+                alt="Logo" 
+                className={styles.logo}
+            />
+            <p 
+                className={styles.copyright}
+            >
+                &copy; 2025 The Last Se7en. All Rights Reserved.
+            </p>
         </footer>
     );
 }
