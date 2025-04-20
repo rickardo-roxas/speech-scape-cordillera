@@ -1,12 +1,11 @@
-// Libraries and dependencies
-import React from 'react';
-// import useFetch from '../hooks/UseFetch.hook';
+import React, { useEffect, useState } from 'react';
+import useFetch from '../hooks/UseFetch.hook';
 
-// Components
 import Card from '../components/layout/Cards/Card';
 import TextContainer from '../components/layout/TextContainer/TextContainer';
-import Badge from '../components/ui/Badge/Badge';
+import PhilippineMap from '../components/features/map/PhilippineMap';
 
+import cordilleraGeoJSON from '../assets/json/cordillera.json';
 import styles from './MapPage.module.css';
 
 /**
@@ -14,36 +13,97 @@ import styles from './MapPage.module.css';
  * @returns {JSX.Element} 
  */
 function MapPage() {
+    // Location features from map
+    const [selectedLocationName, setSelectedLocationName] = useState('');
+    const [selectedLocationType, setSelectedLocationType] = useState('');
+
+    // Location data
+    const [locationDetails, setLocationDetails] = useState(null);
+
+    const { data, refetch } = useFetch(`/map/${selectedLocationType.toLowerCase()}/${selectedLocationName}`, {
+        method: "GET",
+    }, false);
+
+    useEffect(() => {
+        if (data && data.success && data.data) {
+            const details = data.data;
+            setLocationDetails({
+                name: details.name,
+                info_1: details.info_1,
+                info_2: details.info_2,
+                info_3: details.info_3,
+                sublocations: selectedLocationType === "Province" ? details.municipalities : details.barangays,
+                ethnicGroups: details.ethnic_groups,
+                languages: details.languages,
+                images: details.images,
+            });
+        }
+    }, [data, selectedLocationType]);
+
+    useEffect(() => {
+        if (selectedLocationName && selectedLocationType) {
+            refetch();
+        }
+    }, [selectedLocationName, selectedLocationType, refetch]);    
+
+    /**
+     * Function to handle events for each GeoJSON feature upon user click.
+     * @param {object} feature - GeoJSON feature
+     * @param {L.layer} layer - Leaflet layer 
+     */
+    const onEachFeature = (feature, layer) => {
+        layer.bindPopup(feature.properties.name);
+        layer.on('click', () => {
+            setSelectedLocationName(feature.properties.name);
+            setSelectedLocationType(feature.properties.type);
+        });
+    };
+
     return (
-        <div className={styles.div}>
+        <div className={styles.container}>
             <Card
-                header="Province"
+                header={locationDetails && locationDetails.name ? locationDetails.name : 'Information'}
                 className={styles.profile}
             >
+                
                 <TextContainer 
-                    title="Heading"
+                    title={locationDetails ? "Overview" : ""}
                 >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    <Badge>
-                        Province
-                    </Badge>
+                    {locationDetails ? (
+                        <>
+                        <p><strong>Name:</strong> {locationDetails.name}</p>
+                        </>
+                    ) : (
+                        <em>Click a province or city to load data.</em>
+                    )}
                 </TextContainer>
-                <TextContainer 
-                    title="Heading"
-                >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </TextContainer>
+
+                {locationDetails && locationDetails.ethnicGroups && (
+                    <TextContainer title="Ethnic Groups">
+                        {/* Render ethnic groups here */}
+
+                    </TextContainer>
+                )}
+
+                {locationDetails && locationDetails.languages && (
+                    <TextContainer title="Languages">
+                        {/* Render languages here */}
+                        
+                    </TextContainer>
+                )}
             </Card>
 
             <Card
                 header="Cordillera Administrative Region"
                 className={styles.map}
             >
+                <PhilippineMap
+                    scrollWheelZoom={true}
+                    dragging={true}
+                    zoomControl={true}
+                    onEachFeature={onEachFeature}
+                    geojson={cordilleraGeoJSON}
+                />
             </Card> 
         </div>
     );

@@ -20,7 +20,6 @@
     border-radius: var(--border-radius-lg);
     height: 50rem;
     max-height: 50rem;
-    margin: var(--spacing-lg);
     box-shadow: var(--shadow-md);
 }
 

@@ -1,10 +1,11 @@
 // Libraries and dependencies
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import 'leaflet/dist/leaflet.css';
 
 // Pages and components
+import ErrorBoundary from './components/ui/ErrorBoundary/ErrorBoundary';
 import Wrapper from './components/layout/Wrapper';
 import LandingPage from './pages/LandingPage';
 import ProvinceAndCitiesPage from './pages/ProvincesAndCitiesPage';
@@ -33,11 +34,30 @@ function App() {
       />
       <Wrapper>
         <Routes>
-          <Route path="/" element={ <LandingPage /> } />
-          <Route path="/map" element={ <MapPage /> } />
-          <Route path="/province-city" element={ <ProvinceAndCitiesPage /> } />
-          <Route path="/province-city/city/:name" element={ <CityPage /> } />
-          <Route path="/province-city/province/:name" element={ <ProvincePage /> } />
+          <Route path="/" element={ 
+            <ErrorBoundary fallback={<div>Oops! Failed to load this page.</div>}>
+              <LandingPage />
+            </ErrorBoundary> } 
+          />
+          <Route path="/map" element={ 
+            <ErrorBoundary fallback={<div>Oops! Failed to load this page.</div>}>
+              <MapPage /> 
+            </ErrorBoundary> } 
+            />
+          <Route path="/province-city" element={ 
+            <ErrorBoundary fallback={<div>Oops! Failed to load this page.</div>}>
+              <ProvinceAndCitiesPage />
+            </ErrorBoundary> } 
+          />
+          <Route path="/province-city/city/:name" element={ 
+            <ErrorBoundary fallback={<div>Oops! Failed to load this page.</div>}>
+              <CityPage />
+            </ErrorBoundary> } 
+          />
+          <Route path="/province-city/province/:name" element={ 
+            <ErrorBoundary fallback={<div>Oops! Failed to load this page.</div>}>
+              <ProvincePage /> 
+            </ErrorBoundary>} />
         </Routes>
       </Wrapper>
     </Router>
