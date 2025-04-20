@@ -228,12 +228,12 @@ CREATE TABLE `city_images` (
 --
 
 INSERT INTO `city_images` (`city_id`, `city_img`) VALUES
-(1, '/Baguio City/baguio_1.png'),
-(1, '/Baguio City/baguio_2.png'),
-(1, '/Baguio City/baguio_3.png'),
-(1, '/Baguio City/baguio_4.png'),
-(1, '/Baguio City/baguio_5.png'),
-(1, '/Baguio City/baguio_6.jpg');
+(1, '/BaguioCity/baguio_1.png'),
+(1, '/BaguioCity/baguio_2.png'),
+(1, '/BaguioCity/baguio_3.png'),
+(1, '/BaguioCity/baguio_4.png'),
+(1, '/BaguioCity/baguio_5.png'),
+(1, '/BaguioCity/baguio_6.jpg');
 
 -- --------------------------------------------------------
 
@@ -558,12 +558,12 @@ INSERT INTO `province_images` (`province_id`, `img_url`) VALUES
 (5, '/Kalinga/kalinga_4.jpg'),
 (5, '/Kalinga/kalinga_5.jpg'),
 (5, '/Kalinga/kalinga_6.jpg'),
-(6, '/Mountain Province/mountain_province_1.jpg'),
-(6, '/Mountain Province/mountain_province_2.jpg'),
-(6, '/Mountain Province/mountain_province_3.jpg'),
-(6, '/Mountain Province/mountain_province_4.jpg'),
-(6, '/Mountain Province/mountain_province_5.jpg'),
-(6, '/Mountain Province/mountain_province_6.jpg');
+(6, '/MountainProvince/mountain_province_1.jpg'),
+(6, '/MountainProvince/mountain_province_2.jpg'),
+(6, '/MountainProvince/mountain_province_3.jpg'),
+(6, '/MountainProvince/mountain_province_4.jpg'),
+(6, '/MountainProvince/mountain_province_5.jpg'),
+(6, '/MountainProvince/mountain_province_6.jpg');
 
 -- --------------------------------------------------------
 
