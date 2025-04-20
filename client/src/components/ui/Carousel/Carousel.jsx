@@ -1,0 +1,31 @@
+import React from 'react';
+import { Carousel as BootstrapCarousel }from 'react-bootstrap/Carousel';
+
+import styles from './Carousel.module.css';
+
+/**
+ * Reusable carousel component that can display images, texts, or other React components.
+ * @param {Object} param0 - Component props
+ * @param {Number} param0.interval - Duration of one item to another.
+ * @param {import('react').ReactNode} - Children components.
+ * @param {string} param0.className - Additional className for styling.
+ * @returns {JSX.Element} - Rendered carousel component.
+ */
+function Carousel({ interval = 4000, children, className='' }) {
+    const items = React.Children.toArray(children);
+
+    return (
+        <BootstrapCarousel
+            interval={interval} 
+            className={`${styles.carousel} ${className}`}
+        >
+            {items.map((item, index) => (
+                <BootstrapCarousel.Item key={index}>
+                    {item}
+                </BootstrapCarousel.Item>
+            ))}
+        </BootstrapCarousel>
+    );
+}
+
+export default Carousel;

@@ -94,7 +94,7 @@ async function getRegionByID(id) {
         const query = `
             SELECT region_name, info_1, info_2, info_3 FROM region
             WHERE region_id = ?`;
-        const region = await databaseUtils.performQuery(query, [id]);
+        const [region] = await databaseUtils.performQuery(query, [id]);
 
         if (region.length === 0) {
             console.log("No region found");
