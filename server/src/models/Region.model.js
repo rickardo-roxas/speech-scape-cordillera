@@ -109,8 +109,8 @@ async function getRegionByID(id) {
             region.info_1,
             region.info_2,
             region.info_3,
-            cities,
             provinces,
+            cities
         );
     } catch(err) {
         console.log("Failed to fetch region with ID", id);
