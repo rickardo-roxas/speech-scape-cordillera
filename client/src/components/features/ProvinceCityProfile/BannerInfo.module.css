@@ -1,0 +1,19 @@
+.bannerInfo {
+    position: relative;
+    z-index: 10;
+    color: white;
+    padding: 2rem;
+  }
+  
+  .bannerTitle {
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+  
+  .bannerDescription {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    max-width: 42rem;
+  }
