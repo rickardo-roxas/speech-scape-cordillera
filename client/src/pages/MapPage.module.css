@@ -7,8 +7,23 @@
 
 .profile {
     width: 35%;
+    overflow: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  
+    /* Hide scrollbar for IE, Edge */
+    -ms-overflow-style: none;
+    /* Hide scrollbar for Firefox */
+    scrollbar-width: none;
 }
+.profile::-webkit-scrollbar {
+    display: none;
+  }
 
 .map {
     width: 65%;
+}
+
+p {
+    text-align: justify;
 }

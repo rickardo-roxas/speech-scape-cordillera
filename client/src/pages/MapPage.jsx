@@ -1,4 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { Doughnut } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    ArcElement,
+    Tooltip,
+    Legend
+  } from 'chart.js';
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 import useFetch from '../hooks/UseFetch.hook';
 
 import Card from '../components/layout/Cards/Card';
@@ -71,7 +80,10 @@ function MapPage() {
                 >
                     {locationDetails ? (
                         <>
-                        <p><strong>Name:</strong> {locationDetails.name}</p>
+                        <p>{locationDetails.info_1} </p>
+                        <p>{locationDetails.info_2} </p>
+                        <p>{locationDetails.info_3} </p>
+
                         </>
                     ) : (
                         <em>Click a province or city to load data.</em>
@@ -80,15 +92,47 @@ function MapPage() {
 
                 {locationDetails && locationDetails.ethnicGroups && (
                     <TextContainer title="Ethnic Groups">
-                        {/* Render ethnic groups here */}
-
+                        <Doughnut
+                        data={{
+                            labels: locationDetails.ethnicGroups.map(g => g.ethnic_group_name),
+                            datasets: [
+                            {
+                                data: locationDetails.ethnicGroups.map(g => parseFloat(g.percentage)),
+                                backgroundColor: [
+                                '#8FCDA1',
+                                '#7AA787',
+                                '#457B54',
+                                '#2E6E3A',
+                                '#283B0B',
+                                '#001707'
+                                ],
+                                hoverOffset: 4,
+                            }
+                            ]
+                        }}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                              legend: {
+                                position: 'right', // <-- this moves it to the right
+                                align: 'center',   // centers it vertically
+                                labels: {
+                                  boxWidth: 20,    // size of color box
+                                  padding: 10      // spacing between items
+                                }
+                              }
+                            }
+                          }}
+                        />
                     </TextContainer>
-                )}
+                    )}
+                    
 
                 {locationDetails && locationDetails.languages && (
                     <TextContainer title="Languages">
-                        {/* Render languages here */}
-                        
+                        <div class="ldBar" data-value="50">
+                        </div>
                     </TextContainer>
                 )}
             </Card>
