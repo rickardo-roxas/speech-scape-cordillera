@@ -18,7 +18,6 @@ function PHMapIcon({ className='' }) {
             version="1.1"
             id="svg2"
             viewBox="0 0 702 1210"
-            mapsvg:geoViewBox="116.927573 20.834769 126.606549 4.640292"
         >
             <path
                 id="PH-SUR"
