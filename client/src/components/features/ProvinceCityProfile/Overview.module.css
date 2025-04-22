@@ -1,0 +1,10 @@
+.overview {
+    margin-bottom: 20px;
+}
+
+.overview p {
+    font-family: var(--font-family-heading);
+    font-size: 14px;
+    line-height: 0.5;
+    color: var(--black);
+}
