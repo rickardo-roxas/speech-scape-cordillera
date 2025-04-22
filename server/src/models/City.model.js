@@ -196,7 +196,7 @@ async function getCityLanguagesByID(id) {
 async function getCityEthnicGroupsByID(id) {
     try {
         const query = `
-            SELECT eg_name percentage FROM city_ethnic_groups
+            SELECT eg_name, percentage FROM city_ethnic_groups
             JOIN ethnic_groups ON city_ethnic_groups.eg_id = ethnic_groups.eg_id
             WHERE city_ethnic_groups.city_id = ?`;
         const ethnic_groups = await databaseUtils.performQuery(query, [id]);
