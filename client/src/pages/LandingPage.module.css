@@ -1,6 +1,6 @@
 .hero {
     background-image: url(../assets/images/backdrop-radial-moss.svg);
-    height: 45rem;
+    height: 50rem;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -48,49 +48,63 @@
     margin-right: 5rem;
 }
 
+.ctaContainer {
+    margin-top: var(--spacing-xxl);
+}
+
 .cta {
+    margin-top: var(--spacing-xl);
     background-color: var(--white);
     color: var(--moss-jade);
+    text-align: center;
+    border-radius: var(--border-radius-xl);
 }
 
 .cta:hover {
-    background-color: var(--moss-jade);
-    color: var(--white);
+    background-color: var(--pale-cream);
 }
 
 /* Regions */
-.regionsText {
-    margin: var(--spacing-xl);
-}
-
-.regionsText p, ul li {
-    font-family: var(--font-family-body);
-}
-
-.regionsText ul {
-    list-style-type: disc;
-    margin-left: var(--spacing-xl);
-    font-size: var(--font-size-md);
-}
-
-.regionsCities, .regionProvinces {
-    margin-bottom: -5rem;
-}
-
-.cordillera {
-    padding: var(--spacing-xl);
-    background-color:  var(--pale-cream);
+.regionsContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: var(--spacing-xxl);
 }
 
-.cordillera .break {
-    margin: -10rem;
+.regionsOverview h2 {
+    font-size: var(--font-size-xxl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.regionsOverview p {
+    font-family: var(--font-family-body);
+    line-height: var(--spacing-lg);
+}
+
+.cordillera {
+    background-color:  var(--pale-cream);
+    height: 40rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .linkButtons {
+    margin-top: var(--spacing-xl);
     display: flex;
     flex-direction: row;
+    gap: var(--spacing-md);
+}
+
+.mapButton {
+    background-color: var(--warm-sand);
+    color: var(--white);
+    border-radius: var(--border-radius-xl);
+    border: none;
+}
+
+.mapButton:hover {
+    background-color: var(--earthy-olive);
 }
