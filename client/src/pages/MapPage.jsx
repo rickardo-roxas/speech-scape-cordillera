@@ -9,6 +9,7 @@ import {
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 import useFetch from '../hooks/UseFetch.hook';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 import Card from '../components/layout/Cards/Card';
 import TextContainer from '../components/layout/TextContainer/TextContainer';
@@ -131,8 +132,17 @@ function MapPage() {
 
                 {locationDetails && locationDetails.languages && (
                     <TextContainer title="Languages">
-                        <div class="ldBar" data-value="50">
-                        </div>
+                        {locationDetails.languages.map((g, index) => (
+                        <div key={index}>
+                            <ProgressBar className={styles.customProgress}>
+                                <ProgressBar className={styles.customProgressLanguage} now={Number(g.percentage) +16} variant="success" key={1}        
+                                    label={`${g.name}`} 
+                                />
+                                <ProgressBar className= {styles.customProgressPercent} now={100 -Number(g.percentage)} key={2} label={`${g.percentage}%`} />
+
+                            </ProgressBar>
+                            </div>
+                        ))}
                     </TextContainer>
                 )}
             </Card>
