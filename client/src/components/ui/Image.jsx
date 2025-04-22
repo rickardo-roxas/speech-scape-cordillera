@@ -1,7 +1,5 @@
 import React from 'react';
 
-import styles from './Image.module.css';
-
 /**
  * Reusable Image component that renders an image with lazy loading.
  * @param {Object} props - The component props
