@@ -12,7 +12,7 @@ import styles from './TextContainer.module.css';
  * @param {string} param0.className - Additional CSS classes
  * @returns {JSX.Element} - Rendered container component
  */
-function TextContainer( {title, children, className = '' } ) {
+function TextContainer( {title, children, className = '', contentClassName = ''} ) {
     return (
         <Container className={`${styles.container} ${className}`}>
             {title &&
@@ -21,7 +21,7 @@ function TextContainer( {title, children, className = '' } ) {
                 </h3>
             }
             {children && (
-                <div className={styles.content}>
+                <div className={`${styles.content} ${contentClassName}`}>
                     {children}
                 </div>
             )}
