@@ -141,7 +141,7 @@ async function getRegionCitiesByID(id) {
                 return {
                     name: city.city_name,
                     images: images
-                }
+                };
             })
         );
         return cityDetails;
@@ -173,7 +173,7 @@ async function getRegionProvincesByID(id) {
                 return {
                     name: province.p_name,
                     images: images
-                }
+                };
             })
         );
 
