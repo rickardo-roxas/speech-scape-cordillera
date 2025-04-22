@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './TypeTag.module.css';
 
-const TypeTag = ({ type = "Province" }) => {
+const TypeTag = ({ type }) => {
   return (
     <div className={styles.typeTag}>
       {type}
