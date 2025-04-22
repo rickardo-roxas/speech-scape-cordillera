@@ -10,11 +10,11 @@ import styles from './Card.module.css';
  * @param {string} param0.children - Card body content. Can contain multiple elements.
  * @returns {JSX.Element} - Rendered card component
  */
-function Card({ header, children, className = '' }) {
+function Card({ header, children, className = '', headerClassName='' }) {
   return (
     <BootstrapCard className={`${styles.card} ${className}`}>
       {header && (
-        <BootstrapCard.Header className={styles.header}>
+        <BootstrapCard.Header className={`${styles.header} ${headerClassName}`}>
           <h2>
             {header}
           </h2>
