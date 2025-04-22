@@ -1,5 +1,6 @@
 import React from 'react';
-import { Carousel as BootstrapCarousel }from 'react-bootstrap/Carousel';
+import { Carousel as BootstrapCarousel }from 'react-bootstrap';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 import styles from './Carousel.module.css';
 
@@ -18,9 +19,15 @@ function Carousel({ interval = 4000, children, className='' }) {
         <BootstrapCarousel
             interval={interval} 
             className={`${styles.carousel} ${className}`}
+            indicators={true}
+            prevIcon={<FaChevronLeft size={30} color="black" />}
+            nextIcon={<FaChevronRight size={30} color="black" />}
         >
             {items.map((item, index) => (
-                <BootstrapCarousel.Item key={index}>
+                <BootstrapCarousel.Item
+                    key={index} 
+                    className={styles.content}
+                >
                     {item}
                 </BootstrapCarousel.Item>
             ))}
