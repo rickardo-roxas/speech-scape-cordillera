@@ -26,9 +26,11 @@ function Carousel({ interval = 4000, children, className='' }) {
             {items.map((item, index) => (
                 <BootstrapCarousel.Item
                     key={index} 
-                    className={styles.content}
+                    interval={interval}
                 >
-                    {item}
+                    <div className={styles.content}>
+                        {item}
+                    </div>
                 </BootstrapCarousel.Item>
             ))}
         </BootstrapCarousel>
