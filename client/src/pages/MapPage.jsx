@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { Doughnut } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    ArcElement,
+    Tooltip,
+    Legend
+  } from 'chart.js';
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 import useFetch from '../hooks/UseFetch.hook';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 import Card from '../components/layout/Cards/Card';
+import LinkButton from '../components/ui/Button/LinkButton';
 import TextContainer from '../components/layout/TextContainer/TextContainer';
 import PhilippineMap from '../components/features/map/PhilippineMap';
 
@@ -71,7 +82,10 @@ function MapPage() {
                 >
                     {locationDetails ? (
                         <>
-                        <p><strong>Name:</strong> {locationDetails.name}</p>
+                        <p>{locationDetails.info_1} </p>
+                        <p>{locationDetails.info_2} </p>
+                        <p>{locationDetails.info_3} </p>
+
                         </>
                     ) : (
                         <em>Click a province or city to load data.</em>
@@ -80,17 +94,65 @@ function MapPage() {
 
                 {locationDetails && locationDetails.ethnicGroups && (
                     <TextContainer title="Ethnic Groups">
-                        {/* Render ethnic groups here */}
+                        <Doughnut
+                        data={{
+                            labels: locationDetails.ethnicGroups.map(g => g.ethnic_group_name),
+                            datasets: [
+                            {
+                                data: locationDetails.ethnicGroups.map(g => parseFloat(g.percentage)),
+                                backgroundColor: [
+                                '#8FCDA1',
+                                '#7AA787',
+                                '#457B54',
+                                '#2E6E3A',
+                                '#283B0B',
+                                '#001707'
+                                ],
+                                hoverOffset: 4,
+                            }
+                            ]
+                        }}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                              legend: {
+                                position: 'right', // <-- this moves it to the right
+                                align: 'center',   // centers it vertically
+                                labels: {
+                                  boxWidth: 20,    // size of color box
+                                  padding: 10      // spacing between items
+                                }
+                              }
+                            }
+                          }}
+                        />
+                    </TextContainer>
+                    )}
+                     
+                {locationDetails && locationDetails.languages && (
+                    <TextContainer title="Languages">
+                        {locationDetails.languages.map((g, index) => (
+                        <div key={index}>
+                            <ProgressBar className={styles.customProgress}>
+                                <ProgressBar className={styles.customProgressLanguage} now={Number(g.percentage) +16} variant="success" key={1}        
+                                    label={`${g.name}`} 
+                                />
+                                <ProgressBar className= {styles.customProgressPercent} now={100 -Number(g.percentage)} key={2} label={`${g.percentage}%`} />
 
+                            </ProgressBar>
+                            </div>
+                        ))}
                     </TextContainer>
                 )}
 
                 {locationDetails && locationDetails.languages && (
-                    <TextContainer title="Languages">
-                        {/* Render languages here */}
-                        
-                    </TextContainer>
+                <TextContainer className = {styles.learnMore}>
+                    <LinkButton  label = "Learn More" to = "/province-city" className = "">
+                    </LinkButton>
+                </TextContainer>
                 )}
+
             </Card>
 
             <Card
