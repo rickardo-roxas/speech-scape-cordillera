@@ -167,9 +167,9 @@ async function getCityImagesByID(id) {
 async function getCityLanguagesByID(id) {
     try {
         const query = `
-            SELECT l_name, percentage FROM city_languages 
-            JOIN languages ON city_languages.language_id = languages.language_id 
-            WHERE city_id = ?`;
+            SELECT l.l_name, cl.percentage FROM city_languages cl
+            JOIN languages l ON cl.language_id = l.language_id 
+            WHERE cl.city_id = ?`;
 
         const languages = await databaseUtils.performQuery(query, id);
 
@@ -178,9 +178,11 @@ async function getCityLanguagesByID(id) {
             return [];
         }
 
-        return new LanguageModel.Language(
-            languages[0].l_name,
-            languages[0].percentage
+        return languages.map(language => 
+            new LanguageModel.Language(
+                language.l_name,
+                language.percentage
+            )
         );
     } catch(err) {
         console.log("Failed to fetch city languages");
