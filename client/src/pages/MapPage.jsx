@@ -12,6 +12,7 @@ import useFetch from '../hooks/UseFetch.hook';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
 import Card from '../components/layout/Cards/Card';
+import LinkButton from '../components/ui/Button/LinkButton';
 import TextContainer from '../components/layout/TextContainer/TextContainer';
 import PhilippineMap from '../components/features/map/PhilippineMap';
 
@@ -128,8 +129,7 @@ function MapPage() {
                         />
                     </TextContainer>
                     )}
-                    
-
+                     
                 {locationDetails && locationDetails.languages && (
                     <TextContainer title="Languages">
                         {locationDetails.languages.map((g, index) => (
@@ -145,6 +145,14 @@ function MapPage() {
                         ))}
                     </TextContainer>
                 )}
+
+                {locationDetails && locationDetails.languages && (
+                <TextContainer className = {styles.learnMore}>
+                    <LinkButton  label = "Learn More" to = "/province-city" className = "">
+                    </LinkButton>
+                </TextContainer>
+                )}
+
             </Card>
 
             <Card
