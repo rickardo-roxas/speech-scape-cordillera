@@ -31,7 +31,7 @@ function MapPage() {
     // Location data
     const [locationDetails, setLocationDetails] = useState(null);
 
-    const { data, refetch } = useFetch(`/map/${selectedLocationType.toLowerCase()}/${selectedLocationName}`, {
+    const { data, refetch } = useFetch(`/map/${selectedLocationType.toLowerCase()}/${encodeURIComponent(selectedLocationName)}`, {
         method: "GET",
     }, false);
 
@@ -75,6 +75,7 @@ function MapPage() {
             <Card
                 header={locationDetails && locationDetails.name ? locationDetails.name : 'Information'}
                 className={styles.profile}
+                headerClassName={styles.stickyHeader}
             >
                 
                 <TextContainer 
@@ -116,31 +117,36 @@ function MapPage() {
                             responsive: true,
                             maintainAspectRatio: false,
                             plugins: {
-                              legend: {
-                                position: 'right', // <-- this moves it to the right
-                                align: 'center',   // centers it vertically
-                                labels: {
-                                  boxWidth: 20,    // size of color box
-                                  padding: 10      // spacing between items
+                                legend: {
+                                    position: 'right', // <-- this moves it to the right
+                                    align: 'center',   // centers it vertically
+                                    labels: {
+                                    boxWidth: 20,    // size of color box
+                                    padding: 10      // spacing between items
+                                    }
                                 }
-                              }
                             }
-                          }}
+                        }}
                         />
                     </TextContainer>
                     )}
-                     
+            
                 {locationDetails && locationDetails.languages && (
                     <TextContainer title="Languages">
                         {locationDetails.languages.map((g, index) => (
-                        <div key={index}>
-                            <ProgressBar className={styles.customProgress}>
-                                <ProgressBar className={styles.customProgressLanguage} now={Number(g.percentage) +16} variant="success" key={1}        
-                                    label={`${g.name}`} 
-                                />
-                                <ProgressBar className= {styles.customProgressPercent} now={100 -Number(g.percentage)} key={2} label={`${g.percentage}%`} />
-
-                            </ProgressBar>
+                            <div key={index}>
+                                <div className={styles.progressWrapper}>
+                                    <ProgressBar className={styles.customProgress}>
+                                        <ProgressBar
+                                            className={styles.customProgressLanguage}
+                                            now={Number(g.percentage)}
+                                            variant="success"
+                                            key={1}
+                                        />
+                                    </ProgressBar>
+                                    <span className={styles.languageLabel}>{g.name}</span>
+                                    <span className={styles.percentageLabel}>{g.percentage}%</span>
+                                </div>
                             </div>
                         ))}
                     </TextContainer>
@@ -148,7 +154,10 @@ function MapPage() {
 
                 {locationDetails && locationDetails.languages && (
                 <TextContainer className = {styles.learnMore}>
-                    <LinkButton  label = "Learn More" to = "/province-city" className = "">
+                    <LinkButton
+                        label = "Learn More" 
+                        to = {`/province-city/${selectedLocationType.toLowerCase()}/${selectedLocationName}`} 
+                        className = "">
                     </LinkButton>
                 </TextContainer>
                 )}
