@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './Image.module.css';
+
 /**
  * Reusable Image component that renders an image with lazy loading.
  * @param {Object} props - The component props
@@ -12,7 +14,7 @@ function Image({ alt="", src="", width="", height="", className="" }) {
             src={src}
             width={width}
             height={height}
-            className={className}
+            className={`${className}`}
             loading='lazy'
         />
     );
