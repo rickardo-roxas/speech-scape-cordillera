@@ -27,6 +27,7 @@ nav {
     color: var(--moss-jade);
     text-align: center;
     font-family: var(--font-family-ui);
+    font-weight: bold;
     font-size: 1rem;
     font-style: normal;
     margin-top: 0.05rem;
@@ -35,8 +36,10 @@ nav {
 }
 
 /* First underline */
+.link::before,
+.link::after,
 .activeLink::before,
-.activeLink::after {
+.activeLink::after  {
     content: "";
     position: absolute;
     bottom: 0; 
@@ -50,14 +53,16 @@ nav {
 }
 
 /* Second underline */
+.link::after,
 .activeLink::after {
     bottom: -4px; 
     width: 90%; 
 }
 
 /* Doesn't work */
-.activeLink::before {
-    transform: scaleX(1);  /* Expand to full width */
+.activeLink::before,
+.activeLink::after {
+  transform: scaleX(1);
 }
 
 .activeLink::after {

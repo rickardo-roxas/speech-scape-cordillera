@@ -1,0 +1,11 @@
+.typeTag {
+    display: inline-block;
+    background-color: #98B598;
+    color: var(--white);
+    font-family: var(--font-family-heading);
+    padding: 0.50rem 1.25rem;
+    border-radius: 28px;
+    font-size: 14px;
+    font-weight: bolder;
+  }
+    
