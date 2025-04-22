@@ -140,7 +140,7 @@ async function getRegionCitiesByID(id) {
                 const images = CityModel.getCityImagesByID(city.city_id);
                 return {
                     name: city.city_name,
-                    ...images
+                    images: images
                 }
             })
         );
@@ -172,7 +172,7 @@ async function getRegionProvincesByID(id) {
                 const images = await ProvinceModel.getProvinceImagesByID(province.province_id);
                 return {
                     name: province.p_name,
-                    ...images
+                    images: images
                 }
             })
         );
