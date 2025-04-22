@@ -13,7 +13,13 @@ import styles from './LinkButton.module.css';
  * @returns {JSX.Element} - Rendered LinkButton component
  */
 function LinkButton({ label = "LinkButton", to = "/", className = "" }) {
-    return (
+    const isHashLink = to.startsWith('#');
+
+    return isHashLink ? (
+        <a href={to} className={`${styles['link-button']} ${className}`}>
+            {label}
+        </a>
+    ) : (
         <Link to={to} className={className}>
             <Button
                 variant="success"

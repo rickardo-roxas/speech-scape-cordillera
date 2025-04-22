@@ -279,4 +279,5 @@ export default {
     getCityByID,
     getCityByName,
     searchCityByName,
+    getCityImagesByID,
 };

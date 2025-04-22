@@ -278,4 +278,5 @@ export default {
     searchProvinceByName,
     getProvinceByID,
     getProvinceByName,
+    getProvinceImagesByID,
 };
