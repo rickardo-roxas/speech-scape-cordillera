@@ -105,12 +105,12 @@ function LandingPage() {
                             {/* Images Carousel */}
                             <Carousel>
                                 
-                                    {[
-                                        ...(cordilleraData.provinces?.flatMap(p => p.images.map(img => `/images${img}`)) || []),
-                                        ...(cordilleraData.cities?.flatMap(c => Object.values(c.images).map(img => `/images${img}`)) || [])
-                                    ].map((imgSrc, index) => (
-                                        <Image key={index} src={imgSrc} />
-                                    ))}
+                                {[
+                                    ...(cordilleraData.provinces?.flatMap(p => p.images) || []),
+                                    ...(cordilleraData.cities?.flatMap(c => Object.values(c.images)) || [])
+                                ].map((imgSrc, index) => (
+                                    <Image key={index} src={imgSrc} />
+                                ))}
 
                             </Carousel>
                         </TextContainer>
