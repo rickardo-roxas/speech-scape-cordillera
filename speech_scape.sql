@@ -228,12 +228,12 @@ CREATE TABLE `city_images` (
 --
 
 INSERT INTO `city_images` (`city_id`, `city_img`) VALUES
-(1, '/BaguioCity/baguio_1.png'),
-(1, '/BaguioCity/baguio_2.png'),
-(1, '/BaguioCity/baguio_3.png'),
-(1, '/BaguioCity/baguio_4.png'),
-(1, '/BaguioCity/baguio_5.png'),
-(1, '/BaguioCity/baguio_6.jpg');
+(1, '/images/BaguioCity/baguio_1.png'),
+(1, '/images/BaguioCity/baguio_2.png'),
+(1, '/images/BaguioCity/baguio_3.png'),
+(1, '/images/BaguioCity/baguio_4.png'),
+(1, '/images/BaguioCity/baguio_5.png'),
+(1, '/images/BaguioCity/baguio_6.jpg');
 
 -- --------------------------------------------------------
 
@@ -532,38 +532,40 @@ CREATE TABLE `province_images` (
 --
 
 INSERT INTO `province_images` (`province_id`, `img_url`) VALUES
-(1, '/Abra/abra_1.jpg'),
-(1, '/Abra/abra_2.jpg'),
-(1, '/Abra/abra_3.jpg'),
-(1, '/Abra/abra_4.jpg'),
-(1, '/Abra/abra_5.jpg'),
-(1, '/Abra/abra_6.jpg'),
-(2, '/Apayao/apayao_1.jpg'),
-(2, '/Apayao/apayao_2.jpg'),
-(2, '/Apayao/apayao_3.jpg'),
-(2, '/Apayao/apayao_4.jpg'),
-(2, '/Apayao/apayao_5.jpg'),
-(2, '/Apayao/apayao_6.jpg'),
-(3, '/Benguet/benguet_1.jpg'),
-(3, '/Benguet/benguet_2.jpg'),
-(3, '/Benguet/benguet_3.jpg'),
-(3, '/Benguet/benguet_4.jpg'),
-(4, '/Ifugao/ifugao_1.jpg'),
-(4, '/Ifugao/ifugao_2.jpg'),
-(4, '/Ifugao/ifugao_3.jpg'),
-(4, '/Ifugao/ifugao_4.jpg'),
-(5, '/Kalinga/kalinga_1.jpg'),
-(5, '/Kalinga/kalinga_2.jpg'),
-(5, '/Kalinga/kalinga_3.jpg'),
-(5, '/Kalinga/kalinga_4.jpg'),
-(5, '/Kalinga/kalinga_5.jpg'),
-(5, '/Kalinga/kalinga_6.jpg'),
-(6, '/MountainProvince/mountain_province_1.jpg'),
-(6, '/MountainProvince/mountain_province_2.jpg'),
-(6, '/MountainProvince/mountain_province_3.jpg'),
-(6, '/MountainProvince/mountain_province_4.jpg'),
-(6, '/MountainProvince/mountain_province_5.jpg'),
-(6, '/MountainProvince/mountain_province_6.jpg');
+(1, '/images/Abra/abra_1.jpg'),
+(1, '/images/Abra/abra_2.jpg'),
+(1, '/images/Abra/abra_3.jpg'),
+(1, '/images/Abra/abra_4.jpg'),
+(1, '/images/Abra/abra_5.jpg'),
+(1, '/images/Abra/abra_6.jpg'),
+(2, '/images/Apayao/apayao_1.jpg'),
+(2, '/images/Apayao/apayao_2.jpg'),
+(2, '/images/Apayao/apayao_3.jpg'),
+(2, '/images/Apayao/apayao_4.jpg'),
+(2, '/images/Apayao/apayao_5.jpg'),
+(2, '/images/Apayao/apayao_6.jpg'),
+(3, '/images/Benguet/benguet_1.jpg'),
+(3, '/images/Benguet/benguet_2.jpg'),
+(3, '/images/Benguet/benguet_3.jpg'),
+(3, '/images/Benguet/benguet_4.jpg'),
+(4, '/images/Ifugao/ifugao_1.jpg'),
+(4, '/images/Ifugao/ifugao_2.jpg'),
+(4, '/images/Ifugao/ifugao_3.jpg'),
+(4, '/images/Ifugao/ifugao_4.jpg'),
+(4, '/images/Ifugao/ifugao_5.jpg'),
+(4, '/images/Ifugao/ifugao_6.jpg'),
+(5, '/images/Kalinga/kalinga_1.jpg'),
+(5, '/images/Kalinga/kalinga_2.jpg'),
+(5, '/images/Kalinga/kalinga_3.jpg'),
+(5, '/images/Kalinga/kalinga_4.jpg'),
+(5, '/images/Kalinga/kalinga_5.jpg'),
+(5, '/images/Kalinga/kalinga_6.jpg'),
+(6, '/images/MountainProvince/mountain_province_1.jpg'),
+(6, '/images/MountainProvince/mountain_province_2.jpg'),
+(6, '/images/MountainProvince/mountain_province_3.jpg'),
+(6, '/images/MountainProvince/mountain_province_4.jpg'),
+(6, '/images/MountainProvince/mountain_province_5.jpg'),
+(6, '/images/MountainProvince/mountain_province_6.jpg');
 
 -- --------------------------------------------------------
 
