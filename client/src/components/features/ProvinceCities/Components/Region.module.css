@@ -11,6 +11,6 @@ body{
 
 h1{
     font-family: var(--font-family-"Manrope");
-    font-size: var(--font-size-xxl);
+    font-size: var(--size-25px);
     font-weight: 900;
 }

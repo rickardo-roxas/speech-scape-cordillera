@@ -11,7 +11,7 @@
     font-size: 25px;
     font-weight: bold;
     color: #333;
-    text-align: inherit; /* Inherits left alignment from .intro */
-    margin: 0; /* Remove default margins */
-    line-height: 1.4; /* Better readability */
+    text-align: inherit; 
+    margin: 0; 
+    line-height: 1.4; 
 }
