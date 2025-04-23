@@ -524,7 +524,7 @@ INSERT INTO `province_ethnic_group` (`province_id`, `eg_id`, `percentage`) VALUE
 
 CREATE TABLE `province_images` (
   `province_id` int(11) NOT NULL,
-  `img_url` varchar(45) NOT NULL
+  `img_url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -536,24 +536,26 @@ INSERT INTO `province_images` (`province_id`, `img_url`) VALUES
 (1, '/images/Abra/abra_2.jpg'),
 (1, '/images/Abra/abra_3.jpg'),
 (1, '/images/Abra/abra_4.jpg'),
-(1, '/images/Abra/abra_5.jpg'),
+(1, '/images/Abra/abra_5.png'),
 (1, '/images/Abra/abra_6.jpg'),
 (2, '/images/Apayao/apayao_1.jpg'),
 (2, '/images/Apayao/apayao_2.jpg'),
-(2, '/images/Apayao/apayao_3.jpg'),
-(2, '/images/Apayao/apayao_4.jpg'),
+(2, '/images/Apayao/apayao_3.JPG'),
+(2, '/images/Apayao/apayao_4.JPG'),
 (2, '/images/Apayao/apayao_5.jpg'),
 (2, '/images/Apayao/apayao_6.jpg'),
 (3, '/images/Benguet/benguet_1.jpg'),
 (3, '/images/Benguet/benguet_2.jpg'),
 (3, '/images/Benguet/benguet_3.jpg'),
 (3, '/images/Benguet/benguet_4.jpg'),
+(3, '/images/Benguet/Benguet_5.jpg'),
+(3, '/images/Benguet/Benguet_6.jpg'),
 (4, '/images/Ifugao/ifugao_1.jpg'),
 (4, '/images/Ifugao/ifugao_2.jpg'),
 (4, '/images/Ifugao/ifugao_3.jpg'),
 (4, '/images/Ifugao/ifugao_4.jpg'),
-(4, '/images/Ifugao/ifugao_5.jpg'),
-(4, '/images/Ifugao/ifugao_6.jpg'),
+(4, '/images/Ifugao/ifugao_5.jpeg'),
+(4, '/images/Ifugao/ifugao_6.jpeg'),
 (5, '/images/Kalinga/kalinga_1.jpg'),
 (5, '/images/Kalinga/kalinga_2.jpg'),
 (5, '/images/Kalinga/kalinga_3.jpg'),
