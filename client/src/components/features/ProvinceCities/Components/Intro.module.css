@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&display=swap');
+
+.intro {
+  background-color: transparent;
+  font-family: "Kaisei Opti", serif; /* Changed to Kaisei Opti */
+  text-align: left; 
+}
+
+.h1 {
+  font-size: 14px;
+  font-weight: normal;
+  color: #666666;
+  text-align: inherit; 
+  margin: 0; 
+  line-height: 1.4;
+}

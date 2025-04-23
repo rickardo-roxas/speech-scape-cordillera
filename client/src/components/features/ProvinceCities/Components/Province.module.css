@@ -1,0 +1,17 @@
+@import url("../../../../assets/styles/Reset.css");
+@import url("../../../../assets/styles/Variables.css");
+@import url("../../../../assets/styles/Fonts.css");
+
+.container {
+    background-color: transparent;
+    font-family: "Manrope", sans-serif;
+}
+
+.header {
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+    text-align: inherit; /* Inherits left alignment from .intro */
+    margin: 0; /* Remove default margins */
+    line-height: 1.4; /* Better readability */
+}

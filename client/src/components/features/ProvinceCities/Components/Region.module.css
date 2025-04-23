@@ -1,0 +1,16 @@
+
+@import url("../../../../assets/styles/Reset.css");
+@import url("../../../../assets/styles/Variables.css");
+@import url("../../../../assets/styles/Fonts.css");
+
+
+body{
+    background-color: transparent;
+    
+}
+
+h1{
+    font-family: var(--font-family-"Manrope");
+    font-size: var(--font-size-xxl);
+    font-weight: 900;
+}
