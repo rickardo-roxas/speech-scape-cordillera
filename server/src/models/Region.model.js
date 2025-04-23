@@ -137,7 +137,7 @@ async function getRegionCitiesByID(id) {
 
         const cityDetails = await Promise.all(
             cities.map(async (city) => {
-                const images = CityModel.getCityImagesByID(city.city_id);
+                const images = await CityModel.getCityImagesByID(city.city_id);
                 return {
                     name: city.city_name,
                     images: images
