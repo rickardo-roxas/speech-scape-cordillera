@@ -4,7 +4,7 @@
 
 .overview p {
     font-family: var(--font-family-heading);
-    font-size: 14px;
+    font-size: 18px;
     line-height: 0.5;
     color: var(--black);
 }

@@ -5,13 +5,14 @@ import useFetch from '../hooks/UseFetch.hook';
 // Components
 import BannerContainer from '../components/features/ProvinceCityProfile/BannerContainer';
 // import styles from './ProvincePage.module.css';
+import InformationCard from '../components/features/ProvinceCityProfile/InformationCard';
 
 /**
  * Displays the province or city information.
  * @returns {JSX.Element}
  */
 function ProvincePage() {
-    const [selectedProvince] = useState('');
+    const [selectedProvince] = useState('Benguet');
     const [provinceData, setProvinceData] = useState(null);
 
     const { data, refetch } = useFetch(`/map/province/${selectedProvince}`, {
@@ -32,7 +33,6 @@ function ProvincePage() {
 
     return (
         <div>
-            <div>ProvinceAndCities</div>
             {provinceData && (
                 <BannerContainer
                     backgroundImage={provinceData.banner_image || 'placeholder.jpg'}
@@ -41,6 +41,7 @@ function ProvincePage() {
                     type="Province"
                 />
             )}
+            <InformationCard />
         </div>
     );
 }
