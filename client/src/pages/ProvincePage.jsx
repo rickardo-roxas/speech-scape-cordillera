@@ -17,7 +17,7 @@ import styles from './ProvincePage.module.css';
  * @returns {JSX.Element} - Rendered ProvincePage component
  */
 function ProvincePage() {
-  const [selectedProvince] = useState('Apayao'); // Put province here for testing
+  const [selectedProvince] = useState('Ifugao'); // Put province here for testing
   const [provinceData, setProvinceData] = useState(null);
   const [activeTab, setActiveTab] = useState('Overview');
 
@@ -65,7 +65,7 @@ function ProvincePage() {
   return (
     <div>
       <BannerContainer
-        backgroundImage={provinceData.banner_image || '/images/default-banner.jpg'}
+        backgroundImage={provinceData.banner_image || '../../public/images/banner/default-banner.png'}
         title={provinceData.name}
         description={provinceData.description || 'No description available.'}
         type="Province"
