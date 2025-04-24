@@ -38,14 +38,15 @@ function InformationCard() {
 						title="Overview"
 						description1="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 						description2="Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                        description3="Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 					/>
 				);
 			case 'Languages':
 				return (
-					<>
+					<div className={styles.grid}>
 						<Languages languages={languagesData} />
 						<Ethnicity ethnicGroups={ethnicGroupData} />
-					</>
+					</div>
 				);
 			case 'Gallery':
 				return <Gallery title="Gallery" images={galleryImages} />;
@@ -59,7 +60,7 @@ function InformationCard() {
 			<InfoCard className={styles.card}>
 				<div>
 					<ButtonSection onClick={setActiveTab} activeTab={activeTab} />
-					<div style={{ marginTop: '1rem' }}>
+					<div className={styles.content}>
 						{renderContent()}
 					</div>
 				</div>

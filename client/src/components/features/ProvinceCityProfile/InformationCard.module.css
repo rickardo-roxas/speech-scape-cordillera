@@ -10,4 +10,17 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
   }
+
+.content {
+	margin-top: 20px;
+}
+
+.grid {
+	display: flex;
+	gap: 20px;
+}
+
+.grid > * {
+	flex: 1;
+}
   

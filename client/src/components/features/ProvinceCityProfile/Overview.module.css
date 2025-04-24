@@ -5,6 +5,6 @@
 .overview p {
     font-family: var(--font-family-heading);
     font-size: 18px;
-    line-height: 0.5;
+    line-height: 1.5;
     color: var(--black);
 }

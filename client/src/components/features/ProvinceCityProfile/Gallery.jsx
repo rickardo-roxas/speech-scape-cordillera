@@ -6,11 +6,13 @@ function Gallery({ title, images }) {
     return (
         <div className={styles.gallery}>
             <SectionTitle title={title} />
-            {images.map((image, index) => (
-                <div key={index} className={styles.imageContainer}>
-                    <img src={image.url} alt={image.alt} className={styles.image} />
-                </div>
-            ))}
+            <div className={styles.grid}>
+                {images.map((image, index) => (
+                    <div key={index} className={styles.imageContainer}>
+                        <img src={image.url} alt={image.alt} className={styles.image} />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
