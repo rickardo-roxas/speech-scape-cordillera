@@ -1,0 +1,35 @@
+.ethnicity {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	gap: 35px;
+	margin-top: 1rem;
+}
+
+.chartContainer {
+	width: 250px;
+	height: 250px;
+	position: relative;
+}
+
+.legendContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 15px;
+}
+
+.legendItem {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 1rem;
+	color: var(--black);
+}
+
+.colorSwatch {
+	width: 25px;
+	height: 25px;
+	border-radius: 4px;
+}
