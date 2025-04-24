@@ -12,7 +12,7 @@ function Image({ alt="", src="", width="", height="", className="" }) {
             src={src}
             width={width}
             height={height}
-            className={className}
+            className={`${className}`}
             loading='lazy'
         />
     );

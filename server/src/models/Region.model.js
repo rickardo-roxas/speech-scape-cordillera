@@ -94,7 +94,7 @@ async function getRegionByID(id) {
         const query = `
             SELECT region_name, info_1, info_2, info_3 FROM region
             WHERE region_id = ?`;
-        const region = await databaseUtils.performQuery(query, id);
+        const [region] = await databaseUtils.performQuery(query, [id]);
 
         if (region.length === 0) {
             console.log("No region found");
@@ -109,68 +109,77 @@ async function getRegionByID(id) {
             region.info_1,
             region.info_2,
             region.info_3,
-            cities,
             provinces,
+            cities
         );
     } catch(err) {
-        console.log("Failed to fetch region with ID" + id);
+        console.log("Failed to fetch region with ID", id);
         throw err;
     }
 }
 
 /**
- * Retrieves all cities from a specific region.
+ * Retrieves all cities from a specific region and returns their names and images.
  * @param {integer} id - The ID of the region to retrieve cities from. 
  * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getRegionCitiesByID(id) {
     try {
         const query = `
-            SELECT * FROM cities 
+            SELECT city_id, city_name FROM cities 
             WHERE region_id = ?`;
         const cities = await databaseUtils.performQuery(query, [id]);
 
         if (cities.length === 0) {
-            console.log("No cities found for region " + id);
+            console.log("No cities found for region ", id);
             return [];
         }
 
         const cityDetails = await Promise.all(
-            cities.map((city) => 
-            CityModel.getCityByID(city.city_id))
+            cities.map(async (city) => {
+                const images = await CityModel.getCityImagesByID(city.city_id);
+                return {
+                    name: city.city_name,
+                    images: images
+                };
+            })
         );
         return cityDetails;
     } catch(err) {
-        console.log("Failed to fetch cities of region " + id);
+        console.log("Failed to fetch cities of region ", id);
         throw err;
     }
 }
 
 /**
- * Retrieves all provinces from a specific region.
+ * Retrieves all provinces from a specific region and returns their names and images.
  * @param {integer} id - The ID of the region.
  * @returns {Promise} - Resolves with the results of the query or rejects with error.
  */
 async function getRegionProvincesByID(id) {
     try {
         const query = `
-            SELECT * FROM provinces
+            SELECT province_id, p_name FROM provinces
             WHERE region_id = ?`;
-        const provinces = await databaseUtils.performQuery(query, id);
+        const provinces = await databaseUtils.performQuery(query, [id]);
 
         if (provinces.length === 0) {
-            console.log("No provinces found for region " + id);
+            console.log("No provinces found for region ", id);
         }
 
-        const provinceData = await Promise.all(
-            provinces.map((province) =>
-                ProvinceModel.getProvinceByID(province.province_id)
-            )
+        const provinceDetails = await Promise.all(
+            provinces.map(async (province) => {
+                const images = await ProvinceModel.getProvinceImagesByID(province.province_id);
+                return {
+                    name: province.p_name,
+                    images: images
+                };
+            })
         );
 
-        return provinceData;
+        return provinceDetails;
     } catch(err) {
-        console.log("Failed to fetch provinces of region " + id);
+        console.log("Failed to fetch provinces of region ", id);
         throw err;
     } 
 }

@@ -38,7 +38,7 @@ const getAllRegions = async (_req, res, next) => {
  */
 const getDefaultRegion = async (_req, res, next) => {
     try {
-        const region = await RegionModel.getRegionByID(8);
+        const region = await RegionModel.getRegionByID('8');
 
         if (!region) {
             return ResponseHandler.errorResponse(res, {

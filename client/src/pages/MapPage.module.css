@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+}
+
+.profile {
+    width: 35%;
+    overflow: auto;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.profile::-webkit-scrollbar {
+    display: none;
+}
+
+.map {
+    width: 65%;
+}
+
+.customProgress {
+    height: 35px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-family: var(--font-family-heading); 
+    font-weight: 100;
+    color: var(--black);
+}
+.customProgressLanguage {
+    text-align: left;
+    padding-left: var(--spacing-xs);
+    color: var(--white);
+    font-weight: 500;
+}
+
+.customProgressPercent {
+    background-color: rgb(233,236,238);
+    color: black;
+    text-align: right;
+    padding-right: 15px;
+}
+
+p {
+    text-align: justify;
+}
+
+.learnMore {
+    text-align: center;
+}
+
+.progressWrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.languageLabel {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    color: var(--white);
+    text-shadow: 0px 0px 6px var(--black);
+    font-weight: 600;
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-md);
+    pointer-events: none;
+}
+
+.percentageLabel {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--black);
+    font-weight: 400;
+    font-size: var(--font-size-md);
+    pointer-events: none;
+}
+
+.stickyHeader {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
