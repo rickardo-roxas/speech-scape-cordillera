@@ -1,0 +1,22 @@
+.overview {
+    margin-bottom: 20px;
+}
+
+.bulletedList {
+    list-style-type: disc;
+    padding-left: 1.5rem; 
+    margin: 1rem 0;
+    font-family: var(--font-family-heading);
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--black);
+  }
+
+.bulletedList li {
+    font-family: var(--font-family-heading);
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--black);
+    margin-bottom: 15px;
+}
+  
