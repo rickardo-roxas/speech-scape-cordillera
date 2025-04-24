@@ -1,18 +1,19 @@
 .card {
-    width: 413px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    background: white;
-    overflow: hidden; 
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .imageSection {
-    height: 200px; 
-  }
-  
-  .textSection {
-    padding: 1rem;
-    border-radius: 0 0 8px 8px; 
-  }
+  width: 413px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+}
+
+.imageSection {
+  height: 200px; 
+}
+
+.textSection {
+  padding: 1rem;
+  border-radius: 0 0 16px 16px; 
+  height: 130px
+}
