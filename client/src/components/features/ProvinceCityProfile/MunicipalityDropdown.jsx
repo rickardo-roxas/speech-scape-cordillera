@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Accordion } from 'react-bootstrap';
 import styles from './MunicipalityDropdown.module.css';
 
-function MunicipalityDropdown({ title, description }) {
+function MunicipalityDropdown({ title, description = '' }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const previewText = description.length > 60 ? description.slice(0, 60) + '...' : description;

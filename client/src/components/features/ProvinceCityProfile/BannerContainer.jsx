@@ -1,4 +1,3 @@
-// BannerContainer.js
 import React from 'react';
 import BannerInfo from './BannerInfo';
 import styles from './BannerContainer.module.css';
