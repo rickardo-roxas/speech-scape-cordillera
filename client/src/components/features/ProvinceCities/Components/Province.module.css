@@ -1,17 +1,17 @@
-@import url("../../../../assets/styles/Reset.css");
-@import url("../../../../assets/styles/Variables.css");
-@import url("../../../../assets/styles/Fonts.css");
 
 .container {
     background-color: transparent;
-    font-family: "Manrope", sans-serif;
+    display: flex;
+    flex-direction: row;
+    gap: 11px;
+    
 }
-
 .header {
     font-size: 25px;
     font-weight: bold;
-    color: #333;
+    color:var(--black);
     text-align: inherit; 
     margin: 0; 
     line-height: 1.4; 
-}
+    font-family:var( --font-family-heading);
+}  

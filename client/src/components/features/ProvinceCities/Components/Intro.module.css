@@ -1,15 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&display=swap');
-
+/* This file contains the CSS styles for the Region component. */
 .intro {
   background-color: transparent;
-  font-family: "Kaisei Opti", serif; /* Changed to Kaisei Opti */
   text-align: left; 
 }
 
 .h1 {
+  font-family:var( --font-family-body); 
   font-size: 14px;
   font-weight: normal;
-  color: #666666;
+  color:var(--black);
   text-align: inherit; 
   margin: 0; 
   line-height: 1.4;

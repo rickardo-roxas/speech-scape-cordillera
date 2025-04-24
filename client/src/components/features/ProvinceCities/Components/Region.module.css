@@ -1,16 +1,11 @@
 
-@import url("../../../../assets/styles/Reset.css");
-@import url("../../../../assets/styles/Variables.css");
-@import url("../../../../assets/styles/Fonts.css");
 
-
-body{
+.regionTag {
     background-color: transparent;
-    
-}
-
-h1{
-    font-family: var(--font-family-"Manrope");
-    font-size: var(--size-25px);
+  }
+  
+  .regionTag h1 {
+    font-family: var( --font-family-heading);
     font-weight: 900;
-}
+  }
+  
