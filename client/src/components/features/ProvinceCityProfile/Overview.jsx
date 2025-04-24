@@ -20,9 +20,11 @@ function Overview({ title, description1, description2, description3 }) {
     return (
         <div className={styles.overview}>
             <SectionTitle title={title} />
-            <p>{description1}</p>
-            <p>{description2}</p>
-            <p>{description3}</p>
+            <ul className={styles.bulletedList}>
+                <li>{description1}</li>
+                <li>{description2}</li>
+                <li>{description3}</li>
+            </ul>
         </div>
     );
 }
