@@ -4,8 +4,9 @@ import useFetch from '../hooks/UseFetch.hook';
 
 // Components
 import BannerContainer from '../components/features/ProvinceCityProfile/BannerContainer';
-// import styles from './ProvincePage.module.css';
+import styles from './ProvincePage.module.css';
 import InformationCard from '../components/features/ProvinceCityProfile/InformationCard';
+import MunicipalityCard from '../components/features/ProvinceCityProfile/MunicipalityCard';
 
 /**
  * Displays the province or city information.
@@ -35,13 +36,16 @@ function ProvincePage() {
         <div>
             {provinceData && (
                 <BannerContainer
-                    backgroundImage={provinceData.banner_image || 'placeholder.jpg'}
+                    backgroundImage={provinceData.banner_image || '/images/Benguet/Benguet_5.jpg'}
                     title={provinceData.name}
                     description={provinceData.description || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}
                     type="Province"
                 />
             )}
-            <InformationCard />
+            <div className={styles.container}>
+                <InformationCard />
+                <MunicipalityCard />
+            </div>
         </div>
     );
 }

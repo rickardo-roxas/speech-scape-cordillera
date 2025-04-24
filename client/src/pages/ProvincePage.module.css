@@ -1,0 +1,9 @@
+.container {
+    display: grid;
+    grid-template-columns: 60% 35%;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: start;
+    justify-content: center;
+  }
+  
