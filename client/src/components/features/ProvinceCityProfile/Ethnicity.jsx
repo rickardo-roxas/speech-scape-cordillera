@@ -1,11 +1,24 @@
+// Libraries and dependencies
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
+// Components and styles
 import SectionTitle from './SectionTitle';
 import styles from './Ethnicity.module.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+/**
+ * Ethnicity component that visualizes a breakdown of ethnic groups
+ * using a doughnut chart, alongside a custom color-coded legend.
+ *
+ * @param {object} props - Component props
+ * @param {Array} props.ethnicGroups - Array of ethnic group data
+ * @param {string} props.ethnicGroups[].ethnic_group_name - Name of the ethnic group
+ * @param {string|number} props.ethnicGroups[].percentage - Percentage representation of the group
+ * @returns {JSX.Element} - Rendered Ethnicity chart and legend
+ */
 function Ethnicity({ ethnicGroups }) {
 	const data = {
 		labels: ethnicGroups.map(g => g.ethnic_group_name),

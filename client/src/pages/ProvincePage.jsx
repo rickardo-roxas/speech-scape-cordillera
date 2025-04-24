@@ -1,12 +1,21 @@
+// Libraries and dependencies
 import React, { useState, useEffect } from 'react';
+
+// Hooks
 import useFetch from '../hooks/UseFetch.hook';
 
+// Components and styles
 import BannerContainer from '../components/features/ProvinceCityProfile/BannerContainer';
 import InformationCard from '../components/features/ProvinceCityProfile/InformationCard';
 import MunicipalityCard from '../components/features/ProvinceCityProfile/MunicipalityCard';
-
 import styles from './ProvincePage.module.css';
 
+/**
+ * ProvincePage component that fetches data for a province and displays it using different components.
+ * It includes a banner, information cards with tabs, and a list of municipalities.
+ *
+ * @returns {JSX.Element} - Rendered ProvincePage component
+ */
 function ProvincePage() {
   const [selectedProvince] = useState('Apayao'); // Put province here for testing
   const [provinceData, setProvinceData] = useState(null);
