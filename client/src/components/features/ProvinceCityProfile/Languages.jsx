@@ -10,12 +10,12 @@ function Languages({ languages }) {
             {languages.map((language, index) => (
                 <div key={index}>
                     <ProgressBar className={styles.customProgress}>
-                        <ProgressBar 
+                        <ProgressBar className={styles.customProgressLanguage}
                             now={Number(language.percentage) + 16} 
                             variant="success" 
                             label={`${language.name}`} 
                         />
-                        <ProgressBar 
+                        <ProgressBar className={styles.customProgressPercent}
                             now={100 - Number(language.percentage)} 
                             label={`${language.percentage}%`} 
                         />
