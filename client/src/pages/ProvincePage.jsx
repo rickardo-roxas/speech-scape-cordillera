@@ -1,5 +1,6 @@
 // Libraries and dependencies
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 // Hooks
 import useFetch from '../hooks/UseFetch.hook';
@@ -17,7 +18,7 @@ import styles from './ProvincePage.module.css';
  * @returns {JSX.Element} - Rendered ProvincePage component
  */
 function ProvincePage() {
-  const [selectedProvince] = useState('Ifugao'); // Put province here for testing
+  const { name: selectedProvince } = useParams();
   const [provinceData, setProvinceData] = useState(null);
   const [activeTab, setActiveTab] = useState('Overview');
 
