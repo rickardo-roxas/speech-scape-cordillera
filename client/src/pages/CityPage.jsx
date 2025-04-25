@@ -27,9 +27,20 @@ function CityPage() {
 
   useEffect(() => {
     if (data && data.success && data.data) {
-      setCityData(data.data);
+      const details = data.data;
+      setCityData({
+        name: details.name,
+        intro: details.intro,
+        info_1: details.info_1,
+        info_2: details.info_2,
+        info_3: details.info_3,
+        barangays: details.barangays,
+        ethnic_groups: details.ethnic_groups,
+        languages: details.languages,
+        images: details.images,
+      });
     }
-  }, [data]);
+  }, [data, setCityData]);
 
   if (!cityData) return null;
 
@@ -64,25 +75,29 @@ function CityPage() {
 
   return (
     <div>
-      <BannerContainer
-        backgroundImage={cityData.banner_image || '../../public/images/banner/default-banner.png'}
-        title={cityData.name}
-        description={cityData.description || 'No description available.'}
-        type="City"
-      />
-      <div className={styles.container}>
-        <CityInfoCard
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          overviewData={overviewData}
-          languagesData={languagesData}
-          ethnicGroupData={ethnicGroupData}
-          galleryImages={galleryImages}
-        />
-        <BarangayCard
-          barangays={cityData.barangays || []}
-        />
-      </div>
+      {cityData && (
+        <div>
+          <BannerContainer
+            backgroundImage={cityData.images.find(img => img.includes('card_banner_'))|| '../../public/images/banner/default-banner.png'}
+            title={cityData.name}
+            description={cityData.intro|| 'No description available.'}
+            type="City"
+          />
+          <div className={styles.container}>
+            <CityInfoCard
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+              overviewData={overviewData}
+              languagesData={languagesData}
+              ethnicGroupData={ethnicGroupData}
+              galleryImages={galleryImages}
+            />
+            <BarangayCard
+              barangays={cityData.barangays || []}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

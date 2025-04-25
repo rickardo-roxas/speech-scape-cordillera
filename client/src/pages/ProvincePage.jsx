@@ -34,7 +34,18 @@ function ProvincePage() {
 
   useEffect(() => {
     if (data && data.success && data.data) {
-      setProvinceData(data.data);
+      const details = data.data;
+      setProvinceData({
+        name: details.name,
+        intro: details.intro,
+        info_1: details.info_1,
+        info_2: details.info_2,
+        info_3: details.info_3,
+        municipalities: details.municipalities,
+        ethnic_groups: details.ethnic_groups,
+        languages: details.languages,
+        images: details.images,
+      });
     }
   }, [data]);
 
@@ -66,9 +77,9 @@ function ProvincePage() {
   return (
     <div>
       <BannerContainer
-        backgroundImage={provinceData.banner_image || '../../public/images/banner/default-banner.png'}
+        backgroundImage={provinceData.images.find(img => img.includes('card_banner_')) || '../../public/images/banner/default-banner.png'}
         title={provinceData.name}
-        description={provinceData.description || 'No description available.'}
+        description={provinceData.intro || 'No description available.'}
         type="Province"
       />
       <div className={styles.container}>
