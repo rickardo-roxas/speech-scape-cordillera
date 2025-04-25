@@ -32,7 +32,6 @@ const config = {
     DB_USER: required('MYSQL_USER'),
     DB_PASSWORD: required('MYSQL_PASSWORD'),
     DB_PORT: required('MYSQL_PORT'),
-    DB_NAME: required('MYSQL_NAME'),
     DB_URL: required('MYSQL_URL'),
 };
 
