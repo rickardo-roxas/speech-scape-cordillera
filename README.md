@@ -1,7 +1,7 @@
 # SpeechScape Cordillera
 
 ## Description
-SpeechScape Cordillera is an innovative language mapping application focused on documenting and preserving the rich linguistic diversity of the Cordillera Administrative Region (CAR) in the Philippines. The project aims to create a comprehensive digital repository of languages, dialects, and linguistic variations unique to this mountainous region.
+SpeechScape Cordillera is an innovative language mapping application dedicated to documenting, preserving, and celebrating the rich linguistic diversity of the Cordillera Administrative Region (CAR) in the Philippines. Through this platform, users can explore the history, languages, and ethnic groups of each province and city of the mountainous region.
 
 ## Table of Contents
 - [Description](#description)
@@ -19,88 +19,95 @@ SpeechScape Cordillera is an innovative language mapping application focused on 
 - [Contact](#contact)
 
 ## Features
+- Modern and user-friendly UI
 - Interactive linguistic mapping of the Cordillera region
-- Comprehensive language and dialect documentation
-- Search and filtering capabilities
+- Detailed information of each province and city
+- Search function
 
 ## Getting Started
 
 ### Prerequisites
 Before you begin, ensure you have the following installed:
 
-- **Programming Languages and Frameworks**
   - Node.js (v18+)
   - npm or Yarn
   - Docker
   - Git
-
-- **Database**
-  - MySQL (8.0+)
-  - MySQL Workbench (optional)
-
-- **Development Tools**
-  - Code Editor (VSCode recommended)
-  - Docker
+  - MySQL
+  - VS Code (optional, but recommended)
     
 ### Installation
 
 #### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/speechscape-cordillera.git
+git clone https://github.com/rickardo-roxas/speechscape-cordillera.git
 cd speechscape-cordillera
 ```
 
 #### 2. Install Dependencies
 ```bash
-npm install
-# or
-yarn install
+cd client && npm install
+cd ../server && npm install
 ```
 
-#### 3. Database Setup
+#### 3. Setup
 ```bash
-# Start MySQL Docker container
+# Development build
 docker compose -f docker-compose.dev.yml
 
-## Usage
-
-### Running the Application
-```bash
-# Development mode
-npm run dev
-# or
-yarn dev
-
 # Production build
-npm run build
-npm start
-# or
-yarn build
-yarn start
+docker compose -f docker-compose.prod.yml up
 ```
 
+### Usage
+
+### Project Structure
+speech-scape-cordillera/
+│
+├── client/              # React + Vite frontend
+├── server/              # Node + Express backend
+├── mysql-data/          # Docker volume for MySQL
+├── speech_scape.sql     # Initial schema + seed data
+├── docker-compose.dev.yml
+├── docker-compose.prod.yml
+└── README.md
+
 ### API Endpoints
-- To be defined
+
+#### Landing
+Method | Endpoint | Description
+GET | /api/ | Get the region of CAR
+
+#### Province-City
+Method | Endpoint | Description
+GET | /api/province-city/ | Get all provinces and cities
+GET | /api/province-city/city/:name | Get a city by name
+GET | /api/province-city/province/:name | Get a province by name
+
+#### Search
+Method | Endpoint | Description
+GET | /api/search/ | Search a province or city by name
 
 ## Data Collection Methodology
 SpeechScape Cordillera employs a multi-faceted approach to linguistic data collection:
-- To be defined.
+- Data sources from PhilAtlas and Philippines Statistics Authority (PSA)
+- Geotagging language data to provinces and cities
 
 ## Technology Stack
 - **Backend**: Node.js, Express.js
 - **Database**: MySQL
-- **Frontend**: React.js
-- **Mapping**: Leaflet.js
+- **Frontend**: React.js, Vite, Leaflet.js
 - **Containerization**: Docker
 
 ## Roadmap
-- [ ] Expand language coverage
-- [ ] Add community contribution
-- [ ] Add translation features
-- [ ] Develop mobile application
+- [ ] Deploy frontend to GitHub Pages
+- [ ] Deploy frontend to GitHub Pages
+- [ ] Launch mobile-friendly UI
+- [ ] Add translation and dialect support
+- [ ] Enable community submissions and contributions
 
 ## License
-To define
+Apache-2.0
 
 ## Contact
 **Developers**
@@ -113,5 +120,5 @@ To define
 - TANK, Rithik
 
 ## Acknowledgments
-- Cordillera Indigenous Language Communities
-- Local Academic Institutions
+- PhilAtlas
+- Philippine Statistics Authority
