@@ -13,7 +13,7 @@
     width: 100%;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: var(--border-radius-lg);
 }
 
 .image {
