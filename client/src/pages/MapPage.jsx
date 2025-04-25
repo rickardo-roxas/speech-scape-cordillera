@@ -89,7 +89,9 @@ function MapPage() {
 
                         </>
                     ) : (
-                        <em>Click a province or city to load data.</em>
+                        <div className={styles.noSelectionPrompt}>
+                            <p>Click a province or city to load data</p>
+                        </div>
                     )}
                 </TextContainer>
 
