@@ -7,7 +7,9 @@
   "scripts": {
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --ext .js --fix",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",  
+    "build": "echo 'No build step for backend'"
   },
   "keywords": [],
   "author": "",
