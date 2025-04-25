@@ -28,11 +28,11 @@ const config = {
     LOG_LEVEL: required('LOG_LEVEL'),
 
     // Database
-    DB_HOST: required('DB_HOST'),
-    DB_USER: required('DB_USER'),
-    DB_PASSWORD: required('DB_PASSWORD'),
-    DB_PORT: required('DB_PORT'),
-    DB_NAME: required('DB_NAME'),
+    DB_HOST: required('MYSQL_HOST'),
+    DB_USER: required('MYSQL_USER'),
+    DB_PASSWORD: required('MYSQL_PASSWORD'),
+    DB_PORT: required('MYSQL_PORT'),
+    DB_NAME: required('MYSQL_NAME'),
 };
 
 export default config;
