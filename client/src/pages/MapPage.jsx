@@ -102,13 +102,15 @@ function MapPage() {
                             {
                                 data: locationDetails.ethnicGroups.map(g => parseFloat(g.percentage)),
                                 backgroundColor: [
-                                '#8FCDA1',
-                                '#7AA787',
-                                '#457B54',
-                                '#2E6E3A',
-                                '#283B0B',
-                                '#001707'
-                                ],
+                                    '#004D00',
+                                    '#00C853',
+                                    '#1B5E20',
+                                    '#66BB6A',
+                                    '#009688',
+                                    '#A5D6A7',
+                                    '#2E7D32',
+                                    '#8BC34A'
+                                  ],
                                 hoverOffset: 4,
                             }
                             ]

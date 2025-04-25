@@ -24,7 +24,16 @@ function Ethnicity({ ethnicGroups }) {
 		labels: ethnicGroups.map(g => g.ethnic_group_name),
 		datasets: [{
 			data: ethnicGroups.map(g => parseFloat(g.percentage)),
-			backgroundColor: ['#8FCDA1', '#A1C94E', '#457B54', '#2E6E3A', '#283B0B', '#001707'],
+			backgroundColor: [
+				'#004D00',
+				'#00C853',
+				'#1B5E20',
+				'#66BB6A',
+				'#009688',
+				'#A5D6A7',
+				'#2E7D32',
+				'#8BC34A',
+			  ],
 			borderColor: '#fff',
 			borderWidth: 2
 		}],
