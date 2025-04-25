@@ -10,6 +10,7 @@ class Province {
     /**
      * Creates a new Province object.
      * @param {String} name - The name of the province.
+     * @param {String} intro - The introduction bullet
      * @param {String} info_1 - First informational bullet
      * @param {String} info_2 - Second informational bullet
      * @param {String} info_3 - Third informational bullet
@@ -18,8 +19,9 @@ class Province {
      * @param {array} languages - Array of languages
      * @param {array} images - Array of image URLs
      */
-    constructor(name, info_1, info_2, info_3, municipalities, ethnic_groups, languages, images){
+    constructor(name, intro, info_1, info_2, info_3, municipalities, ethnic_groups, languages, images){
         this.name = name;
+        this.intro = intro;
         this.info_1 = info_1;
         this.info_2 = info_2;
         this.info_3 = info_3;
@@ -65,7 +67,7 @@ async function getProvinceByName(name){
 async function getProvinceByID(id){
     try{
         const query = `
-            SELECT p_name, info_1, info_2, info_3 FROM provinces 
+            SELECT p_name, intro, info_1, info_2, info_3 FROM provinces 
             WHERE province_id = ?`;
         const province = await databaseUtils.performQuery(query, [id]);
 
@@ -81,6 +83,7 @@ async function getProvinceByID(id){
 
         return new Province(
             province[0].p_name,
+            province[0].intro,
             province[0].info_1,
             province[0].info_2,
             province[0].info_3,
@@ -116,6 +119,7 @@ async function getAllProvinces() {
 
             return new Province(
                 province.p_name,
+                province.intro,
                 province.info_1,
                 province.info_2,
                 province.info_3,
