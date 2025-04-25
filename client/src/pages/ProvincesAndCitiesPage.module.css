@@ -4,21 +4,20 @@
   flex-direction: column;
   background: 
     linear-gradient(rgba(245, 245, 245, 0.5), rgba(245, 245, 245, 0.5)),
-    url('../components/features/ProvinceCities/Images/background_image.jpg') center/cover no-repeat;
+    url('../assets/images/province-city-backdrop.png') center/cover no-repeat;
     background-size: cover;
     background-position: center top;
-  font-family: "Manrope", sans-serif;
 }
 
 .RegionContainer {
-  padding: 1rem; 
+  padding: 20px 20px 0 30px; 
   text-align: left;
 }
 
 .ProvinceContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  gap: var(--spacing-xs);
+  gap: var(--spacing-md) var(--spacing-lg);
   justify-items: center;
-  padding: 1rem 1rem;
+  padding: 1rem 2rem;
 }
