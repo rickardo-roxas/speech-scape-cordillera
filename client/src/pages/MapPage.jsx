@@ -79,6 +79,7 @@ function MapPage() {
             >
                 
                 <TextContainer 
+                    className={styles.infoContainer}
                     title={locationDetails ? "Overview" : ""}
                 >
                     {locationDetails ? (
