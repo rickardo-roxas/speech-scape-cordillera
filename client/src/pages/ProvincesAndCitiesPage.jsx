@@ -26,7 +26,7 @@ function ProvincesAndCitiesPage() {
         provinces: details.provinces,
       });
     }
-  },[data, setLocations])
+  },[data, setLocations]);
 
   return (
     <div className={styles.MainContainer}>
