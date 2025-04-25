@@ -7,17 +7,23 @@ import ProvinceContainer from '../components/features/ProvinceCities/CARContaine
 import styles from './ProvincesAndCitiesPage.module.css';
 
 /**
- * Renders the provinces and cities page.
- * Displays the list of provinces and cities for regions.
- * @returns {JSX.Element} - Rendered provinces and cities page.
+ * This component fetches and displays a list of provinces and cities under the 
+ * Cordillera Administrative Region. It uses a custom `useFetch` hook to retrieve data 
+ * from the `/province-city/` endpoint and renders the information as clickable cards.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered provinces and cities page.
  */
+
 function ProvincesAndCitiesPage() {
   const [locations, setLocations] = useState(null);
 
-  const { data } = useFetch('/province-city/' , {
+  // Fetch province and city data using a custom hook
+  const { data } = useFetch('/province-city/', {
     method: "GET",
   }, false);
 
+  // Process fetched data and separate into cities and provinces
   useEffect(() => {
     if (data && data.success && data.data) {
       const details = data.data;
@@ -26,7 +32,7 @@ function ProvincesAndCitiesPage() {
         provinces: details.provinces,
       });
     }
-  },[data, setLocations]);
+  }, [data, setLocations]);
 
   return (
     <div className={styles.MainContainer}>
@@ -35,7 +41,7 @@ function ProvincesAndCitiesPage() {
         <RegionName regionName="Cordillera Administrative Region" />
       </div>
 
-      {/* List of provinces rendered as cards */}
+      {/* List of provinces and cities rendered as cards */}
       {locations && (
         <div className={styles.ProvinceContainer}>
           {locations.provinces.map((province, index) => (
