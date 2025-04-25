@@ -33,6 +33,7 @@ const config = {
     DB_PASSWORD: required('MYSQL_PASSWORD'),
     DB_PORT: required('MYSQL_PORT'),
     DB_NAME: required('MYSQL_NAME'),
+    DB_URL: required('MYSQL_URL'),
 };
 
 export default config;
