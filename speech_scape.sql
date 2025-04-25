@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `cities` (
   `city_id` int(11) NOT NULL,
   `city_name` varchar(45) NOT NULL,
+  `intro` mediumtext NOT NULL,
   `info_1` mediumtext NOT NULL,
   `info_2` mediumtext NOT NULL,
   `info_3` mediumtext NOT NULL,
@@ -40,8 +41,8 @@ CREATE TABLE `cities` (
 -- Dumping data for table `cities`
 --
 
-INSERT INTO `cities` (`city_id`, `city_name`, `info_1`, `info_2`, `info_3`, `region_id`) VALUES
-(1, 'Baguio City', 'Baguio City, the regional center of the Cordillera Administrative Region, was originally called Kafagway, where the Igorots and Ibalois lived before. The Spaniards attempted to seize Kafagway but they failed  multiple times. ', 'The Americans then developed Baguio as the “Summer Capital of the Philippines” in the year 1909. During this time, Kennon Road and Camp John Hay were built by the Americans and used as a rest place for the military. ', 'In 1990, Baguio was one of the places that had severe destruction from the 7.5 magnitude earthquake. The rebuilding of structures had donors from Japan, Singapore, and the United States. ', 8);
+INSERT INTO `cities` (`city_id`, `city_name`, `intro`, `info_1`, `info_2`, `info_3`, `region_id`) VALUES
+(1, 'Baguio City', 'The Summer Capital of the Philippines' ,'Baguio City, the regional center of the Cordillera Administrative Region, was originally called Kafagway, where the Igorots and Ibalois lived before. The Spaniards attempted to seize Kafagway but they failed  multiple times. ', 'The Americans then developed Baguio as the “Summer Capital of the Philippines” in the year 1909. During this time, Kennon Road and Camp John Hay were built by the Americans and used as a rest place for the military. ', 'In 1990, Baguio was one of the places that had severe destruction from the 7.5 magnitude earthquake. The rebuilding of structures had donors from Japan, Singapore, and the United States. ', 8);
 
 -- --------------------------------------------------------
 
@@ -233,7 +234,8 @@ INSERT INTO `city_images` (`city_id`, `city_img`) VALUES
 (1, '/images/BaguioCity/baguio_3.png'),
 (1, '/images/BaguioCity/baguio_4.png'),
 (1, '/images/BaguioCity/baguio_5.png'),
-(1, '/images/BaguioCity/baguio_6.jpg');
+(1, '/images/BaguioCity/baguio_6.jpg'),
+(1, '/images/BaguioCity/card_banner_baguio.jpg');
 
 -- --------------------------------------------------------
 
@@ -450,6 +452,7 @@ CREATE TABLE `municipality_languages` (
 CREATE TABLE `provinces` (
   `province_id` int(11) NOT NULL,
   `p_name` char(45) NOT NULL,
+  `intro` mediumtext NOT NULL,
   `info_1` mediumtext NOT NULL,
   `info_2` mediumtext NOT NULL,
   `info_3` mediumtext NOT NULL,
@@ -460,13 +463,13 @@ CREATE TABLE `provinces` (
 -- Dumping data for table `provinces`
 --
 
-INSERT INTO `provinces` (`province_id`, `p_name`, `info_1`, `info_2`, `info_3`, `region_id`) VALUES
-(1, 'Abra', 'Abra was created as a politico-military province in 1846, before which it was part of the old Ilocos province – and later Ilocos Sur – and the Ilocos Region was divided into two provinces in 1818.', 'In 1899, a revolutionary government was established in Abra through the leadership of Don Blas Villamor. Leocadio Valera became the Provincial Governor until Abra fell into the American Civil Government established on August 19, 1909.', 'On March 9, 1917, the Philippine Assembly re-established Abra as a province. It is bordered by Ilocos Norte on the northwest, Apayao on the northeast, Kalinga on the mid-east, Mountain Province on the southeast, and Ilocos Sur on the southwest.', 8),
-(2, 'Apayao', 'Apayao was among the earliest areas penetrated by the Spaniards in the Cordilleras.', 'Isnegs are the indigenous people of the Apayao province. The term “Isneg” was derived from the combination of “is,” meaning recede, and “uneg” meaning interior. Thus, the Isneg are people who have gone into the interior.', 'On August 18, 1908, by Act No. 1876, the Philippine Legislature created the Mountain Province. Apayao, which had been attached to the province of Cagayan, was made a sub-province of the Mountain Province. The old Mountain Province then was divided into four provinces by virtue of Republic Act No. 4695 on June 18, 1966. The sub-provinces of Apayao and Kalinga were fused into the province of Kalinga-Apayao. Eventually, Apayao was created as a distinct province from out of Kalinga-Apayao on February 14, 1995 with the passage of Republic Act No. 7878.', 8),
-(3, 'Benguet', 'The name Benguet was first pronounced in La Trinidad, a thriving settlement at the crossroads to the lowland trading sites during the period of Spanish expeditions.', 'Benguet was established as a Province in 1899 under the First Philip­pine Republic with Juan Oraa “Ahino” Carino appointed as Governor and Presi­dent of the Board. The seat of the provincial government was in Tuel, Tublay.', 'On June 18, 1966 by virtue of Republic Act 4695 Mountain Province was divided into four provinces namely Benguet, Mountain Province, Ifugao and Kalinga-Apayao. Once-again, Benguet became a distinct and regular province.\r\n', 8),
-(4, 'Ifugao', 'The Ifugao people trace their ancestry to Wigan and Bugan from the Skyworld (Kabunyan), settling in Kiyangan and later expanding across the region.', 'The Spaniards attempted to conquer Ifugao but failed because of local resistance of ifugao people, withdrawing in 1897 before American forces arrived in 1902.', 'Ifugao became a sub-province under Mt. Province in 1905 and gained full provincial status in 1966, now thriving in agriculture, crafts, and tourism.\r\n', 8),
-(5, 'Kalinga', 'The name \"Kalinga\" originates from the Ibanag and Gaddang languages, where it refers to an \"enemy,\" \"fighter,\" or \"headtaker.\"', 'Kalinga was carved out from the provinces of Cagayan and Isabela and officially established as a sub-province of Lepanto-Bontoc by the Americans through Philippine Commission Act No. 1642 on May 9, 1907.', 'Kalinga was merged with Apayao to form a single province when the old Mountain Province was divided into four separate provinces under Republic Act No. 4695 in 1966. Later, along with Abra, it became part of the Cordillera Administrative Region, established through Executive Order No. 220 in 1987.', 8),
-(6, 'Mountain Province', 'Originally, the whole Cordillera region was identified as \'Mountain Province\' ,a special province of the Philippines composed of the sub-provinces of Bontoc-Lepanto-Amburayan, Ifugao, Kalinga, Benguet, Apayao. Mr. Samuel Kane, the Provincial Supervisor was appointed Governor and Bontoc was made the provincial capital.', 'On June 18, 1966 the Mountain Province which we have now was politically created by virtue of RA 4695, the Subdivision Law of Mountain Province approved by then President Ferdinand E. Marcos. The five (5) distinct provinces of Benguet, Kalinga, Apayao, Ifugao and Mountain Province were finally born.', 'On Friday, April 7, 1967, a year after the Subdivision Law was approved, the “new” Mountain Province had become legally and officially operational with the following set of officials: Congressman-Luis Hora, Governor – Alfredo G. Lamen, Vice-Governor- Victor S. Dominguez, Board Member- Pio Felwa, Alfonso Layug and Alejo Manao where President Fidel V. Ramos declared April 7 as the Mountain Province Foundation Day on February 28,1993\r\n', 8);
+INSERT INTO `provinces` (`province_id`, `p_name`, `intro`, `info_1`, `info_2`, `info_3`, `region_id`) VALUES
+(1, 'Abra', 'A landlocked province known for its lush valleys, scenic mountains, and rich Ilocano and Tingguian culture.','Abra was created as a politico-military province in 1846, before which it was part of the old Ilocos province – and later Ilocos Sur – and the Ilocos Region was divided into two provinces in 1818.', 'In 1899, a revolutionary government was established in Abra through the leadership of Don Blas Villamor. Leocadio Valera became the Provincial Governor until Abra fell into the American Civil Government established on August 19, 1909.', 'On March 9, 1917, the Philippine Assembly re-established Abra as a province. It is bordered by Ilocos Norte on the northwest, Apayao on the northeast, Kalinga on the mid-east, Mountain Province on the southeast, and Ilocos Sur on the southwest.', 8),
+(2, 'Apayao', 'A peaceful and forested province, home to the Isneg people, known for its pristine rivers, caves, and biodiversity', 'Apayao was among the earliest areas penetrated by the Spaniards in the Cordilleras.', 'Isnegs are the indigenous people of the Apayao province. The term “Isneg” was derived from the combination of “is,” meaning recede, and “uneg” meaning interior. Thus, the Isneg are people who have gone into the interior.', 'On August 18, 1908, by Act No. 1876, the Philippine Legislature created the Mountain Province. Apayao, which had been attached to the province of Cagayan, was made a sub-province of the Mountain Province. The old Mountain Province then was divided into four provinces by virtue of Republic Act No. 4695 on June 18, 1966. The sub-provinces of Apayao and Kalinga were fused into the province of Kalinga-Apayao. Eventually, Apayao was created as a distinct province from out of Kalinga-Apayao on February 14, 1995 with the passage of Republic Act No. 7878.', 8),
+(3, 'Benguet', 'Famous for its cool climate and vegetable farms, Benguet is often called the “Salad Bowl of the Philippines"', 'The name Benguet was first pronounced in La Trinidad, a thriving settlement at the crossroads to the lowland trading sites during the period of Spanish expeditions.', 'Benguet was established as a Province in 1899 under the First Philip­pine Republic with Juan Oraa “Ahino” Carino appointed as Governor and Presi­dent of the Board. The seat of the provincial government was in Tuel, Tublay.', 'On June 18, 1966 by virtue of Republic Act 4695 Mountain Province was divided into four provinces namely Benguet, Mountain Province, Ifugao and Kalinga-Apayao. Once-again, Benguet became a distinct and regular province.\r\n', 8),
+(4, 'Ifugao', 'Known for the UNESCO-listed Banaue Rice Terraces, Ifugao showcases centuries-old rice farming traditions and indigenous heritage.', 'The Ifugao people trace their ancestry to Wigan and Bugan from the Skyworld (Kabunyan), settling in Kiyangan and later expanding across the region.', 'The Spaniards attempted to conquer Ifugao but failed because of local resistance of ifugao people, withdrawing in 1897 before American forces arrived in 1902.', 'Ifugao became a sub-province under Mt. Province in 1905 and gained full provincial status in 1966, now thriving in agriculture, crafts, and tourism.\r\n', 8),
+(5, 'Kalinga', 'A culturally vibrant province recognized for its fierce warrior history, traditional tattoos, and the legendary tattoo artist Apo Whang-Od.', 'The name \"Kalinga\" originates from the Ibanag and Gaddang languages, where it refers to an \"enemy,\" \"fighter,\" or \"headtaker.\"', 'Kalinga was carved out from the provinces of Cagayan and Isabela and officially established as a sub-province of Lepanto-Bontoc by the Americans through Philippine Commission Act No. 1642 on May 9, 1907.', 'Kalinga was merged with Apayao to form a single province when the old Mountain Province was divided into four separate provinces under Republic Act No. 4695 in 1966. Later, along with Abra, it became part of the Cordillera Administrative Region, established through Executive Order No. 220 in 1987.', 8),
+(6, 'Mountain Province', 'Famous for the hanging coffins of Sagada, this province blends natural beauty with fascinating indigenous customs and traditions.', 'Originally, the whole Cordillera region was identified as \'Mountain Province\' ,a special province of the Philippines composed of the sub-provinces of Bontoc-Lepanto-Amburayan, Ifugao, Kalinga, Benguet, Apayao. Mr. Samuel Kane, the Provincial Supervisor was appointed Governor and Bontoc was made the provincial capital.', 'On June 18, 1966 the Mountain Province which we have now was politically created by virtue of RA 4695, the Subdivision Law of Mountain Province approved by then President Ferdinand E. Marcos. The five (5) distinct provinces of Benguet, Kalinga, Apayao, Ifugao and Mountain Province were finally born.', 'On Friday, April 7, 1967, a year after the Subdivision Law was approved, the “new” Mountain Province had become legally and officially operational with the following set of officials: Congressman-Luis Hora, Governor – Alfredo G. Lamen, Vice-Governor- Victor S. Dominguez, Board Member- Pio Felwa, Alfonso Layug and Alejo Manao where President Fidel V. Ramos declared April 7 as the Mountain Province Foundation Day on February 28,1993\r\n', 8);
 
 -- --------------------------------------------------------
 
@@ -538,36 +541,42 @@ INSERT INTO `province_images` (`province_id`, `img_url`) VALUES
 (1, '/images/Abra/abra_4.jpg'),
 (1, '/images/Abra/abra_5.png'),
 (1, '/images/Abra/abra_6.jpg'),
+(1, '/images/Abra/card_banner_abra.jpg'),
 (2, '/images/Apayao/apayao_1.jpg'),
 (2, '/images/Apayao/apayao_2.jpg'),
 (2, '/images/Apayao/apayao_3.JPG'),
 (2, '/images/Apayao/apayao_4.JPG'),
 (2, '/images/Apayao/apayao_5.jpg'),
 (2, '/images/Apayao/apayao_6.jpg'),
+(2, '/images/Apayao/card_banner_apayao.jpg'),
 (3, '/images/Benguet/benguet_1.jpg'),
 (3, '/images/Benguet/benguet_2.jpg'),
 (3, '/images/Benguet/benguet_3.jpg'),
 (3, '/images/Benguet/benguet_4.jpg'),
 (3, '/images/Benguet/Benguet_5.jpg'),
 (3, '/images/Benguet/Benguet_6.jpg'),
+(3, '/images/Benguet/card_banner_benguet.jpg'),
 (4, '/images/Ifugao/ifugao_1.jpg'),
 (4, '/images/Ifugao/ifugao_2.jpg'),
 (4, '/images/Ifugao/ifugao_3.jpg'),
 (4, '/images/Ifugao/ifugao_4.jpg'),
 (4, '/images/Ifugao/ifugao_5.jpeg'),
 (4, '/images/Ifugao/ifugao_6.jpeg'),
+(4, '/images/Ifugao/card_banner_ifugao.jpg'),
 (5, '/images/Kalinga/kalinga_1.jpg'),
 (5, '/images/Kalinga/kalinga_2.jpg'),
 (5, '/images/Kalinga/kalinga_3.jpg'),
 (5, '/images/Kalinga/kalinga_4.jpg'),
 (5, '/images/Kalinga/kalinga_5.jpg'),
 (5, '/images/Kalinga/kalinga_6.jpg'),
+(5, '/images/Kalinga/card_banner_kalinga.jpg'),
 (6, '/images/MountainProvince/mountain_province_1.jpg'),
 (6, '/images/MountainProvince/mountain_province_2.jpg'),
 (6, '/images/MountainProvince/mountain_province_3.jpg'),
 (6, '/images/MountainProvince/mountain_province_4.jpg'),
 (6, '/images/MountainProvince/mountain_province_5.jpg'),
-(6, '/images/MountainProvince/mountain_province_6.jpg');
+(6, '/images/MountainProvince/mountain_province_6.jpg'),
+(6, '/images/MountainProvince/card_banner_mountainprovince.jpg');
 
 -- --------------------------------------------------------
 

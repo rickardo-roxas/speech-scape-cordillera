@@ -2,12 +2,16 @@
 .container {
     background-color: transparent;
     display: flex;
+    align-items: center;
+    justify-content: left;
     flex-direction: row;
     gap: 11px;
+    height: 2rem;
+    margin-bottom: var(--spacing-xs);
     
 }
 .header {
-    font-size: 25px;
+    font-size: var(--font-size-xxl);
     font-weight: bold;
     color:var(--black);
     text-align: inherit; 

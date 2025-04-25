@@ -10,6 +10,7 @@ class City {
     /**
      * Creates a new City object. 
      * @param {string} name - The name of the city.
+     * @param {string} intro - The introduction bullet
      * @param {string} info_1 - First informational bullet
      * @param {string} info_2 - Second informational bullet
      * @param {string} info_3 - Third informational bullet
@@ -18,8 +19,9 @@ class City {
      * @param {array} languages - Array of languages
      * @param {array} images - Array of image URLs
      */
-    constructor(name, info_1, info_2, info_3, barangays, ethnic_groups, languages, images) {
+    constructor(name, intro, info_1, info_2, info_3, barangays, ethnic_groups, languages, images) {
         this.name = name;
+        this.intro = intro;
         this.info_1 = info_1;
         this.info_2 = info_2;
         this.info_3 = info_3;
@@ -51,6 +53,7 @@ async function getAllCities() {
 
             return new City(
                 city.city_name,
+                city.intro,
                 city.info_1,
                 city.info_2,
                 city.info_3,
@@ -76,7 +79,7 @@ async function getAllCities() {
 async function getCityByID(id) {
     try {
         const query = `
-            SELECT city_name, info_1, info_2, info_3 FROM cities
+            SELECT city_name, intro, info_1, info_2, info_3 FROM cities
             WHERE city_id = ?`;
         const city = await databaseUtils.performQuery(query, [id]);
 
@@ -92,6 +95,7 @@ async function getCityByID(id) {
 
         return new City(
             city[0].city_name,
+            city[0].intro,
             city[0].info_1,
             city[0].info_2,
             city[0].info_3,

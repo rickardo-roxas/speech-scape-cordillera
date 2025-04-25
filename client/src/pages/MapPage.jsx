@@ -5,7 +5,7 @@ import {
     ArcElement,
     Tooltip,
     Legend
-  } from 'chart.js';
+} from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 import useFetch from '../hooks/UseFetch.hook';

@@ -1,24 +1,24 @@
 .MainContainer {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: 
-      linear-gradient(rgba(245, 245, 245, 0.5), rgba(245, 245, 245, 0.5)),
-      url('../components/features/ProvinceCities/Images/background_image.jpg') center/cover no-repeat;
-      background-size: cover;
-      background-position: center top;
-    font-family: "Manrope", sans-serif;
-  }
-  
-  .RegionContainer {
-    padding: 1rem; 
-    text-align: left;
-  }
-  
-  .ProvinceContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 2rem;
-    justify-items: center;
-    padding: 1rem 1rem;
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: 
+    linear-gradient(rgba(245, 245, 245, 0.5), rgba(245, 245, 245, 0.5)),
+    url('../components/features/ProvinceCities/Images/background_image.jpg') center/cover no-repeat;
+    background-size: cover;
+    background-position: center top;
+  font-family: "Manrope", sans-serif;
+}
+
+.RegionContainer {
+  padding: 1rem; 
+  text-align: left;
+}
+
+.ProvinceContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: var(--spacing-xs);
+  justify-items: center;
+  padding: 1rem 1rem;
+}
