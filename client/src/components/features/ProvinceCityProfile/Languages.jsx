@@ -21,18 +21,16 @@ function Languages({ languages }) {
 		<div className={styles.languages}>
 			<SectionTitle title="Languages" />
 			{languages.map((language, index) => (
-				<div key={index}>
+				<div key={index} className={styles.progressWrapper}>
 					<ProgressBar className={styles.customProgress}>
-						<ProgressBar className={styles.customProgressLanguage}
-							now={Number(language.percentage) + 16} 
-							variant="success" 
-							label={`${language.name}`} 
-						/>
-						<ProgressBar className={styles.customProgressPercent}
-							now={100 - Number(language.percentage)} 
-							label={`${language.percentage}%`} 
+						<ProgressBar
+							className={styles.customProgressLanguage}
+							now={Number(language.percentage)}
+							variant="success"
 						/>
 					</ProgressBar>
+					<span className={styles.languageLabel}>{language.name}</span>
+					<span className={styles.percentageLabel}>{language.percentage}%</span>
 				</div>
 			))}
 		</div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 // Components and Styles
 import CityInfoCard from '../components/features/ProvinceCityProfile/CityInfoCard';
@@ -10,7 +11,7 @@ import styles from './CityPage.module.css';
 import useFetch from '../hooks/UseFetch.hook';
 
 function CityPage() {
-  const [cityName] = useState('Baguio City');
+  const { name: cityName } = useParams();
   const [cityData, setCityData] = useState(null);
   const [activeTab, setActiveTab] = useState('Overview');
 
