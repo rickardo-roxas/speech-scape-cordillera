@@ -13,6 +13,7 @@ lerna-debug.log*
 .env.production
 .env.test
 .env.dev
+.env.prod
 
 # Dependencies / Folders
 mysql/
