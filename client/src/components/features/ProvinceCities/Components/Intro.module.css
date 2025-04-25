@@ -1,0 +1,15 @@
+/* This file contains the CSS styles for the Region component. */
+.intro {
+  background-color: transparent;
+  text-align: left; 
+}
+
+.h1 {
+  font-family:var( --font-family-body); 
+  font-size: 14px;
+  font-weight: normal;
+  color:var(--black);
+  text-align: inherit; 
+  margin: 0; 
+  line-height: 1.4;
+}

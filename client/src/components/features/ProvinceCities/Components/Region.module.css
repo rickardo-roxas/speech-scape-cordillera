@@ -1,0 +1,11 @@
+
+
+.regionTag {
+    background-color: transparent;
+  }
+  
+  .regionTag h1 {
+    font-family: var( --font-family-heading);
+    font-weight: 900;
+  }
+  

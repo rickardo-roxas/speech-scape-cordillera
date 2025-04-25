@@ -1,0 +1,17 @@
+
+.container {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    gap: 11px;
+    
+}
+.header {
+    font-size: 25px;
+    font-weight: bold;
+    color:var(--black);
+    text-align: inherit; 
+    margin: 0; 
+    line-height: 1.4; 
+    font-family:var( --font-family-heading);
+}  
