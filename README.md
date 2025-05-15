@@ -63,6 +63,7 @@ docker compose -f docker-compose.prod.yml up
 
 ### Project Structure
 speech-scape-cordillera/
+```bash
 │
 ├── client/              # React + Vite frontend
 ├── server/              # Node + Express backend
@@ -71,7 +72,7 @@ speech-scape-cordillera/
 ├── docker-compose.dev.yml
 ├── docker-compose.prod.yml
 └── README.md
-
+```
 ### API Endpoints
 
 #### Landing
